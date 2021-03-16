@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="logo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="Imagini\logo.png">
 
     <title>Proactiv - Contul meu</title>
 
@@ -12,6 +12,7 @@
 
     <!-- Bootstrap core CSS -->
 <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <style>
       .bd-placeholder-img {
@@ -28,19 +29,9 @@
         }
       }
       html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-    }
-    #map {
-      float: right;
-      width: 90%;
-      height:80%;
-      margin-right: 60px;
-      margin-left: auto;
-    }
-    #map:focus {
-      outline: black solid 0.15em;
-    }
+        max-width: 100%;
+        overflow-x: hidden;
+      }
     .splitleft{
       height: 100%;
       width: 30%;
@@ -49,6 +40,7 @@
       top: 0;
       overflow-x: hidden;
       padding-top: 20px;
+      background-color: #E6DAF0;
     }
     .splitright {
       height: 100%;
@@ -58,6 +50,7 @@
       top: 0;
       overflow-x: hidden;
       padding-top: 20px;
+      background-color: #F5F1F9;
     }
 
     .left {
@@ -75,7 +68,16 @@
       transform: translate(-50%, -50%);
       text-align: center;
     }
-
+    .centeredleft {
+      position: absolute;
+      top: 50%;
+      left: 30%;
+      transform: translate(-50%, -50%);
+      text-align: left;
+    }
+    .content-section {
+      display: none;
+    }
 </style>
 
 </head>
@@ -84,25 +86,25 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-      <img src="proactiv.png" width="150px" height="40px" class="d-inline-block align-top" alt="">
+      <img src="Imagini\proactiv.png" width="150px" height="40px" class="d-inline-block align-top" alt="">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link" href="paginaPrincipala.html" target="_blank">Acasă</a>
+            <a class="nav-link" href="acasa.html">Acasă</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="harta.html" target="_blank">Hartă</a>
+            <a class="nav-link" href="harta.html">Hartă</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="organizatii.html" target="_blank">Organizații</a>
+            <a class="nav-link" href="organizatii.html">Organizații</a>
           </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"><img src="myacc.jpg" width="23px" height="23px"/>Contul meu</a>
+              <a class="nav-link active" aria-current="page" href="#"><img src="Imagini\myacc.png" width="23px" height="23px"/>  Contul meu</a>
             </li>
           </ul>
       </div>
@@ -116,45 +118,55 @@
 
 <div class="splitleft left">
   <div class="centered">
-    <h3 class="text-muted">Aici poti vedea actiunile care isi cauta voluntari!</h2>
-    <h5 class="text-muted">Apasa indicatorii pentru detalii</h2>
-      <br>
-      <div class="col-md">
-        <label for="judet" class="form-label">Alege un anumit judet</label>
-        <select class="form-select" id="judet" required>
-          <option value=""></option>
-          <option>Optiunea 1</option>
-          <option>Optiunea 2</option>
-          <option>Optiunea 3</option>
-        </select>
+    <img src="Imagini\myacc.png" class="rounded mx-auto d-block"  width="250px" height="250px" alt="Poza Profil">
+      <br><br><br>
+      <div class="btn-group-vertical" role="group" aria-label="Meniu Butoane">
+        <button type="button" data-section="sectiuneaGeneral" class="btn btn-secondary btn-lg">General</button>
+        <button type="button" data-section="sectiuneaParola" class="btn btn-secondary btn-lg">Schimbă parola</button>
+        <button type="button" data-section="sectiuneaMesaje" class="btn btn-secondary btn-lg">Mesaje noi</button>
+        <button type="button" data-section="sectiuneaActiuni" class="btn btn-secondary btn-lg">Acțiunile mele</button>
+        <button type="button" data-section="sectiuneaInterese" class="btn btn-secondary btn-lg">Setează-ți interesele</button>
       </div>
-      <br>
-      <div class="col-md">
-        <label for="oras" class="form-label">Alege un anumit oras</label>
-        <select class="form-select" id="oras" required>
-          <option value=""></option>
-          <option>Optiunea 1</option>
-          <option>Optiunea 2</option>
-          <option>Optiunea 3</option>
-        </select>
-      </div>
-      <br>
-      <div class="col-md">
-        <label for="categorie" class="form-label">Alege o anumita categorie</label>
-        <select class="form-select" id="categorie" required>
-          <option value=""></option>
-          <option>Optiunea 1</option>
-          <option>Optiunea 2</option>
-          <option>Optiunea 3</option>
-        </select>
-      </div>
-      <br><br>
-      <p><a class="btn btn-outline-dark" href="#">Aplica filtrele</a></p>
   </div>
 </div>
 
 <div class="splitright right">
-  <div id="map" class="centered">
+  <div class="centeredleft">
+    <div class="content-section" id="sectiuneaGeneral">
+        <label for="lastName" class="form-label">Nume</label>
+        <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+        <br>
+        <label for="firstName" class="form-label">Prenume</label>
+        <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+        <br>
+        <div class="col-md">
+          <label for="judet" class="form-label">Județ</label>
+          <select class="form-select" id="judet" required>
+            <option value=""></option>
+            <option>Optiunea 1</option>
+            <option>Optiunea 2</option>
+            <option>Optiunea 3</option>
+          </select>
+        </div>
+        <br>
+        <div class="col-md">
+          <label for="oras" class="form-label">Oraș</label>
+          <select class="form-select" id="oras" required>
+            <option value=""></option>
+            <option>Optiunea 1</option>
+            <option>Optiunea 2</option>
+            <option>Optiunea 3</option>
+          </select>
+        </div>
+        <br>
+        <div class="col-md">
+          <label for="date-picker-example">Data nașterii</label>
+          <br>
+          <input type="date" class="datepicker">
+        </div>
+        <br><br><br>
+        <button type="button" class="btn btn-outline-dark">Salvează</button>
+    </div>
   </div>
 </div>
 
@@ -170,6 +182,17 @@
 
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!--Data Picker Initialization-->
+    <script>
+    $(function() {
+        $(".btn").on("click", function() {
+          //hide all sections
+          $(".content-section").hide();
+          //show the section depending on which button was clicked
+          $("#" + $(this).attr("data-section")).show();
+        });
+    });
+    </script>
 
   </body>
 </html>

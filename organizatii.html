@@ -5,14 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="Imagini\logo.png">
 
-    <title>Proactiv - Harta</title>
+    <title>Proactiv - Organizații</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHiS4zW5nQWPuHFxdDaZ4yaoQ8O4-C4Yw&callback=initMap"
-      defer
-    ></script>
-    <script src="harta.php"></script>
 
 
     <!-- Bootstrap core CSS -->
@@ -33,24 +28,22 @@
         }
       }
       html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-    background-color: #E6DAF0;
-    }
-    #map {
-      float: right;
-      width: 90%;
-      height:80%;
-      margin-right: 60px;
-      margin-left: auto;
-    }
-    #map:focus {
-      outline: black solid 0.15em;
-    }
+        max-width: 100%;
+        overflow-x: hidden;
+        background-color: #E6DAF0;
+      }
     .splitleft{
       height: 100%;
-      width: 30%;
+      width: 33%;
       position: fixed;
+      z-index: 1;
+      top: 0;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+    .splitmiddle{
+      height: 100%;
+      width: 33%;
       z-index: 1;
       top: 0;
       overflow-x: hidden;
@@ -58,12 +51,12 @@
     }
     .splitright {
       height: 100%;
-      width: 70%;
+      width: 33%;
       position: fixed;
       z-index: 1;
       top: 0;
       overflow-x: hidden;
-      padding-top: 20px;
+
     }
 
     .left {
@@ -100,10 +93,10 @@
             <a class="nav-link" href="acasa.html">Acasă</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Hartă</a>
+            <a class="nav-link" href="harta.html">Hartă</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="organizatii.html">Organizații</a>
+            <a class="nav-link active" aria-current="page" href="#">Organizații</a>
           </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -122,49 +115,25 @@
 
 <div class="splitleft left">
   <div class="centered">
-    <h3 style="color:#702DC8;">Aici poți vedea acțiunile care își caută voluntari!</h2>
-    <h5 style="color:#9059D9;">Apasă indicatorii pentru detalii</h2>
-      <br>
-      <div class="col-md">
-        <label for="judet" class="form-label">Alege un anumit județ</label>
-        <select class="form-select" id="judet" required>
-          <option value=""></option>
-          <option>Optiunea 1</option>
-          <option>Optiunea 2</option>
-          <option>Optiunea 3</option>
-        </select>
-      </div>
-      <br>
-      <div class="col-md">
-        <label for="oras" class="form-label">Alege un anumit oraș</label>
-        <select class="form-select" id="oras" required>
-          <option value=""></option>
-          <option>Optiunea 1</option>
-          <option>Optiunea 2</option>
-          <option>Optiunea 3</option>
-        </select>
-      </div>
-      <br>
-      <div class="col-md">
-        <label for="categorie" class="form-label">Alege o anumită categorie</label>
-        <select class="form-select" id="categorie" required>
-          <option value=""></option>
-          <option>Optiunea 1</option>
-          <option>Optiunea 2</option>
-          <option>Optiunea 3</option>
-        </select>
-      </div>
-      <br><br>
-      <p><a class="btn btn-outline-dark" href="#">Aplică filtrele</a></p>
+    <h2 style="color:#702DC8;">A - I</h2>
+    <br><br>
+
+  </div>
+</div>
+
+<div class="splitmiddle">
+  <div class="centered">
+    <h2 style="color:#702DC8;">J - P</h2>
+    <br><br>
   </div>
 </div>
 
 <div class="splitright right">
-  <div id="map" class="centered">
+  <div class="centered">
+    <h2 style="color:#702DC8;">Q - Z</h2>
+    <br><br>
   </div>
 </div>
-
-
 
   <!-- FOOTER
   <footer class="container">
@@ -173,9 +142,7 @@
   </footer>-->
 </main>
 
-
-    <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 
   </body>
 </html>
