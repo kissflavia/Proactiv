@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="Imagini\logo.png">
+
+    <title>Cont nou - ORGANIZAȚIE</title>
+
+    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="assets/dist/css/carousel.css" rel="stylesheet">
+    <link href="assets/dist/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+
+    <style>
+        .datepicker {
+            font-size: 0.875em;
+        }
+        .datepicker td, .datepicker th {
+            width: 2em;
+            height: 2em;
+        }
+      @font-face {
+        font-family: Ubuntu-Regular;
+        src: url('assets/dist/fonts/ubuntu/Ubuntu-Regular.ttf');
+      }
+      html, body {
+        font-family: Ubuntu-Regular;
+        max-width: 100%;
+      }
+      select>option:checked {
+          background: #C3AAE3;
+      }
+      select>option:hover {
+        background-color: #C3AAE3;
+        background: #C3AAE3;
+      }
+      select>option:focus{
+        background-color: #C3AAE3;
+        background: #C3AAE3;
+      }
+    </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a  href="paginaPrincipala.html"><img src="Imagini\proactiv.png" width="150px" height="40px" class="d-inline-block align-top" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <br><br><br>
+    <h3 class="text-muted">Cont nou <span class="featurette-heading">ORGANIZAȚIE</span></h3>
+    <br>
+      <div class="col-lg-12 well">
+      	<div class="row">
+      				<form method="POST" action="register.php">
+      					<div class="col-sm-12">
+      						<div class="row">
+      							<div class="col-sm-6 form-group">
+      								<label>Denumire</label>
+      								<input type="text" name="numeO" class="form-control" required>
+      							</div>
+      							<div class="col-sm-6 form-group">
+      								<label>CIF</label>
+      								<input type="text"  name="cifO" class="form-control" required>
+      							</div>
+      						</div>
+                  <br>
+                  <div class="form-group">
+      							<label>Data înființării</label>
+                    <br>
+                    <input class="form-control" name="datanO" data-date-format="dd/mm/yyyy" id="datepicker">
+      						</div>
+
+                  <div class="row">
+      							<div class="col-sm-6 form-group">
+                      <br>
+                      <label for="judet" class="form-label">Județ</label>
+                      <select class="form-select"  name="judetO" id="judet" required>
+                        <option value=""></option>
+                        <option>Optiunea 1</option>
+                        <option>Optiunea 2</option>
+                        <option>Optiunea 3</option>
+                      </select>
+      							</div>
+      							<div class="col-sm-6 form-group">
+                      <br>
+                      <label for="oras" class="form-label">Oraș</label>
+                      <select class="form-select" name="orasO" id="oras" required>
+                        <option value=""></option>
+                        <option>Optiunea 1</option>
+                        <option>Optiunea 2</option>
+                        <option>Optiunea 3</option>
+                        </select>
+      							</div>
+      						</div>
+
+                  <hr class="featurette-divider">
+
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Despre organizație</label>
+                    <textarea class="form-control" name="despreO" id="despre" rows="3" required></textarea>
+                  </div>
+
+                  <hr class="featurette-divider">
+
+                  <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" name="emailO" class="form-control" required>
+                  </div>
+                  <div class="row">
+      							<div class="col-sm-6 form-group">
+                      <br>
+      								<label>Parolă</label>
+      								<input type="password" name="pswO" class="form-control" required>
+      							</div>
+      							<div class="col-sm-6 form-group">
+                      <br>
+                      <label>Confirmă parola</label>
+      								<input type="password" name="psw2O" class="form-control" required>
+      							</div>
+      						</div>
+
+                <hr class="featurette-divider">
+
+      					<button type="submit" name="btnOrg" class="btn btn-lg btn-outline-dark" style="margin:auto; display:block; width:50%">Submit</button>
+                <br><br><br>
+      					</div>
+      				</form>
+      			</div>
+      	</div>
+	</div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+      $('#datepicker').datepicker({
+          maxViewMode: 2,
+          language: "ro",
+          orientation: "bottom left",
+          weekStart: 1,
+          daysOfWeekHighlighted: "6,0",
+          autoclose: true,
+          todayHighlight: true
+      });
+      $('#datepicker').datepicker("setDate", new Date());
+  </script>
+</body>
+</html>
+<!-- end document-->

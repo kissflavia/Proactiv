@@ -7,12 +7,9 @@
 
     <title>Proactiv - Contul meu</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
-
-
     <!-- Bootstrap core CSS -->
 <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link href="assets/dist/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
 
 <style>
       .bd-placeholder-img {
@@ -28,7 +25,12 @@
           font-size: 3.5rem;
         }
       }
+      @font-face {
+        font-family: Ubuntu-Regular;
+        src: url('assets/dist/fonts/ubuntu/Ubuntu-Regular.ttf');
+      }
       html, body {
+        font-family: Ubuntu-Regular;
         max-width: 100%;
         overflow-x: hidden;
       }
@@ -77,6 +79,13 @@
     }
     .content-section {
       display: none;
+    }
+    .datepicker {
+        font-size: 0.875em;
+    }
+    .datepicker td, .datepicker th {
+        width: 2em;
+        height: 1.2em;
     }
 </style>
 
@@ -162,7 +171,7 @@
         <div class="col-md">
           <label for="date-picker-example">Data nașterii</label>
           <br>
-          <input type="date" class="datepicker">
+          <input class="form-control" data-date-format="dd/mm/yyyy" id="datepicker">
         </div>
         <br><br><br>
         <button type="button" class="btn btn-outline-dark">Salvează</button>
@@ -179,10 +188,22 @@
   </footer>-->
 </main>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $('#datepicker').datepicker({
+        maxViewMode: 2,
+        language: "ro",
+        orientation: "bottom left",
+        weekStart: 1,
+        daysOfWeekHighlighted: "6,0",
+        autoclose: true,
+        todayHighlight: true
+    });
+    $('#datepicker').datepicker("setDate", new Date());
+</script>
 
-    <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!--Data Picker Initialization-->
     <script>
     $(function() {
         $(".btn").on("click", function() {
