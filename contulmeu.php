@@ -1,3 +1,50 @@
+<?php
+// Initialize the session
+session_start();
+
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: paginaPrincipala.php");
+    exit;
+}
+
+$nume=$precif=$data=$despre=$judet=$oras=$email=$parola = "";
+
+require_once "config.php";
+if($_SESSION["tip"]=="voluntar"){
+  $sql = "SELECT nume, prenume, dataN, judet, oras, email, parola FROM voluntar WHERE email=\"".$_SESSION["username"]."\"";
+  $result = mysqli_query($link, $sql);
+  $resultCheck = mysqli_num_rows($result);
+  if ($resultCheck > 0){
+    echo "MATA";
+    $row = mysqli_fetch_assoc($result) ;
+    $nume=$row['nume'];
+    $precif=$row['prenume'];
+    $data=$row['dataN'];
+    $judet=$row['judet'];
+    $oras=$row['oras'];
+    $email=$row['email'];
+    $parola=$row['parola'];
+  }
+}
+else{
+    $sql = "SELECT nume, cif, dataI, judet, oras, despre, email, parola FROM organizatie WHERE email=\"".$_SESSION["username"]."\"";
+    $result = mysqli_query($link, $sql);
+    $resultCheck = mysqli_num_rows($result);
+    if ($resultCheck > 0){
+      $row = mysqli_fetch_assoc($result) ;
+      $nume=$row['nume'];
+      $precif=$row['cif'];
+      $data=$row['dataI'];
+      $judet=$row['judet'];
+      $oras=$row['oras'];
+      $despre=$row['despre'];
+      $email=$row['email'];
+      $parola=$row['parola'];
+  }
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -102,13 +149,13 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link" href="acasa.html">Acasă</a>
+            <a class="nav-link" href="acasa.php">Acasă</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="harta.html">Hartă</a>
+            <a class="nav-link" href="harta.php">Hartă</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="organizatii.html">Organizații</a>
+            <a class="nav-link" href="organizatii.php">Organizații</a>
           </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -124,7 +171,6 @@
 <main>
 
 <br><br><br><br><br><br>
-
 <div class="splitleft left">
   <div class="centered">
     <img src="Imagini\myacc.png" class="rounded mx-auto d-block"  width="250px" height="250px" alt="Poza Profil">
@@ -135,6 +181,7 @@
         <button type="button" data-section="sectiuneaMesaje" class="btn btn-secondary btn-lg">Mesaje noi</button>
         <button type="button" data-section="sectiuneaActiuni" class="btn btn-secondary btn-lg">Acțiunile mele</button>
         <button type="button" data-section="sectiuneaInterese" class="btn btn-secondary btn-lg">Setează-ți interesele</button>
+        <a type="button" class="btn btn-secondary btn-lg" href="logout.php">LOGOUT</a>
       </div>
   </div>
 </div>
@@ -143,15 +190,15 @@
   <div class="centeredleft">
     <div class="content-section" id="sectiuneaGeneral">
         <label for="lastName" class="form-label">Nume</label>
-        <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+        <input type="text" class="form-control" id="lastName" value="<?php echo $nume; ?>" required>
         <br>
         <label for="firstName" class="form-label">Prenume</label>
-        <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+        <input type="text" class="form-control" id="firstName" value="<?php echo $precif; ?>" required>
         <br>
         <div class="col-md">
           <label for="judet" class="form-label">Județ</label>
           <select class="form-select" id="judet" required>
-            <option value=""></option>
+            <option value="<?php echo $judet; ?>"></option>
             <option>Optiunea 1</option>
             <option>Optiunea 2</option>
             <option>Optiunea 3</option>
@@ -161,7 +208,7 @@
         <div class="col-md">
           <label for="oras" class="form-label">Oraș</label>
           <select class="form-select" id="oras" required>
-            <option value=""></option>
+            <option value="<?php echo $oras; ?>"></option>
             <option>Optiunea 1</option>
             <option>Optiunea 2</option>
             <option>Optiunea 3</option>
@@ -171,21 +218,13 @@
         <div class="col-md">
           <label for="date-picker-example">Data nașterii</label>
           <br>
-          <input class="form-control" data-date-format="dd/mm/yyyy" id="datepicker">
+          <input value="<?php echo $data; ?>" class="form-control" data-date-format="dd/mm/yyyy" id="datepicker">
         </div>
         <br><br><br>
         <button type="button" class="btn btn-outline-dark">Salvează</button>
     </div>
   </div>
 </div>
-
-
-
-  <!-- FOOTER
-  <footer class="container">
-    <p class="float-end"><a href="#" style="color:#9059D9;">Back to top</a></p>
-    <p>&copy; Kiss Flavia &middot; </p>
-  </footer>-->
 </main>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -201,7 +240,7 @@
         autoclose: true,
         todayHighlight: true
     });
-    $('#datepicker').datepicker("setDate", new Date());
+    $('#datepicker').datepicker("setDate", <?php echo $data; ?>);
 </script>
 
     <script>

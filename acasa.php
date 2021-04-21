@@ -58,15 +58,15 @@
             <a class="nav-link active" aria-current="page" href="#">Acasă</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="harta.html">Hartă</a>
+            <a class="nav-link" href="harta.php">Hartă</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="organizatii.html">Organizații</a>
+            <a class="nav-link" href="organizatii.php">Organizații</a>
           </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="nav-item">
-              <a class="nav-link" href="contulmeu.html"><img src="Imagini\myacc.png" width="23px" height="23px"/>  Contul meu</a>
+              <a class="nav-link" href="contulmeu.php"><img src="Imagini\myacc.png" width="23px" height="23px"/>  Contul meu</a>
             </li>
           </ul>
       </div>

@@ -1,3 +1,99 @@
+<?php
+// Initialize the session
+session_start();
+
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header("location: contulmeu.php");
+    exit;
+}
+
+// Include config file
+require_once "config.php";
+
+// Define variables and initialize with empty values
+$username = $password = $tip = "";
+$username_err = $password_err = $login_err = "";
+
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    // Validate credentials
+    if(empty($username_err) && empty($password_err)){
+        $sql1 = "SELECT idVoluntar FROM voluntar WHERE email = \"".$username."\"";
+        $sql2 = "SELECT idOrganizatie FROM organizatie WHERE email = \"".$username."\"";
+        $result = mysqli_query($link, $sql1);
+        $result2 = mysqli_query($link, $sql2);
+        $resultCheck = mysqli_num_rows($result);
+        $resultCheck2 = mysqli_num_rows($result2);
+        $sql="SELECT idVoluntar, email, parola FROM voluntar WHERE email = ?";
+        if ($resultCheck > 0){
+            $tip="voluntar";
+        }else {
+          if ($resultCheck2 > 0){
+              $tip="organizatie";
+              $sql = "SELECT idOrganizatie, email, parola FROM organizatie WHERE email = ?";
+          }
+        }
+        // Prepare a select statement
+
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_username);
+
+            // Set parameters
+            $param_username = $username;
+
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Store result
+                mysqli_stmt_store_result($stmt);
+
+                // Check if username exists, if yes then verify password
+                if(mysqli_stmt_num_rows($stmt) == 1){
+                    // Bind result variables
+                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                    if(mysqli_stmt_fetch($stmt)){
+                        if(password_verify($password, $hashed_password)){
+                            // Password is correct, so start a new session
+                            session_start();
+
+                            // Store data in session variables
+                            $_SESSION["loggedin"] = true;
+                            $_SESSION["id"] = $id;
+                            $_SESSION["username"] = $username;
+                            $_SESSION["tip"] = $tip;
+
+                            // Redirect user to welcome page
+                            header("location: contulmeu.php");
+                        } else{
+                            // Password is not valid, display a generic error message
+                            $login_err = "Parola gresita";
+                        }
+                    }
+                } else{
+                    // Username doesn't exist, display a generic error message
+                    $login_err = "Email gresit";
+                }
+            } else{
+              echo '<script type="text/javascript">
+                  window.onload = function () { alert("Oops! Ceva nu a mers bine! Va rog sa reveniti mai tarziu"); }
+                  </script>';
+            }
+
+            // Close statement
+            mysqli_stmt_close($stmt);
+        }
+    }
+
+    // Close connection
+    mysqli_close($link);
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -83,7 +179,7 @@
             <div class="mask" style="background-color: rgba(0, 0, 0, 0.6)">
             <h1>Ești pentru prima oară pe acest site?</h1>
             <p style="color:#C3AAE3;">Creează-ți un cont de voluntar dacă dorești să fi și tu proactiv sau unul pentru organizații dacă dorești să semnalezi o nouă acțiune de voluntariat!</p>
-            <p><a class="btn btn-dark" href="contvoluntar.html">VOLUNTAR</a>   <a class="btn btn-dark" href="contorganizatie.html">ORGANIZAȚIE</a></p>
+            <p><a class="btn btn-dark" href="contvoluntar.php">VOLUNTAR</a>   <a class="btn btn-dark" href="contorganizatie.php">ORGANIZAȚIE</a></p>
             <br>
             </div>
           </div>
@@ -127,15 +223,20 @@
     				<span class="login100-form-title p-b-41">
     					Login
     				</span>
-    				<form class="login100-form p-b-33 p-t-5" method="POST" action="login.php">
+            <?php
+            if(!empty($login_err)){
+                echo '<div class="alert alert-danger">' . $login_err . '</div>';
+            }
+            ?>
+    				<form class="login100-form p-b-33 p-t-5" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 
-    					<div class="wrap-input100" data-validate = "email">
-    						<input class="input100" type="text" name="email" placeholder="Introduceți email-ul">
+    					<div class="wrap-input100" data-validate = "username">
+    						<input class="input100" type="email" name="username" placeholder="Introduceți email-ul" required>
     						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
     					</div>
 
-    					<div class="wrap-input100" data-validate="parola">
-    						<input class="input100" type="password" name="parola" placeholder="Introduceți parola">
+    					<div class="wrap-input100" data-validate="password">
+    						<input class="input100" type="password" name="password" placeholder="Introduceți parola" required>
     						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
     					</div>
 

@@ -1,3 +1,13 @@
+<?php
+// Initialize the session
+session_start();
+
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: paginaPrincipala.php");
+    exit;
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -94,10 +104,10 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link" href="acasa.html">Acasă</a>
+            <a class="nav-link" href="acasa.php">Acasă</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="harta.html">Hartă</a>
+            <a class="nav-link" href="harta.php">Hartă</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Organizații</a>
@@ -105,7 +115,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="nav-item">
-              <a class="nav-link" href="contulmeu.html"><img src="Imagini\myacc.png" width="23px" height="23px"/>  Contul meu</a>
+              <a class="nav-link" href="contulmeu.php"><img src="Imagini\myacc.png" width="23px" height="23px"/>  Contul meu</a>
             </li>
           </ul>
       </div>
@@ -117,9 +127,25 @@
 
 <br><br><br><br><br><br>
 
+<?php
+require_once "config.php";
+$sql = "SELECT denumire, cif, dataI, judet, oras, despre, email FROM organizatie";
+$result = mysqli_query($link, $sql);
+$resultCheck = mysqli_num_rows($result);
+if ($resultCheck > 0){
+while ($row = mysqli_fetch_assoc($result)) {
+
+?>
+
 <div class="splitleft left">
   <div class="centered">
     <h2 style="color:#702DC8;">A - I</h2>
+    <?php
+      $string=$row["denumire"];
+      if($string[0]>="A" && $string[0]<="I")
+        echo $string."<br><br>";
+    ?>
+
     <br><br>
 
   </div>
@@ -128,6 +154,11 @@
 <div class="splitmiddle">
   <div class="centered">
     <h2 style="color:#702DC8;">J - P</h2>
+    <?php
+      $string=$row["denumire"];
+      if($string[0]>="J" && $string[0]<="P")
+        echo $string."<br><br>";
+    ?>
     <br><br>
   </div>
 </div>
@@ -135,6 +166,13 @@
 <div class="splitright right">
   <div class="centered">
     <h2 style="color:#702DC8;">Q - Z</h2>
+    <?php
+      $string=$row["denumire"];
+      if($string[0]>="Q" && $string[0]<="Z")
+        echo $string."<br><br>";
+      }
+    }
+    ?>
     <br><br>
   </div>
 </div>

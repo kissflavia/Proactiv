@@ -1,3 +1,71 @@
+<?php
+    // Include config file
+    require_once "config.php";
+
+    // Define variables and initialize with empty values
+    $nume = $cif = $dataI = $judet= $oras = $despre = $email = $password = $confirm_password = "";
+    $email_err = $confirm_password_err = "";
+
+    if($_SERVER['REQUEST_METHOD'] == "POST")
+    {
+        $id=NULL;
+        $nume = $_POST["numeO"];
+        $cif = $_POST["cifO"];
+        $dataI = $_POST["datanO"];
+        $judet= $_POST["judetO"];
+        $oras = $_POST["orasO"];
+        $despre = $_POST["despreO"];
+        $email = $_POST["emailO"];
+        $password = $_POST["pswO"];
+        $confirm_password = $_POST["psw2O"];
+
+        //verificam emailul
+        $sql = "SELECT idVoluntar FROM voluntar WHERE email = \"".$email."\"";
+        $sql2 = "SELECT idOrganizatie FROM organizatie WHERE email = \"".$email."\"";
+        $result = mysqli_query($link, $sql);
+        $result2 = mysqli_query($link, $sql2);
+        $resultCheck = mysqli_num_rows($result);
+        $resultCheck2 = mysqli_num_rows($result2);
+        if ($resultCheck > 0 || $resultCheck2 > 0){
+            $email_err = "Acest e-mail este deja utilizat";
+        }
+          //verificam parola
+          if($password != $confirm_password){
+              $confirm_password_err = "Parolele nu se potrivesc";
+          }
+          // Check input errors before inserting in database
+          if(empty($email_err) && empty($confirm_password_err)){
+
+            // Prepare an insert statement
+            $sql = "INSERT INTO organizatie (idOrganizatie,denumire,cif,dataI,judet,oras,despre,email,parola) VALUES (?,?,?,?,?,?,?,?,?)";
+
+            if($stmt = mysqli_prepare($link, $sql)){
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+
+                // Bind variables to the prepared statement as parameters
+                mysqli_stmt_bind_param($stmt, "dssssssss", $id, $nume, $cif, $dataI, $judet, $oras, $despre, $email, $hashed_password);
+
+                // Attempt to execute the prepared statement
+                if(mysqli_stmt_execute($stmt)){
+                    // Redirect to login page
+                    header("location: paginaPrincipala.php");
+                } else{
+                  echo '<script type="text/javascript">
+                      window.onload = function () { alert("Oops! Ceva nu a mers bine! Va rog sa reveniti mai tarziu"); }
+                      </script>';
+                }
+
+                // Close statement
+                mysqli_stmt_close($stmt);
+              }
+
+          }
+          // Close connection
+          mysqli_close($link);
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -45,7 +113,7 @@
   <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <div class="container-fluid">
-        <a  href="paginaPrincipala.html"><img src="Imagini\proactiv.png" width="150px" height="40px" class="d-inline-block align-top" alt=""></a>
+        <a  href="paginaPrincipala.php"><img src="Imagini\proactiv.png" width="150px" height="40px" class="d-inline-block align-top" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -61,31 +129,31 @@
     <br>
       <div class="col-lg-12 well">
       	<div class="row">
-      				<form method="POST" action="register.php">
+      				<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
       					<div class="col-sm-12">
       						<div class="row">
       							<div class="col-sm-6 form-group">
       								<label>Denumire</label>
-      								<input type="text" name="numeO" class="form-control" required>
+      								<input type="text" name="numeO" class="form-control" required value="<?php echo $nume; ?>">
       							</div>
       							<div class="col-sm-6 form-group">
       								<label>CIF</label>
-      								<input type="text"  name="cifO" class="form-control" required>
+      								<input type="text" name="cifO" class="form-control" required value="<?php echo $cif; ?>">
       							</div>
       						</div>
                   <br>
                   <div class="form-group">
       							<label>Data înființării</label>
                     <br>
-                    <input class="form-control" name="datanO" data-date-format="dd/mm/yyyy" id="datepicker">
+                    <input class="form-control" name="datanO" data-date-format="dd/mm/yyyy" id="datepicker" value="<?php echo $dataI; ?>">
       						</div>
 
                   <div class="row">
       							<div class="col-sm-6 form-group">
                       <br>
                       <label for="judet" class="form-label">Județ</label>
-                      <select class="form-select"  name="judetO" id="judet" required>
-                        <option value=""></option>
+                      <select class="form-select"  name="judetO" id="judet" required value="<?php echo $judet; ?>">
+                        <option value="<?php echo $judet; ?>"></option>
                         <option>Optiunea 1</option>
                         <option>Optiunea 2</option>
                         <option>Optiunea 3</option>
@@ -94,8 +162,8 @@
       							<div class="col-sm-6 form-group">
                       <br>
                       <label for="oras" class="form-label">Oraș</label>
-                      <select class="form-select" name="orasO" id="oras" required>
-                        <option value=""></option>
+                      <select class="form-select" name="orasO" id="oras" required value="<?php echo $oras; ?>">
+                        <option value="<?php echo $oras; ?>"></option>
                         <option>Optiunea 1</option>
                         <option>Optiunea 2</option>
                         <option>Optiunea 3</option>
@@ -107,25 +175,27 @@
 
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1">Despre organizație</label>
-                    <textarea class="form-control" name="despreO" id="despre" rows="3" required></textarea>
+                    <textarea class="form-control" name="despreO" id="despre" rows="3" required><?php echo $despre; ?></textarea>
                   </div>
 
                   <hr class="featurette-divider">
 
                   <div class="form-group">
                     <label>E-mail</label>
-                    <input type="email" name="emailO" class="form-control" required>
+                    <input type="email" name="emailO" required class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+                    <span class="invalid-feedback"><?php echo $email_err; ?></span>
                   </div>
                   <div class="row">
       							<div class="col-sm-6 form-group">
                       <br>
       								<label>Parolă</label>
-      								<input type="password" name="pswO" class="form-control" required>
+      								<input type="password" name="pswO" required class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
       							</div>
       							<div class="col-sm-6 form-group">
                       <br>
                       <label>Confirmă parola</label>
-      								<input type="password" name="psw2O" class="form-control" required>
+      								<input type="password" name="psw2O" required class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
+                      <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
       							</div>
       						</div>
 
