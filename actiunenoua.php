@@ -7,49 +7,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: paginaPrincipala.php");
     exit;
 }
-
-$nume=$precif=$data=$despre=$judet=$oras=$email=$parola = "";
-
-require_once "config.php";
-if($_SESSION["tip"]=="voluntar"){
-  $sql = "SELECT nume, prenume, dataN, judet, oras, email, parola FROM voluntar WHERE email=\"".$_SESSION["username"]."\"";
-  $result = mysqli_query($link, $sql);
-  $resultCheck = mysqli_num_rows($result);
-  if ($resultCheck > 0){
-    $row = mysqli_fetch_assoc($result) ;
-    $nume=$row['nume'];
-    $precif=$row['prenume'];
-    $data=$row['dataN'];
-    $judet=$row['judet'];
-    $oras=$row['oras'];
-    $email=$row['email'];
-    $parola=$row['parola'];
-  }
-}
-else{
-  if($_SESSION["tip"]=="organizatie"){
-    $sql = "SELECT denumire, cif, dataI, judet, oras, despre, email, parola FROM organizatie WHERE email=\"".$_SESSION["username"]."\"";
-    $result = mysqli_query($link, $sql);
-    $resultCheck = mysqli_num_rows($result);
-    if ($resultCheck > 0){
-      $row = mysqli_fetch_assoc($result) ;
-      $nume=$row['denumire'];
-      $precif=$row['cif'];
-      $data=$row['dataI'];
-      $judet=$row['judet'];
-      $oras=$row['oras'];
-      $despre=$row['despre'];
-      $email=$row['email'];
-      $parola=$row['parola'];
-    }
-  }
-  else{
-    $_SESSION = array();
-    session_destroy();
-    header("location: paginaPrincipala.php");
-    exit;
-  }
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -58,7 +15,10 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="Imagini\logo.png">
 
-    <title>Proactiv - Contul meu</title>
+    <title>Proactiv - Acțiune nouă</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+
 
     <!-- Bootstrap CSS -->
 <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -72,12 +32,6 @@ else{
         -moz-user-select: none;
         user-select: none;
       }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
       @font-face {
         font-family: Ubuntu-Regular;
         src: url('assets/dist/fonts/ubuntu/Ubuntu-Regular.ttf');
@@ -86,17 +40,16 @@ else{
         font-family: Ubuntu-Regular;
         max-width: 100%;
         overflow: hidden;
+        background-color: #E6DAF0;
       }
-    .content-section {
-      display: none;
-    }
-    .datepicker {
-        font-size: 0.875em;
-    }
-    .datepicker td, .datepicker th {
-        width: 2em;
-        height: 1.2em;
-    }
+      .datepicker {
+          font-size: 0.875em;
+      }
+      .datepicker td, .datepicker th {
+          width: 2em;
+          height: 2em;
+      }
+      }
 </style>
 
 </head>
@@ -118,9 +71,9 @@ else{
             <?php
             // Cont voluntar -> Hartă
             if($_SESSION["tip"]=="voluntar")
-                echo "<a class=\"nav-link\" href=\"harta.php\">Hartă</a>";
+                echo "<a class=\"nav-link active\" aria-current=\"page\" href=\"#\">Hartă</a>";
             // Cont organizație -> Acțiune nouă
-            else echo "<a class=\"nav-link\" href=\"actiunenoua.php\">Acțiune nouă</a>";
+            else echo "<a class=\"nav-link active\" aria-current=\"page\" href=\"#\">Acțiune nouă</a>";
             ?>
           </li>
           <li class="nav-item">
@@ -135,7 +88,7 @@ else{
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"><img src="Imagini\myacc.png" width="23px" height="23px"/>  Contul meu</a>
+              <a class="nav-link" href="contulmeu.php"><img src="Imagini\myacc.png" width="23px" height="23px"/>  Contul meu</a>
             </li>
           </ul>
       </div>
@@ -145,95 +98,88 @@ else{
 
 <main>
 
-  <div class="row">
-    <div class="col-lg-4" align="center" style="background-color: #E6DAF0;">
-    <br><br><br><br>
-    <img src="Imagini\myacc.png" class="rounded mx-auto d-block"  width="250px" height="250px" alt="Poza Profil">
-      <br><br><br>
-      <div class="btn-group-vertical" role="group" aria-label="Meniu Butoane">
-        <button type="button" data-section="sectiuneaGeneral" class="btn btn-secondary btn-lg">General</button>
-        <button type="button" data-section="sectiuneaParola" class="btn btn-secondary btn-lg">Schimbă parola</button>
-        <button type="button" data-section="sectiuneaMesaje" class="btn btn-secondary btn-lg">Mesaje noi</button>
-        <button type="button" data-section="sectiuneaActiuni" class="btn btn-secondary btn-lg">Acțiunile mele</button>
-        <?php if($_SESSION["tip"]=="voluntar"){?>
-          <button type="button" data-section="sectiuneaInterese" class="btn btn-secondary btn-lg">Setează-ți interesele</button>
-        <?php } ?>
-        <a type="button" class="btn btn-secondary btn-lg" href="logout.php">LOGOUT</a>
-      </div>
-      <br><br><br><br><br>
-  </div>
+<br><br><br><br>
+<div class="row">
+    <div class="col-lg-7" align="center">
+      <div class="col-lg-8 well">
+    <h3 style="color:#702DC8;">Semnalează o acțiune nouă de voluntariat.</h2>
+    <h5 style="color:#9059D9;">Suntem siguri că vor exista mulți voluntari interesați!</h2>
+      <br><br>
+        <div class="row">
+              <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <div class="col-sm-12">
+                  <div class="row">
+                    <div class="col-sm-6 form-group">
+                      <label>Nume</label>
+                      <input type="text" name="numeA" class="form-control" required value="">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                      <label>Categorie</label>
+                      <select class="form-select" id="categorie" required>
+                         <option value=""></option>
+                         <option>Optiunea 1</option>
+                         <option>Optiunea 2</option>
+                         <option>Optiunea 3</option>
+                      </select>
+                    </div>
+                  </div>
+                  <br>
+                  <hr class="featurette-divider">
+                  <br>
+                  <div class="row">
+                    <div class="col-sm-6 form-group">
+                      <label>Începe din</label>
+                      <br>
+                      <input class="form-control" name="dataStart" data-date-format="dd/mm/yyyy" id="datepicker" value="">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                      <label>Se încheie în</label>
+                      <br>
+                      <input class="form-control" name="dataStop" data-date-format="dd/mm/yyyy" id="datepicker2" value="">
+                    </div>
+                  </div>
+                  <br>
+                  <hr class="featurette-divider">
+                  <br>
+                  <div class="row">
+                    <div class="col-sm-6 form-group">
+                      <label for="judet" class="form-label">Județ</label>
+                      <select class="form-select"  name="judeta" id="judet" required value="">
+                        <option value=""></option>
+                      </select>
+                    </div>
+                    <div class="col-sm-6 form-group">
 
-<div class="col" align="left" style="background-color: #F5F1F9;">
-  <div class="col-lg-7 well">
-    <div class="content-section" id="sectiuneaGeneral">
-        <br><br><br><br>
-        <label for="$nume" class="form-label"><?php if($_SESSION["tip"]=="voluntar") echo "Nume"; else echo "Denumire"?></label>
-        <input type="text" class="form-control" id="$nume" value="<?php echo $nume; ?>" required>
-        <br>
-        <label for="$precif" class="form-label"><?php if($_SESSION["tip"]=="voluntar") echo "Prenume"; else echo "CIF"?></label>
-        <input type="text" class="form-control" id="$precif" value="<?php echo $precif; ?>" required>
-        <br>
-        <div class="col-md">
-          <label for="judet" class="form-label">Județ - <?php echo $judet; ?></label>
-          <select class="form-select" id="judet" required>
-            <option value="<?php echo $judet; ?>"></option>
-          </select>
+                      <label for="oras" class="form-label">Oraș</label>
+                      <select class="form-select" name="orasA" id="oras" required value="">
+                        <option value=""></option>
+                        </select>
+                    </div>
+                  </div>
+                <br>
+                <hr class="featurette-divider">
+                <br>
+                <button type="submit" name="btnOrg" class="btn btn-lg btn-outline-dark" style="margin:auto; display:block; width:50%">Semnalează acțiune</button>
+                <br><br><br>
+                </div>
+              </form>
+            </div>
         </div>
-        <br>
-        <div class="col-md">
-          <label for="oras" class="form-label">Oraș - <?php echo $oras; ?></label>
-          <select class="form-select" id="oras" required>
-            <option value="<?php echo $oras; ?>"></option>
-          </select>
-        </div>
-        <br>
-        <div class="col-md">
-          <label for="date-picker-example"><?php if($_SESSION["tip"]=="voluntar") echo "Data nașterii"; else echo "Data înființării"?></label>
-          <br>
-          <input value="<?php echo $data; ?>" class="form-control" data-date-format="dd/mm/yyyy" id="datepicker">
-        </div>
-        <br>
-        <?php if($_SESSION["tip"]=="organizatie"){?>
-          <div class="form-group">
-            <label for="despre">Despre organizație</label>
-            <textarea class="form-control" name="despre" id="despre" rows="3" required><?php echo $despre; ?></textarea>
-          </div>
-        <?php } ?>
-        <br>
-        <button type="button" class="btn btn-outline-dark">Modifică</button>
-        <br><br><br>
-  </div>
 </div>
+
+<div class="col" align="left">
+  <br><br>
+    <img src="Imagini\ActiuneNoua\map.jpg" width="600px" height="500px"/>
 </div>
-  </div>
+
+</div>
+
+  <!-- FOOTER
+  <footer class="container">
+    <p class="float-end"><a href="#" style="color:#9059D9;">Back to top</a></p>
+    <p>&copy; Kiss Flavia &middot; </p>
+  </footer>-->
 </main>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script type="text/javascript">
-    $('#datepicker').datepicker({
-        maxViewMode: 2,
-        language: "ro",
-        orientation: "bottom left",
-        weekStart: 1,
-        daysOfWeekHighlighted: "6,0",
-        autoclose: true,
-        todayHighlight: true
-    });
-    $('#datepicker').datepicker("setDate", <?php echo $data; ?>);
-</script>
-
-    <script>
-    $(function() {
-        $(".btn").on("click", function() {
-          //Ascunde toate sectiunile
-          $(".content-section").hide();
-          //Arata sectiunea potrivita in functie de butonul apasat
-          $("#" + $(this).attr("data-section")).show();
-        });
-    });
-    </script>
     <script>
     var locatii = {
       "Alba": {"Abrud": [],"Alba Iulia": [],"Baia de Arieş": [],"Câmpeni": [],"Cugir": [],"Ocna Mureş": [],"Teiuş": [],"Zlatna": []},
@@ -301,6 +247,32 @@ else{
       }
     }
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $('#datepicker').datepicker({
+            maxViewMode: 2,
+            language: "ro",
+            orientation: "bottom left",
+            weekStart: 1,
+            daysOfWeekHighlighted: "6,0",
+            autoclose: true,
+            todayHighlight: true
+        });
+        $('#datepicker').datepicker("setDate", new Date());
+        $('#datepicker2').datepicker({
+            maxViewMode: 2,
+            language: "ro",
+            orientation: "bottom left",
+            weekStart: 1,
+            daysOfWeekHighlighted: "6,0",
+            autoclose: true,
+            todayHighlight: true
+        });
+        $('#datepicker2').datepicker("setDate", new Date());
+    </script>
+    <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 
   </body>
 </html>

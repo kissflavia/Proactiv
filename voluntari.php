@@ -15,7 +15,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="Imagini\logo.png">
 
-    <title>Proactiv - Organizații</title>
+    <title>Proactiv - Voluntari</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
 
@@ -112,35 +112,37 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <?php
 require_once "config.php";
-$sql = "SELECT denumire, cif, dataI, judet, oras, despre, email FROM organizatie";
+$sql = "SELECT nume, prenume, dataN, judet, oras, email FROM voluntar";
 $result = mysqli_query($link, $sql);
 $resultCheck = mysqli_num_rows($result);
 if ($resultCheck > 0){
 while ($row = mysqli_fetch_assoc($result)) {
-
 ?>
 
 <div class="col-4 col-md-4" align="center">
     <?php
-      $string=$row["denumire"];
-      if($string[0]>="A" && $string[0]<="I")
-        echo $string."<br>";
+      $nume=$row["nume"];
+      $prenume=$row["prenume"];
+      if($nume[0]>="A" && $nume[0]<="I")
+        echo $nume." ".$prenume."<br><br>";
     ?>
 </div>
 
 <div class="col" align="center">
     <?php
-      $string=$row["denumire"];
-      if($string[0]>="J" && $string[0]<="P")
-        echo $string."<br><br>";
+      $nume=$row["nume"];
+      $prenume=$row["prenume"];
+      if($nume[0]>="J" && $nume[0]<="P")
+        echo $nume." ".$prenume."<br><br>";
     ?>
 </div>
 
 <div class="col" align="center">
     <?php
-      $string=$row["denumire"];
-      if($string[0]>="Q" && $string[0]<="Z")
-        echo $string."<br><br>";
+      $nume=$row["nume"];
+      $prenume=$row["prenume"];
+      if($nume[0]>="Q" && $nume[0]<="Z")
+        echo $nume." ".$prenume."<br><br>";
       }
     }
     ?>

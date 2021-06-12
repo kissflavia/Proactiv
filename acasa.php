@@ -9,10 +9,19 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
 
+    <?php
+    // Initializam sesiunea
+    session_start();
 
+    // Verificam daca utilizatorul este logat. Daca nu este il redirectionam catre pagina principala
+    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+        header("location: paginaPrincipala.php");
+        exit;
+    }
+    ?>
 
-    <!-- Bootstrap core CSS -->
-<link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -40,7 +49,7 @@
     </style>
 
 
-    <!-- Custom styles for this template -->
+    <!-- Caruselul cu imagini -->
     <link href="assets/dist/css/carousel.css" rel="stylesheet">
   </head>
   <body>
@@ -58,10 +67,22 @@
             <a class="nav-link active" aria-current="page" href="#">Acasă</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="harta.php">Hartă</a>
+            <?php
+            // Cont voluntar -> Hartă
+            if($_SESSION["tip"]=="voluntar")
+                echo "<a class=\"nav-link\" href=\"harta.php\">Hartă</a>";
+            // Cont organizație -> Acțiune nouă
+            else echo "<a class=\"nav-link\" href=\"actiunenoua.php\">Acțiune nouă</a>";
+            ?>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="organizatii.php">Organizații</a>
+            <?php
+            // Cont voluntar -> Organizații
+            if($_SESSION["tip"]=="voluntar")
+                echo "<a class=\"nav-link\" href=\"organizatii.php\">Organizații</a>";
+            // Cont organizație -> Voluntari
+            else echo "<a class=\"nav-link\" href=\"voluntari.php\">Voluntari</a>";
+            ?>
           </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -104,9 +125,7 @@
   </div>
 
 
-    <!-- START THE FEATURETTES -->
-
-
+    <!-- Motivele pentru a face voluntariat-->
     <div id="ceva" class="row featurette">
       <hr class="featurette-divider">
       <div class="row justify-content-md-center">
@@ -159,7 +178,7 @@
 
     <hr class="featurette-divider">
 
-    <!-- /END THE FEATURETTES -->
+    <!-- /Sfarsit motive-->
 
   </div><!-- /.container -->
 

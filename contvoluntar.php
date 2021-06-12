@@ -142,9 +142,6 @@
                       <label for="judet" class="form-label">Județ</label>
                       <select class="form-select" name="judetV" id="judet" value="<?php echo $judet; ?>" required>
                         <option value="<?php echo $judet; ?>"></option>
-                        <option>Optiunea 1</option>
-                        <option>Optiunea 2</option>
-                        <option>Optiunea 3</option>
                       </select>
       							</div>
       							<div class="col-sm-6 form-group">
@@ -152,9 +149,6 @@
                       <label for="oras" class="form-label">Oraș</label>
                       <select name="orasV" id="oras" required class="form-select" value="<?php echo $oras; ?>">
                         <option value="<?php echo $oras; ?>"></option>
-                        <option>Optiunea 1</option>
-                        <option>Optiunea 2</option>
-                        <option>Optiunea 3</option>
                         </select>
       							</div>
       						</div>
@@ -182,13 +176,80 @@
 
                 <hr class="featurette-divider">
 
-      					<button type="submit" name="btnVol" class="btn btn-lg btn-outline-dark" style="margin:auto; display:block; width:50%">Submit</button>
+      					<button type="submit" name="btnVol" class="btn btn-lg btn-outline-dark" style="margin:auto; display:block; width:50%">Creează cont</button>
                 <br><br><br>
       					</div>
       				</form>
       			</div>
       	</div>
 	</div>
+  <script>
+  var locatii = {
+    "Alba": {"Abrud": [],"Alba Iulia": [],"Baia de Arieş": [],"Câmpeni": [],"Cugir": [],"Ocna Mureş": [],"Teiuş": [],"Zlatna": []},
+    "Arad": {"Arad": [],"Chişineu Criş": [],"Curtici": [],"Ineu": [],"Lipova": [],"Nădlac": [],"Pâncota": [],"Pecica": [],"Sântana": [],"Sebiş": [],"Vladimirescu": []},
+    "Argeş": {"Costeşti": [],"Mioveni": [],"Piteşti": [],"Ştefăneşti": [],"Topoloveni": []},
+    "Bacău": {"Bacău": [],"Buhuşi": [],"Comăneşti": [],"Dărmăneşti": [],"Slănic-Moldova": [],"Târgu Ocna": []},
+    "Bihor": {"Aleşd": [],"Borş": [],"Doctor Petru Groza": [],"Oradea": [],"Săcueni": [],"Salonta": [],"Valea lui Mihai": []},
+    "Bistriţa-Năsăud": {"Beclean": [],"Bistriţa": [],"Năsăud": [],"Sângeorz-Băi": []},
+    "Botoşani": {"Botoşani": [],"Bucecea": [],"Darabani": [],"Flămânzi": [],"Săveni": [],"Ştefăneşti": []},
+    "Brăila": {"Brăila": [],"Făurei": [],"Ianca": [],"Însurăţei": []},
+    "Braşov": {"Braşov": [],"Ghimbav": [],"Predeal": [],"Râşnov": [],"Rupea": [],"Victoria": [],"Zărneşti": []},
+    "Bucureşti": {"Bucureşti": [],"Voluntari": []},
+    "Buzău": {"Buzău": [],"Nehoiu": [],"Pătârlagele": [],"Pogoanele": []},
+    "Călăraşi": {"Budeşti": [],"Călăraşi": [],"Fundulea": [],"Lehliu-Gară": [],"Olteniţa": []},
+    "Caraş-Severin": {"Anina":[],"Băile Herculane":[],"Bocşa":[],"Moldova Nouă":[],"Oraviţa":[],"Oţelu Roşu": [],"Pojejena":[],"Reşiţa":[]},
+    "Cluj": {"Cluj-Napoca":[],"Huedin":[]},
+    "Constanţa": {"Constanţa":[],"Hârşova":[],"Lipniţa":[],"Murfatlar":[],"Năvodari":[],"Negru Vodă":[],"Ostrov":[],"Ovidiu":[],"Techirghiol":[]},
+    "Covasna": {"Baraolt":[],"Covasna":[],"Întorsura Buzăului":[],"Sfântu-Gheorghe":[]},
+    "Dâmboviţa": {"Fieni":[],"Găeşti":[],"Pucioasa":[],"Răcari":[],"Târgovişte":[],"Titu":[]},
+    "Dolj": {"Bechet":[],"Calafat":[],"Craiova":[],"Dăbuleni":[],"Filiaşi":[],"Segarcea":[]},
+    "Galaţi": {"Bereşti-Târg":[],"Bujor":[],"Galaţi":[]},
+    "Giurgiu": {"Bolintin Vale":[],"Giurgiu":[],"Mihăileşti":[]},
+    "Gorj": {"Bumbeşti-Jiu":[],"Novaci-Străini":[],"Rovinari":[],"Târgu Cărbuneşti":[],"Târgu Jiu":[],"Ţicleni":[],"Tismana":[],"Turceni":[]},
+    "Harghita": {"Bălan":[],"Cristuru Secuiesc":[],"Miercurea-Ciuc":[],"Vlăhiţa":[]},
+    "Hunedoara": {"Aninoasa":[],"Călan":[],"Deva":[],"Geoagiu":[],"Haţeg":[],"Hunedoara":[],"Petrila":[],"Simeria":[],"Uricani":[]},
+    "Ialomiţa": {"Amara":[],"Căzăneşti":[],"Cernavodă":[],"Slobozia":[],"Ţăndărei":[]},
+    "Iaşi": {"Hârlău":[],"Iaşi":[],"Podu Iloaiei":[],"Târgu Frumos":[],"Ungheni-Prut":[],"Victoria":[]},
+    "Ilfov": {"Bragadiru":[],"Buftea":[],"Chitila":[],"Fierbinţi-Târg":[],"Măgurele":[],"Otopeni":[],"Pantelimon":[],"Popeşti-Leordeni":[]},
+    "Maramureş": {"Baia Mare":[],"Baia-Sprie":[],"Borşa":[],"Cavnic":[],"Dragomireşti":[],"Săliştea de Sus":[],"Seini":[],"Sighetu Marmaţiei":[],"Şomcuta Mare":[],"Târgu Lăpuş":[],"Tăuţii Măgheruş":[],"Ulmeni":[],"Vişeu de Sus":[]},
+    "Mehedinţi": {"Baia de Aramă":[],"Drobeta-Turnu Severin":[],"Orşova":[],"Strehaia":[],"Vânju-Mare":[]},
+    "Mureş": {"Iernut":[],"Luduş":[],"Miercurea Nirajului":[],"Sângeorgiu de Pădure":[],"Sărmaşu":[],"Sovata":[],"Târgu-Mureş":[],"Ungheni":[]},
+    "Neamţ": {"Bicaz":[],"Piatra Neamţ":[],"Roznov":[],"Târgu Neamţ":[]},
+    "Olt": {"Balş":[],"Corabia":[],"Drăgăneşti-Olt":[],"Piatra Olt":[],"Potcoava":[],"Scorniceşti":[],"Slatina":[]},
+    "Prahova": {"Azuga":[],"Băicoi":[],"Boldeşti-Scăeni":[],"Breaza":[],"Buşteni":[],"Comarnic":[],"Mizil":[],"Ploieşti":[],"Plopeni":[],"Sinaia":[],"Slănic":[],"Urlaţi":[],"Vălenii de Munte":[]},
+    "Sălaj": {"Cehu Silvaniei":[],"Jibou":[],"Şimleu Silvaniei":[],"Zalău":[]},
+    "Satu Mare": {"Ardud":[],"Carei":[],"Dorolţ":[],"Livada":[],"Negreşti-Oaş":[],"Satu Mare":[],"Tăşnad":[]},
+    "Sibiu": {"Agnita":[],"Avrig":[],"Cisnădie":[],"Copşa Mică":[],"Dumbrăveni":[],"Miercurea Sibiului":[],"Ocna Sibiului":[],"Sălişte":[],"Sibiu":[],"Tălmaciu":[]},
+    "Suceava": {"Broşteni":[],"Cajvana":[],"Dolhasca":[],"Frasin":[],"Gura Humorului":[],"Liteni":[],"Milişăuţi":[],"Salcea":[],"Siret":[],"Suceava":[],"Vicovu de Sus":[]},
+    "Teleorman": {"Alexandria":[],"Turnu Măgurele":[],"Videle":[],"Zimnicea":[]},
+    "Timiş": {"Buziaş":[],"Cenad":[],"Ciacova":[],"Comloşu Mare":[],"Deta":[],"Făget":[],"Gătaia":[],"Ictar Budinţi":[],"Jamu Mare":[],"Jimbolia":[],"Sânnicolau Mare":[],"Timişoara":[]},
+    "Tulcea": {"Babadag":[],"Isaccea":[],"Măcin":[],"Sulina":[],"Tulcea":[]},
+    "Vâlcea": {"Băbeni":[],"Băile Olăneşti":[],"Bălceşti":[],"Berbeşti":[],"Brezoi":[],"Călimăneşti":[],"Horezu":[],"Ocnele Mari":[],"Râmnicu Vâlcea":[]},
+    "Vaslui": {"Drânceni":[],"Fălciu":[],"Murgeni":[],"Negreşti":[],"Vaslui":[]},
+    "Vrancea": {"Focşani":[],"Mărăşeşti":[],"Odobeşti":[],"Panciu":[]},
+  }
+  window.onload = function() {
+    var judetSel = document.getElementById("judet");
+    var orasSel = document.getElementById("oras");
+
+    for (var x in locatii) {
+      judetSel.options[judetSel.options.length] = new Option(x, x);
+    }
+    judetSel.onchange = function() {
+      //empty Chapters- and Topics- dropdowns
+      orasSel.length = 1;
+      //display correct values
+      for (var y in locatii[this.value]) {
+        orasSel.options[orasSel.options.length] = new Option(y, y);
+      }
+    }
+    orasSel.onchange = function() {
+
+      //display correct values
+      var z = locatii[judetSel.value][this.value];
+    }
+  }
+  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

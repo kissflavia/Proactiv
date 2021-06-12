@@ -1,14 +1,14 @@
 <?php
-// Initialize the session
+// Initializam sesiunea
 session_start();
 
-// Unset all of the session variables
+// Resetam variabilele sesiunii
 $_SESSION = array();
 
-// Destroy the session.
+// Distrugem sesiunea
 session_destroy();
 
-// Redirect to login page
+// Redirectionam utilizatorul catre pagina principala
 header("location: paginaPrincipala.php");
 exit;
 ?>

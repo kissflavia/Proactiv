@@ -1,27 +1,27 @@
 <?php
-// Initialize the session
+// Initializam sesiunea
 session_start();
 
-// Check if the user is already logged in, if yes then redirect him to welcome page
+// Verificam daca utilizatorul este logat. Daca nu este il redirectionam catre pagina principala
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: contulmeu.php");
     exit;
 }
 
-// Include config file
+// Include fisierul config pentru conexiunea cu baza de date
 require_once "config.php";
 
-// Define variables and initialize with empty values
+// Definim variabilele si le initializam cu NULL
 $username = $password = $tip = "";
 $username_err = $password_err = $login_err = "";
 
-// Processing form data when form is submitted
+// Procesam datele din formular in momentul in care acesta este submis
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    // Validate credentials
+    // Validam credentialele
     if(empty($username_err) && empty($password_err)){
         $sql1 = "SELECT idVoluntar FROM voluntar WHERE email = \"".$username."\"";
         $sql2 = "SELECT idOrganizatie FROM organizatie WHERE email = \"".$username."\"";
@@ -38,44 +38,34 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               $sql = "SELECT idOrganizatie, email, parola FROM organizatie WHERE email = ?";
           }
         }
-        // Prepare a select statement
-
         if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
-
-            // Set parameters
             $param_username = $username;
 
-            // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                // Store result
                 mysqli_stmt_store_result($stmt);
-
-                // Check if username exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){
-                    // Bind result variables
                     mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
-                            // Password is correct, so start a new session
+                            // Daca parola este corecta, pornim sesiunea
                             session_start();
 
-                            // Store data in session variables
+                            // Salvam informatiile utile in variabilele sesiunii
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
                             $_SESSION["tip"] = $tip;
 
-                            // Redirect user to welcome page
+                            // Redirectam utilizatorul catre contul lui
                             header("location: contulmeu.php");
                         } else{
-                            // Password is not valid, display a generic error message
+                            // Daca parola este gresita, se afiseaza un mesaj generic
                             $login_err = "Parola gresita";
                         }
                     }
                 } else{
-                    // Username doesn't exist, display a generic error message
+                    // Daca emailul este gresit, se afiseaza un mesaj generic
                     $login_err = "Email gresit";
                 }
             } else{
@@ -83,13 +73,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                   window.onload = function () { alert("Oops! Ceva nu a mers bine! Va rog sa reveniti mai tarziu"); }
                   </script>';
             }
-
-            // Close statement
             mysqli_stmt_close($stmt);
         }
     }
-
-    // Close connection
     mysqli_close($link);
 }
 ?>
@@ -103,9 +89,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <title>Proactiv</title>
 
-    <!-- Bootstrap core CSS -->
+    <!-- Bootstrap CSS -->
     <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Carousel-->
+    <!-- Carusel cu imagini-->
     <link href="assets/dist/css/carousel.css" rel="stylesheet">
 
     <style>
@@ -210,7 +196,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </button>
   </div>
 
-  <!-- Login modal -->
+  <!-- Modalul pentru login -->
   <link rel="stylesheet" type="text/css" href="assets/dist/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
   <link rel="stylesheet" type="text/css" href="assets/dist/css/utillogin.css">
   <link rel="stylesheet" type="text/css" href="assets/dist/css/mainlogin.css">
@@ -252,9 +238,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       </div>
     </div>
   </div>
-    <!-- START THE FEATURETTES -->
-
-
+    <!-- Motivele pentru a face voluntariat-->
     <div id="ceva" class="row featurette">
       <hr class="featurette-divider">
       <div class="row justify-content-md-center">
@@ -307,7 +291,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <hr class="featurette-divider">
 
-    <!-- /END THE FEATURETTES -->
+    <!-- /Sfarsit motive-->
 
   </div><!-- /.container -->
 
