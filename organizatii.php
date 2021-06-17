@@ -112,40 +112,53 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <?php
 require_once "config.php";
-$sql = "SELECT denumire, cif, dataI, judet, oras, despre, email FROM organizatie";
-$result = mysqli_query($link, $sql);
-$resultCheck = mysqli_num_rows($result);
-if ($resultCheck > 0){
-while ($row = mysqli_fetch_assoc($result)) {
-
 ?>
-
+<div class="row">
 <div class="col-4 col-md-4" align="center">
     <?php
+    $sql = "SELECT denumire, cif, dataI, judet, oras, despre, email FROM organizatie";
+    $result = mysqli_query($link, $sql);
+    $resultCheck = mysqli_num_rows($result);
+    if ($resultCheck > 0){
+    while ($row = mysqli_fetch_assoc($result)) {
       $string=$row["denumire"];
       if($string[0]>="A" && $string[0]<="I")
-        echo $string."<br>";
-    ?>
-</div>
-
-<div class="col" align="center">
-    <?php
-      $string=$row["denumire"];
-      if($string[0]>="J" && $string[0]<="P")
-        echo $string."<br><br>";
-    ?>
-</div>
-
-<div class="col" align="center">
-    <?php
-      $string=$row["denumire"];
-      if($string[0]>="Q" && $string[0]<="Z")
         echo $string."<br><br>";
       }
     }
     ?>
 </div>
 
+<div class="col-4 col-md-4" align="center">
+    <?php
+    $sql = "SELECT denumire, cif, dataI, judet, oras, despre, email FROM organizatie";
+    $result = mysqli_query($link, $sql);
+    $resultCheck = mysqli_num_rows($result);
+    if ($resultCheck > 0){
+    while ($row = mysqli_fetch_assoc($result)) {
+      $string=$row["denumire"];
+      if($string[0]>="J" && $string[0]<="P")
+        echo $string."<br>";
+      }
+    }
+    ?>
+</div>
+
+<div class="col-4 col-md-4" align="center">
+    <?php
+    $sql = "SELECT denumire, cif, dataI, judet, oras, despre, email FROM organizatie";
+    $result = mysqli_query($link, $sql);
+    $resultCheck = mysqli_num_rows($result);
+    if ($resultCheck > 0){
+    while ($row = mysqli_fetch_assoc($result)) {
+      $string=$row["denumire"];
+      if($string[0]>="Q" && $string[0]<="Z")
+        echo $string."<br>";
+      }
+    }
+    ?>
+</div>
+</row>
   <!-- FOOTER
   <footer class="container">
     <p class="float-end"><a href="#" style="color:#9059D9;">Back to top</a></p>

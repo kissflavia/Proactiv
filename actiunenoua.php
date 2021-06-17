@@ -3,10 +3,55 @@
 session_start();
 
 // Verificam daca utilizatorul este logat. Daca nu este il redirectionam catre pagina principala
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION["tip"]!="organizatie" ){
     header("location: paginaPrincipala.php");
     exit;
 }
+
+// Configuram baza de date
+require_once "config.php";
+
+// Definim variabilele si le initializam cu valori null
+$nume = $categ = $despre =  $dataStart = $dataStop = $judet= $oras = "";
+
+if($_SERVER['REQUEST_METHOD'] == "POST")
+{
+    $id = NULL;
+    $nume = $_POST["numeA"];
+    $categ = $_POST["categA"];
+    $despre = $_POST["despreA"];
+    $dataStart= $_POST["dataStart"];
+    $dataStop = $_POST["dataStop"];
+    $judet = $_POST["judetA"];
+    $oras = $_POST["orasA"];
+    $ORG = $_SESSION["id"];
+
+        // Insert statement
+        $sql = "INSERT INTO actiune(idActiune,nume,categorie,judet,oras,dataStart,dataStop,organizatie,despre) VALUES (?,?,?,?,?,?,?,?,?)";
+
+        if($stmt = mysqli_prepare($link, $sql)){
+
+            mysqli_stmt_bind_param($stmt, "dssssssds", $id, $nume, $categ, $judet, $oras, $dataStart, $dataStop, $ORG, $despre);
+
+            // Executam statementul
+            if(mysqli_stmt_execute($stmt)){
+              echo '<script type="text/javascript">
+                  window.onload = function () { alert("Acțiunea a fost semnalată!"); }
+                  </script>';
+            } else{
+              echo '<script type="text/javascript">
+                  window.onload = function () { alert("Oops! Ceva nu a mers bine! Reveniți mai târziu"); }
+                  </script>';
+            }
+
+            // Inchidem statementul
+            mysqli_stmt_close($stmt);
+          }
+
+      // Close connection
+      mysqli_close($link);
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -104,7 +149,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       <div class="col-lg-8 well">
     <h3 style="color:#702DC8;">Semnalează o acțiune nouă de voluntariat.</h2>
     <h5 style="color:#9059D9;">Suntem siguri că vor exista mulți voluntari interesați!</h2>
-      <br><br>
+      <br>
         <div class="row">
               <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 <div class="col-sm-12">
@@ -114,13 +159,24 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                       <input type="text" name="numeA" class="form-control" required value="">
                     </div>
                     <div class="col-sm-6 form-group">
-                      <label>Categorie</label>
-                      <select class="form-select" id="categorie" required>
+                      <label for="categorie">Categorie</label>
+                      <select class="form-select" name="categA" id="categorie" required value="">
                          <option value=""></option>
-                         <option>Optiunea 1</option>
-                         <option>Optiunea 2</option>
-                         <option>Optiunea 3</option>
+                         <option>Cultural</option>
+                         <option>Donații</option>
+                         <option>Educațional</option>
+                         <option>Nutriție</option>
+                         <option>Protecția mediului</option>
+                         <option>Religios</option>
+                         <option>Social</option>
+                         <option>Sport</option>
                       </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12 form-group">
+                      <label>Despre acțiune</label>
+                      <textarea class="form-control" name="despreA" id="despre" rows="2"></textarea>
                     </div>
                   </div>
                   <br>
@@ -144,7 +200,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                   <div class="row">
                     <div class="col-sm-6 form-group">
                       <label for="judet" class="form-label">Județ</label>
-                      <select class="form-select"  name="judeta" id="judet" required value="">
+                      <select class="form-select" name="judetA" id="judet" required value="">
                         <option value=""></option>
                       </select>
                     </div>
@@ -156,10 +212,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         </select>
                     </div>
                   </div>
-                <br>
                 <hr class="featurette-divider">
                 <br>
-                <button type="submit" name="btnOrg" class="btn btn-lg btn-outline-dark" style="margin:auto; display:block; width:50%">Semnalează acțiune</button>
+                <button type="submit" name="btnAct" class="btn btn-lg btn-outline-dark" style="margin:auto; display:block; width:50%">Semnalează acțiune</button>
                 <br><br><br>
                 </div>
               </form>

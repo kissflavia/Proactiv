@@ -85,7 +85,7 @@ else{
       html, body {
         font-family: Ubuntu-Regular;
         max-width: 100%;
-        overflow: hidden;
+        overflow-x: hidden;
       }
     .content-section {
       display: none;

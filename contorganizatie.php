@@ -1,8 +1,8 @@
 <?php
-    // Include config file
+    // Configuram baza de date
     require_once "config.php";
 
-    // Define variables and initialize with empty values
+    // Definim variabilele si le initializam cu valori null
     $nume = $cif = $dataI = $judet= $oras = $despre = $email = $password = $confirm_password = "";
     $email_err = $confirm_password_err = "";
 
@@ -19,7 +19,7 @@
         $password = $_POST["pswO"];
         $confirm_password = $_POST["psw2O"];
 
-        //verificam emailul
+        // Verificam emailul
         $sql = "SELECT idVoluntar FROM voluntar WHERE email = \"".$email."\"";
         $sql2 = "SELECT idOrganizatie FROM organizatie WHERE email = \"".$email."\"";
         $result = mysqli_query($link, $sql);
@@ -29,25 +29,24 @@
         if ($resultCheck > 0 || $resultCheck2 > 0){
             $email_err = "Acest e-mail este deja utilizat";
         }
-          //verificam parola
+          // Verificam parola
           if($password != $confirm_password){
               $confirm_password_err = "Parolele nu se potrivesc";
           }
           // Check input errors before inserting in database
           if(empty($email_err) && empty($confirm_password_err)){
 
-            // Prepare an insert statement
+            // Insert statement
             $sql = "INSERT INTO organizatie (idOrganizatie,denumire,cif,dataI,judet,oras,despre,email,parola) VALUES (?,?,?,?,?,?,?,?,?)";
 
             if($stmt = mysqli_prepare($link, $sql)){
-                $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Codam parola
 
-                // Bind variables to the prepared statement as parameters
                 mysqli_stmt_bind_param($stmt, "dssssssss", $id, $nume, $cif, $dataI, $judet, $oras, $despre, $email, $hashed_password);
 
-                // Attempt to execute the prepared statement
+                // Executam statementul
                 if(mysqli_stmt_execute($stmt)){
-                    // Redirect to login page
+                    // Redirectionam catre pagina principala
                     header("location: paginaPrincipala.php");
                 } else{
                   echo '<script type="text/javascript">
@@ -55,7 +54,7 @@
                       </script>';
                 }
 
-                // Close statement
+                // Inchidem statementul
                 mysqli_stmt_close($stmt);
               }
 
