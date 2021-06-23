@@ -10,7 +10,7 @@ var markers = [
     <?php if($result){
     if($result->num_rows > 0){
     while($row = $result->fetch_assoc()){
-        echo '['.$row['lat'].', '.$row['lng'].', "'.$row['nume'].'", "'.$row['categorie'].'", "'.$row['despre'].'", "'.$row['dataStart'].'", "'.$row['dataStop'].'"],';
+        echo '['.$row['lat'].', '.$row['lng'].', "'.$row['nume'].'", "'.$row['categorie'].'", "'.$row['categorie'].'", "'.$row['dataStart'].'", "'.$row['dataStop'].'"],';
       }
     }
   }

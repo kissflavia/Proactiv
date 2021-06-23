@@ -35,13 +35,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 
             // Executam statementul
             if(mysqli_stmt_execute($stmt)){
-              echo '<script type="text/javascript">
-                  window.onload = function () { alert("Acțiunea a fost semnalată!"); }
-                  </script>';
+              echo '<script>alert("Acțiunea a fost semnalată!");</script>';
             } else{
-              echo '<script type="text/javascript">
-                  window.onload = function () { alert("Oops! Ceva nu a mers bine! Reveniți mai târziu"); }
-                  </script>';
+              echo '<script>alert("Oops! Ceva nu a mers bine! Reveniți mai târziu");</script>';
             }
 
             // Inchidem statementul
@@ -70,6 +66,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 <link href="assets/dist/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
 
 <style>
+    ::-webkit-scrollbar {
+        display: none;
+    }
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -84,7 +83,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
       html, body {
         font-family: Ubuntu-Regular;
         max-width: 100%;
-        overflow: hidden;
         background-color: #E6DAF0;
       }
       .datepicker {

@@ -2,7 +2,7 @@
 // Initializam sesiunea
 session_start();
 
-// Verificam daca utilizatorul este logat. Daca nu este il redirectionam catre pagina principala
+// Verificam daca utilizatorul este logat. Daca este il redirectionam catre contul lui
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: contulmeu.php");
     exit;
@@ -56,6 +56,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
                             $_SESSION["tip"] = $tip;
+                            $_SESSION["resp"] = "";
 
                             // Redirectam utilizatorul catre contul lui
                             header("location: contulmeu.php");
@@ -95,6 +96,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link href="assets/dist/css/carousel.css" rel="stylesheet">
 
     <style>
+      ::-webkit-scrollbar {
+          display: none;
+      }
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -179,7 +183,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="mask" style="padding-right: 20px; background-color: rgba(0, 0, 0, 0.6)">
             <h1>Nu te-am convins încă să ni te alături?</h1>
             <p style="color:#C3AAE3;">Dă-ne o șansă să iți arătăm de ce este important să ajuți!</p>
-            <p><a class="btn btn-outline-light" href="#ceva">De ce?</a></p>
+            <p><a class="btn btn-outline-light" href="#dece">De ce?</a></p>
             <br>
             </div>
           </div>
@@ -239,7 +243,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
   </div>
     <!-- Motivele pentru a face voluntariat-->
-    <div id="ceva" class="row featurette">
+    <div id="dece" class="row featurette">
       <hr class="featurette-divider">
       <div class="row justify-content-md-center">
       <div class="col-md-5">

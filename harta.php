@@ -154,11 +154,16 @@
                <br>
                <div class="col-md">
                   <label for="categorie" class="form-label">Alege o anumită categorie</label>
-                  <select class="form-select" id="categorie" required>
+                  <select class="form-select" name="categA" id="categorie" required value="">
                      <option value=""></option>
-                     <option>Optiunea 1</option>
-                     <option>Optiunea 2</option>
-                     <option>Optiunea 3</option>
+                     <option>Cultural</option>
+                     <option>Donații</option>
+                     <option>Educațional</option>
+                     <option>Nutriție</option>
+                     <option>Protecția mediului</option>
+                     <option>Religios</option>
+                     <option>Social</option>
+                     <option>Sport</option>
                   </select>
                </div>
                <br><br>

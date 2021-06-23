@@ -79,6 +79,9 @@
     <link href="assets/dist/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
 
     <style>
+      ::-webkit-scrollbar {
+          display: none;
+      }
         .datepicker {
             font-size: 0.875em;
         }
@@ -270,7 +273,7 @@
           autoclose: true,
           todayHighlight: true
       });
-      $('#datepicker').datepicker("setDate", new Date());
+      $('#datepicker').datepicker('setDate', new Date());
   </script>
 </body>
 </html>

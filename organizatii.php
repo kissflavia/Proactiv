@@ -46,6 +46,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         overflow-x: hidden;
         background-color: #E6DAF0;
       }
+      ::-webkit-scrollbar {
+          display: none;
+      }
 </style>
 
 </head>
@@ -116,12 +119,12 @@ require_once "config.php";
 <div class="row">
 <div class="col-4 col-md-4" align="center">
     <?php
-    $sql = "SELECT denumire, cif, dataI, judet, oras, despre, email FROM organizatie";
+    $sql = "SELECT denumire, cif, dataI, judet, oras, despre, email FROM organizatie ORDER BY denumire";
     $result = mysqli_query($link, $sql);
     $resultCheck = mysqli_num_rows($result);
     if ($resultCheck > 0){
     while ($row = mysqli_fetch_assoc($result)) {
-      $string=$row["denumire"];
+      $string=ucfirst($row["denumire"]);
       if($string[0]>="A" && $string[0]<="I")
         echo $string."<br><br>";
       }
@@ -131,12 +134,12 @@ require_once "config.php";
 
 <div class="col-4 col-md-4" align="center">
     <?php
-    $sql = "SELECT denumire, cif, dataI, judet, oras, despre, email FROM organizatie";
+    $sql = "SELECT denumire, cif, dataI, judet, oras, despre, email FROM organizatie ORDER BY denumire";
     $result = mysqli_query($link, $sql);
     $resultCheck = mysqli_num_rows($result);
     if ($resultCheck > 0){
     while ($row = mysqli_fetch_assoc($result)) {
-      $string=$row["denumire"];
+      $string=ucfirst($row["denumire"]);
       if($string[0]>="J" && $string[0]<="P")
         echo $string."<br>";
       }
@@ -146,12 +149,12 @@ require_once "config.php";
 
 <div class="col-4 col-md-4" align="center">
     <?php
-    $sql = "SELECT denumire, cif, dataI, judet, oras, despre, email FROM organizatie";
+    $sql = "SELECT denumire, cif, dataI, judet, oras, despre, email FROM organizatie ORDER BY denumire";
     $result = mysqli_query($link, $sql);
     $resultCheck = mysqli_num_rows($result);
     if ($resultCheck > 0){
     while ($row = mysqli_fetch_assoc($result)) {
-      $string=$row["denumire"];
+      $string=ucfirst($row["denumire"]);
       if($string[0]>="Q" && $string[0]<="Z")
         echo $string."<br>";
       }

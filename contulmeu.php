@@ -50,6 +50,11 @@ else{
     exit;
   }
 }
+  if($_SESSION["resp"]!=""){
+  echo '<script>alert("'.$_SESSION["resp"].'");</script>';
+      $_SESSION["resp"]="";
+  }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -72,7 +77,9 @@ else{
         -moz-user-select: none;
         user-select: none;
       }
-
+      ::-webkit-scrollbar {
+          display: none;
+      }
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
@@ -155,9 +162,6 @@ else{
         <button type="button" data-section="sectiuneaParola" class="btn btn-secondary btn-lg">Schimbă parola</button>
         <button type="button" data-section="sectiuneaMesaje" class="btn btn-secondary btn-lg">Mesaje noi</button>
         <button type="button" data-section="sectiuneaActiuni" class="btn btn-secondary btn-lg">Acțiunile mele</button>
-        <?php if($_SESSION["tip"]=="voluntar"){?>
-          <button type="button" data-section="sectiuneaInterese" class="btn btn-secondary btn-lg">Setează-ți interesele</button>
-        <?php } ?>
         <a type="button" class="btn btn-secondary btn-lg" href="logout.php">LOGOUT</a>
       </div>
       <br><br><br><br><br>
@@ -165,24 +169,25 @@ else{
 
 <div class="col" align="left" style="background-color: #F5F1F9;">
   <div class="col-lg-7 well">
-    <div class="content-section" id="sectiuneaGeneral">
-        <br><br><br><br>
+    <div class="content-section" id="sectiuneaGeneral" style="overflow-x: hidden;">
+      <form method="POST" action="./contulmeu/general.php">
+        <br><br><br>
         <label for="$nume" class="form-label"><?php if($_SESSION["tip"]=="voluntar") echo "Nume"; else echo "Denumire"?></label>
-        <input type="text" class="form-control" id="$nume" value="<?php echo $nume; ?>" required>
+        <input type="text" class="form-control" name="nume" id="$nume" value="<?php echo $nume; ?>" required>
         <br>
         <label for="$precif" class="form-label"><?php if($_SESSION["tip"]=="voluntar") echo "Prenume"; else echo "CIF"?></label>
-        <input type="text" class="form-control" id="$precif" value="<?php echo $precif; ?>" required>
+        <input type="text" class="form-control" name="precif" id="$precif" value="<?php echo $precif; ?>" required>
         <br>
         <div class="col-md">
           <label for="judet" class="form-label">Județ - <?php echo $judet; ?></label>
-          <select class="form-select" id="judet" required>
+          <select class="form-select" name="judet" id="judet" required>
             <option value="<?php echo $judet; ?>"></option>
           </select>
         </div>
         <br>
         <div class="col-md">
           <label for="oras" class="form-label">Oraș - <?php echo $oras; ?></label>
-          <select class="form-select" id="oras" required>
+          <select class="form-select" name="oras" id="oras" required>
             <option value="<?php echo $oras; ?>"></option>
           </select>
         </div>
@@ -190,7 +195,7 @@ else{
         <div class="col-md">
           <label for="date-picker-example"><?php if($_SESSION["tip"]=="voluntar") echo "Data nașterii"; else echo "Data înființării"?></label>
           <br>
-          <input value="<?php echo $data; ?>" class="form-control" data-date-format="dd/mm/yyyy" id="datepicker">
+          <input value="<?php echo $data; ?>" class="form-control" data-date-format="dd/mm/yyyy" name="data" id="datepicker">
         </div>
         <br>
         <?php if($_SESSION["tip"]=="organizatie"){?>
@@ -200,16 +205,38 @@ else{
           </div>
         <?php } ?>
         <br>
-        <button type="button" class="btn btn-outline-dark">Modifică</button>
+        <button type="submit" class="btn btn-outline-dark">Actualizează</button>
         <br><br><br>
+    </form>
   </div>
+  <div class="content-section" id="sectiuneaParola">
+    <form method="POST" action="./contulmeu/schimbaParola.php">
+      <br><br><br><br>
+      <br><br><br>
+      <label for="$email" class="form-label">Email</label>
+      <input type="text" name="email" class="form-control" id="$email" required>
+      <br>
+      <label for="$parolaveche" class="form-label">Parola veche</label>
+      <input type="password" name="parolaveche" class="form-control" id="$parolaveche" required>
+      <br>
+      <label for="$parolanoua" class="form-label">Parola nouă</label>
+      <input type="password" name="parolanoua" class="form-control" id="$parolanoua" required>
+      <br>
+      <label for="$parolanoua2" class="form-label">Confirmați parola nouă</label>
+      <input type="password" name="parolanoua2" class="form-control" id="$parolanoua2" required>
+      <br>
+      <br>
+      <button type="submit" class="btn btn-outline-dark">Schimbă parola</button>
+      <br><br><br>
+    </form>
+    </div>
 </div>
 </div>
   </div>
 </main>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script src="./assets/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script type="text/javascript">
     $('#datepicker').datepicker({
@@ -221,7 +248,7 @@ else{
         autoclose: true,
         todayHighlight: true
     });
-    $('#datepicker').datepicker("setDate", <?php echo $data; ?>);
+    $('#datepicker').datepicker('setDate', <?php echo $data; ?>);
 </script>
 
     <script>
