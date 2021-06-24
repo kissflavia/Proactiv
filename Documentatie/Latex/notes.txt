@@ -1,0 +1,11 @@
+autorizare <- oferire acces pe site
+
+
+use cases <- merge uim verdele, adaugam admin, reformulam
+
+la admin: gestionarea conturilor, configurarea blabla
+
+TERMINOLOGIE FLAVIA !!!! Pune si tu mana pe o carte
+
+
+autentificare(login) sau inregistrare(register)

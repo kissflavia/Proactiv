@@ -1,0 +1,386 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage{amsmath,amsthm,amssymb,graphicx,hyperref}
+\usepackage[left=1.2in,right=1in,top=1in,bottom=1in]{geometry}
+\usepackage[romanian]{babel}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{titlesec}
+\usepackage{float}
+\newcommand{\sectionbreak}{\clearpage}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+\begin{figure}[h!]
+\vspace{-20pt}
+\begin{center}
+\includegraphics[width=100pt]{FMI-03.png}
+\end{center}
+\end{figure}
+
+
+{\large{\bf UNIVERSITATEA DE VEST DIN TIMI\c SOARA
+
+FACULTATEA DE MATEMATIC\u A \c SI INFORMATIC\u A
+
+PROGRAMUL DE STUDII DE LICEN\c T\u A: INFORMATIC\u A APLICAT\u A }}
+
+\vspace{120pt}
+{\huge {\bf LUCRARE DE LICEN\c T\u A}}
+
+\vspace{150pt}
+\end{center}
+
+{\large\noindent{\bf COORDONATOR:\hfill ABSOLVENT:}
+
+\noindent Conf. Dr. Fortiș Teodor-Florin \hfill Kiss Flavia-Maria}
+
+\vfill
+\begin{center}
+{\bf TIMI\c SOARA
+
+2021}
+\end{center}
+\newpage
+\thispagestyle{empty}
+\begin{center}
+{\large{\bf UNIVERSITATEA DE VEST DIN TIMI\c SOARA
+
+FACULTATEA DE MATEMATIC\u A \c SI INFORMATIC\u A
+
+
+PROGRAMUL DE STUDII DE LICEN\c T\u A: INFORMATIC\u A APLICAT\u A }}
+
+\vspace{120pt}
+{\huge {\bf PROACTIV}}
+
+\vspace{150pt}
+\end{center}
+
+{\large\noindent{\bf COORDONATOR:\hfill ABSOLVENT:}
+
+\noindent Conf. Dr. Fortiș Teodor-Florin \hfill Kiss Flavia-Maria}
+
+\vfill
+\begin{center}
+{\bf TIMI\c SOARA
+
+2021}
+\end{center}
+\newpage
+\normalsize{}
+
+\tableofcontents
+\newpage
+
+\chapter{Descrierea problemei}
+\par
+Precum este menționat pe site-ul hipo.ro\cite{proactiv}, deși este un termen des folosit în literatura de management și în jargonul de resurse umane, nu se găsește termenul de “proactivitate” în dicționar. Înțelesul lui ar putea fi rezumat într-o accepțiune limitată la a lua inițiativa. Într-un context mai larg, a fi proactiv înseamnă a-ți asuma responsabilitatea lucrurilor care ți se întamplă și a înceta să dai vina pe ceea ce este în jurul tău pentru faptul că anumite lucruri nu se întamplă sau se mișcă foarte greu. 
+\\ \par
+“Proactiv” este o platfomă web axată pe tema voluntariatului, care pune în legătură posibili voluntari cu diferite organizații sau firme care caută acest lucru. Utilizatorii au posibilitatea de a-și creea un cont de tip voluntar sau de tip organizație/firmă. În funcție de tipul contului aceștia pot să caute sau să semnaleze o acțiune de voluntariat. Decizia de a crea această aplicație a pornit din dorința de a încuraja mai mulți oameni în a fi proactivi și implicați în societatea în care trăiesc. 
+\\ \par
+Mulți dintre noi suntem familiarizați cu conceptul de “voluntariat”. Acesta implică acțiuni efectuate din liber arbitru, în beneficiul comunității, nu cu scopul principal de a câștiga financiar. În esență, reprezintă decizia de ne oferi timpul și abilitățile pentru a aduce beneficii celorlalți.
+\\ \par
+Există un motiv pentru care voluntariatul a devenit atât de popular. În mod ideal, o experiență de voluntariat implică un schimb - de cultură, abilități, umanitate sau puncte de vedere - astfel încât fiecare parte să beneficieze. Acesta reflectă nevoia noastră umană de a ne conecta unii cu alții, de a învăța lucruri noi, de a contribui în societate sau de a ne oferi un scop mai mare vieții noastre: să ne înțelegem pe noi înșine, lumea și locul nostru în aceasta totodată.
+\newpage
+Voluntariatul are o mulțime de beneficii, precum consolidarea încrederii, competenței, conexiunilor și comunității. Acestea sunt ilustrate în Figura 1.1, imagine oferită de către Volunteer Benevoles Canada\cite{VBC}.
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.7\linewidth]{VC_ValueOfVolunteering.jpg}
+  \caption{Roata Valorilor Voluntariatului}
+\end{figure}
+
+\par
+Green Report\cite{greenr} ne relatează că doar trei români din zece fac voluntariat în mod activ pentru cauze sociale sau de mediu, fără a fi constrânși. Această informație reiese dintr-un studiu realizat de Hunters, o divizie de trenduri a companiei de cercetare Unlock Market Research.
+\\ \par
+Trebuie luat în considerare că există atât oameni care, deși și-ar dori să facă voluntariat și să ajute, nu știu unde să găsească oportunități, cât și organizații care sunt în căutare de voluntari. Scopul acestei platforme este acela de a rezolva această problemă și de a aduce mai aproape veștile și noutățile din acest domeniu de interes.
+\\ \par
+Aplicația “Proactiv” are o interfață prietenoasă, cu un design plăcut, ușor de navigat și, folosind Google Maps API, afișează pe harta României, sub forma unor pini, toate acțiunile de voluntariat active și semnalează utilizatorului posibilitățile acestuia în funcție de localizarea geografică. Pentru partea de frontend se folosesc HTML și CSS, pentru cea de backend JavaScript și PHP, iar pentru gestionarea bazelor de date PHPMyAdmin.
+
+\chapter{Abordări existente}
+\par
+O abordare similară a problemei poate fi regasită pe “Harta Voluntariatului”\cite{hv}. Deși se poate observa că ideea de bază este una comună, designul și metoda de afișare a datelor diferă foarte mult. 
+\\ \par
+Precum se poate observa în Figura 2.1, pe platforma “Harta Voluntariatului” oportunitățile de voluntariat sunt trecute sub forma unui blog cu diferite articole, aparținând de diferite organizații. Pe acel site sunt afișate rezultatele în funcție de data la care începe proiectul, pe când “Proactiv” le afișează predominant în funcție de locația utilizatorului.
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/hv1.jpg}
+  \caption{Secțiunea “Caută proiecte” a platformei Harta Voluntariatului}
+\end{figure}
+
+\newpage
+Un alt site care se ocupă cu semnalarea acțiunilor de voluntariat este “De Bunavoie”\cite{dbv}. Acesta are un design asemănător cu cel al platfomei “Harta Voluntariatului”, anume sub forma unui blog cu articole, pentru fiecare acțiune de voluntariat semnalată. Asemănarea dintre aceste două platforme poate fi observată comparând figura anterioară cu Figura 2.2 afișată mai jos.
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/dbv1.jpg}
+  \caption{Acțiunile semnalate pe platforma De Bunavoie}
+\end{figure}
+
+\par
+Un avantaj al acestor site-uri este posibilitatea de a filtra domeniile de activitate, pentru a afișa utilizatorului doar proiectele din aria lui de interes. În acest fel, va crește eficiența căutării iar utilizatorul va fi mulțumit că a câștigat timp.
+\\\par 
+Un dezavantaj este metoda de prezentare a proiectelor, una obositoare ochiului. Fiind vorba despre platforme de tip blog, își fac apariția foarte multe descrieri și foarte mult text, acest lucru îngreunănd navigarea pe site și găsirea acțiunilor potrivite de către utilizatori. Comparativ cu acestea, platforma “Proactiv” prezintă acțiunile semnalate sub o formă cât mai simplă, vizuală și interactivă.
+\newpage
+De asemenea, există foarte multe platforme străine, destinate voluntariatului, precum “All For Good”\cite{afg}, prezentată în Figura 2.3, dar un mare dezavantaj al acestora este utilizarea limbii engleze și opțiunile limitate când este selectată România drept locație.
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/afg.jpg}
+  \caption{Lipsa acțiunilor semnalate în zona României}
+\end{figure}
+
+
+\chapter{Arhitectura aplicației}
+
+\section{Introducere}
+\par
+Arhitectura site-ului web este structura ierarhică a paginilor acestuia. Această structură se reflectă prin legături interne și trebuie să îi ajute pe utilizatori să găsească cu ușurință informații. Această arhitectură este foarte importantă în a face o primă impresie bună utilizatorului. Sunt studii făcute pe această temă, care ne relatează că aproape unul din doi utilizatori părăsesc un site încă de la prima pagină, cea principală.
+\\\par 
+Este critic ca un site web să aibă o structură intuitivă și ușor de navigat, pentru a păstra interesul utilizatorilor de a naviga în continuare.
+\\\par 
+Implementarea unei structuri ne ajută să proiectăm o platformă web cu o experiență plăcută pentru utilizator. Deși conținutul este, poate, unul uimitor, dacă utilizatorii nu îl pot găsi, aceștia vor pleca pe site-ul unui concurent.
+\\\par 
+O structură tipică arată ca un arbore, în care pagina principală este rădăcina. Paginile care sunt conectate din pagina de pornire sunt ramuri, iar de acolo, fiecare pagină are ramuri suplimentare care răsar din ea. Aceste ramuri se leagă apoi între ele, de obicei prin intermediul unui meniu.
+\\\par 
+Arhitectura platformei Proactiv poate fi regăsită în Figura 3.1. Pagina principală permite înregistrarea fie ca voluntar, fie ca organizație, sau autentificarea cu un cont deja existent în baza de date a platformei. După autentificare, tipul contului este recunoscut de către aplicație, aceasta redirecționând utilizatorul către conținutul potrivit nevoilor și dorințelor lui. Voluntarii au acces la harta Google Maps unde sunt semnalate acțiunile și la pagina care conține lista de organizații înscrise pe platformă, conturile de tip organizație au acces la pagina web care permite semnalarea unei acțiuni noi de voluntariat și la lista voluntarilor, iar ambele tipuri de cont au acces la pagina de acasă și la cea de gestionare a propriului cont.
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/arhitectura.png}
+  \caption{Arhitectura platformei Proactiv}
+\end{figure}
+
+\section{Wireframe}
+\par
+Wireframe-ul sau macheta funcțională este o diagramă utilizată în timpul proiectării unei interfețe utilizator pentru a defini zonele și componentele pe care aceasta trebuie să le conțină. Acesta descrie elementele de interfață, sistemele de navigație și modul în care acestea funcționează împreună.
+\\\par
+Un wireframe este un punct bun de pornire în realizarea interfeței în sine. Acesta este utilizat în principal în contextul dezvoltării site-urilor și aplicațiilor web. Structura acestuia constă în mod concret dintr-o schiță, un colaj de hârtie sau o diagramă digitală.
+\\\par
+În afara site-urilor web, machetele funcționale sunt utilizate pentru prototiparea site-urilor mobile, a aplicațiilor pentru computer sau a altor produse screen-based, care implică o interacțiune între om și computer.
+\\\par
+Wireframe-ul platformei Proactiv este ilustrat în Figura 3.2. Acesta a fost schițat înainte de a începe implementarea platformei, cu scopul de a vizualiza clar interfața acesteia și modul în care se dorește organizarea paginilor și poziționarea elementelor de front-end. 
+Desigur, odată cu începerea implementării, și-au făcut apariția anumite modificări necesare în realizarea unei lucrări cu o arhitectură logică și intuitivă, dar proiectarea în sine a rămas aceeași.
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/GUI.jpg}
+  \caption{Wireframe-ul platformei Proactiv}
+\end{figure}
+
+
+\section{Pagina principală}
+\par
+Pagina principală este una dintre cele mai importante componente ale interfeței, deoarece este cea care întâmpină utilizatorul. Aceasta trebuie să îi capteze atenția și să îl convingă să navigheze platforma în continuare.
+\\\par
+Elementul dominant de pe pagina principală și, totodată, elementul pe care îl întâlnește utilizatorul în momentul accesării platformei Proactiv este caruselul (slideshow-ul) de poze, oferit de framework-ul Bootstrap. 
+\\\par
+Pagina principală cuprinde trei secțiuni, și anume:
+\par
+
+\begin{itemize}
+  \item Partea de autentificare și de întâmpinare a utilizatorilor recurenți, ilustrată în Figura 3.3, care cuprinde o poză clară, atractivă și plăcută de către iubitorii de animale și un buton care deschide modalul de login - Figura 3.4, portal între pagina principală și paginile reprezentative site-ului meu de voluntariat.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/pp1.jpg}
+  \caption{Secțiunea de autentificare a platformei Proactiv}
+\end{figure}
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/login.jpg}
+  \caption{Modalul de login al platformei Proactiv}
+\end{figure}
+\newpage
+  \item Partea de înregistrare - Figura 3.5, care încurajează utilizatorii noi să își creeze un cont și să se alăture platformei, șă fie proactivi. Pentru această secțiune am ales o poză cu un impact puternic, o poză “cât o mie de cuvinte”, pentru a atrage atenția utilizatorilor noi. Aici se regăsesc două butoane, unul pentru înregistrarea ca voluntar și altul pentru înregistrarea ca organizație. În funcție de butonul apăsat se va deschide pagina de “Cont nou Voluntar” sau cea de “Cont nou Organizație”.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/pp2.jpg}
+  \caption{Secțiunea de înregistrare a platformei Proactiv}
+\end{figure}
+  \item Și secțiunea “De ce?” - Figura 3.6, pentru utilizatorii mai încăpățânați, pe care nu am reușit să îi conving să se alăture plaformei, dar cărora le mai este cerută o șansă, oferindu-le motive pentru care a face voluntariat este un lucru minunat.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/pp3.jpg}
+  \caption{Secțiunea “De ce?” a platformei Proactiv}
+\end{figure}
+\newpage
+În momentul apăsării butonului “De ce?”, pagina se va derula inferior caruselului de imagine și vor fi afișate pentru utilizator diferite motive pentru care merită să se alăture platformei și să fie proactiv. În momentul în care utilizatorul derulează până la limita inferioară a paginii, acesta are opțiunea de a se întoarce înapoi la slideshow, apăsând un hyperlink.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/pp4.jpg}
+  \caption{Motive temeinice pentru a face voluntariat}
+\end{figure}
+\end{itemize}
+
+\section{Cont nou VOLUNTAR}
+\par
+Utilizatorul este redirecționat către pagina ilustrată în Figura 3.8 în momentul în care apasă butonul “Voluntar”, de la secțiunea de înregistrare a paginii principale.
+\\\par
+Pagina este un formular care cuprinde diferite tipuri de căsuțe de input, precum date-picker-ul de la “Data nașterii”, dropdown-ul de la “Județ”, cât și cel de la “Oraș”, care este dependent de primul, afișând doar orașele din județul ales anterior sau o listă goală în cazul în care nu a fost selectat nici un județ.
+\\\par
+În momentul apăsării butonului “Creează cont”, dacă toate datele corespund cerințelor, utilizatorul va fi redirecționat înapoi către pagina principală și se va putea autentifica cu credențialele proaspăt introduse.
+\\\par
+Pentru a reveni la pagina principală, în cazul în care utilizatorul decide să nu ducă la final înregistrarea, acesta poate apăsa sigla platformei din partea stângă a bării de navigare.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/contvol.jpg}
+  \caption{Pagina de înregistrare voluntar a platformei Proactiv}
+\end{figure}
+
+\section{Cont nou ORGANIZAȚIE}
+\par
+Precum se poate observa din Figura 3.9, această pagină este asemănătoare cu pagina aferentă înregistrării voluntarului.
+\\\par
+Sunt cerute anumite date personale reprezentative unei organizații, în locul datelor personale precum nume, prenume sau data nașterii. Pentru organizații, este necesară completarea tuturor câmpurilor: denumirea organizației, codul unic de identificare, data înfințării, județul și orașul unde își are reședința și o scurtă descriere despre organizație și activitatea pe care aceasta o desfășoară.
+\\\par
+Desigur, este necesară și completarea câmpurilor email și parolă, cu condiția ca emailul să aibă un format valid, să nu fie deja înregistrat pe platformă, iar ca parola și confirmarea acesteia să corespundă.
+\\\par
+În momentul apăsării butonului “Creează cont”, dacă toate datele sunt completate și corespund cerințelor, utilizatorul va fi redirecționat înapoi către pagina principală și se va putea autentifica cu credențialele contului tocmai înregistrat.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/contorg.jpg}
+  \caption{Pagina de înregistrare organizație a platformei Proactiv}
+\end{figure}
+
+\section{Contul meu}
+\par
+În momentul în care utilizatorul se autentifică, acesta este redirecționat către gestionarea propriului cont, indiferent dacă este voluntar sau reprezintă o organizație. Pagina “Contul meu” cuprinde un meniu de butoane care oferă diferite funcționalități. 
+\\\par
+La secțiunea “General”, utilizatorul își poate vedea datele personale în momentul înregistrării pe platformă și le poate modifica și actualiza, apăsând butonul “Actualizează”. Pagina va fi reîmprospătată, iar serverul îi va afișa un mesaj utilizatorului după actualizarea datelor lui, precum în Figura 3.10.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.5\linewidth]{./imagini/succes.jpg}
+  \caption{Mesaj afișat după actualizarea datelor}
+\end{figure}
+\par
+Desigur, datele și căsuțele de input diferă în funcție de tipul contului. Voluntarul își va putea modifica numele, prenumele și data nașterii, reprezentantul organizației va putea actualiza denumirea organizației, CIF-ul, data înființării și detaliile despre aceasta, iar ambele tipuri de cont vor putea modifica județul și orașul de reședință.
+\\\par
+Diferența dintre modurile de afișare a acestei secțiuni se poate observa făcând o comparație între Figurile 3.11 si 3.12.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/cont1.jpg}
+  \caption{Pagina gestionare cont voluntar a platformei Proactiv}
+\end{figure}
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/cont1org.jpg}
+  \caption{Pagina gestionare cont organizație a platformei Proactiv}
+\end{figure}
+\par
+La secțiunea “Schimbă parola”, ilustrată în Figura 3.13, utilizatorul își poate modifica parola, apăsând butonul cu același nume. Pentru ca actualizarea să se realizeze cu succes, acesta trebuie să introducă emailul și parola actuală corecte, iar parola nouă și confirmarea acesteia trebuie să corespundă și să fie diferite de parola veche.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/cont2.jpg}
+  \caption{Secțiunea “Schimbă parola” a platformei Proactiv}
+\end{figure}
+\par
+La secțiunea “Mesaje noi” sunt afișate mesajele trimise și primite de către utilizator.
+\\\par
+Iar la secțiunea “Acțiunile mele” sunt listate acțiunile semnalate de către utilizator, în cazul contului de tip organizație și acțiunile la care utilizatorul este înscris, în cazul voluntarilor.
+
+\section{Hartă}
+\par
+Pagina “Hartă” este vizibilă și accesibilă doar de către utilizatorii cu cont de tip voluntar. Aceasta cuprinde harta oferită de Google Maps API, centrată pe teritoriul României, cu diferiți pini afișați în funcție de acțiunile de voluntariat semnalate la momentul accesării paginii, de categoria în care sunt încadrate și de locația în care au loc acestea.
+\\\par
+În partea stângă a paginii se află o gamă de filtre, în cazul în care voluntarul dorește să vadă doar acțiunile semnalate într-un anumit județ, oraș sau doar dintr-o anumită categorie.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/harta.jpg}
+  \caption{Pagina “Hartă” a platformei Proactiv}
+\end{figure}
+
+\par
+În momentul în care este apăsat un pin, se va deschide un pop-up cu detalii despre acesta, precum titlul, categoria în care se încadrează și perioada de desfășurare a acțiunii.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.4\linewidth]{./imagini/pin.jpg}
+  \caption{Detalii despre un anumit pin apăsat}
+\end{figure}
+
+\section{Acțiune nouă}
+
+\section{Organizații}
+
+\section{Voluntari}
+
+
+
+\chapter{Funcționalitatea aplicației - trebuie actualizat}
+\section{Modelare funcționalitate}
+\par
+În momentul în care utilizatorul intră pe site, acesta se va autentifica sau se va înregistra în cazul în care nu deține un cont pe platformă. După autentificare, acesta are acces la datele reprezentative platformei, în funcție de tipul de cont. Dacă utilizatorul deține un cont de tip organizație, acesta poate adăuga o nouă acțiune de voluntariat. Dacă contul este unul de tip voluntar, poate căuta și citi detalii despre acțiunile de voluntariat deja semnalate.
+\\
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}[b]{0.4\linewidth}
+    \includegraphics[width=\linewidth]{UC_Voluntar.JPG}
+    \caption{Cont tip voluntar}
+  \end{subfigure}
+  \begin{subfigure}[b]{0.42\linewidth}
+    \includegraphics[width=\linewidth]{UC_Organizatie.JPG}
+    \caption{Cont tip organizatie}
+  \end{subfigure}
+  \caption{Diagramele de cazuri ale aplicației Proactiv}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+  \includegraphics[width=0.5\linewidth]{Sequence.jpg}
+  \caption{Diagrama de secvente la nivel de sistem a aplicației Proactiv}
+\end{figure}
+
+
+\newpage
+
+\section{Modelarea comportamentului aplicației în context}
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.7\linewidth]{swimlane.JPG}
+  \caption{Diagrama de activitate a aplicației Proactiv}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.9\linewidth]{stateMachine.JPG}
+  \caption{Diagrama de stări și tranziții la nivel de sistem a aplicației}
+\end{figure}
+
+
+\chapter{Baza de date}
+
+
+
+
+
+\begin{thebibliography}{1}
+\bibitem{proactiv} 
+Proactivitatea
+\\\texttt{https://www.hipo.ro/locuri-de-munca/vizualizareArticol/578/Proactivitatea}
+\bibitem{VBC} 
+Roata Valorilor Voluntariatului
+\\\texttt{https://volunteer.ca/index.php?MenuItemID=383}
+\bibitem{greenr} 
+Green Report
+\\\texttt{https://green-report.ro/3-din-10-romani-fac-voluntariat/}
+\bibitem{hv} 
+Harta Voluntariatului
+\\\texttt{https://hartavoluntariatului.ro}
+\bibitem{dbv} 
+De Bunavoie
+\\\texttt{https://debunavoie.ro}
+\bibitem{afg} 
+All For Good
+\\\texttt{https://www.allforgood.org/}
+\end{thebibliography}
+
+
+\end{document} 
