@@ -1,9 +1,39 @@
 <?php
+// Initializam sesiunea
+session_start();
+
 // Include the database configuration file
 require_once "config.php";
 
-// Fetch the marker info from the database
-$result = $link->query("SELECT nume, categorie, despre, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras");
+// Pregatim query-ul astfel incat sa corespunda filtrelor aplicate
+
+if($_SESSION["jud"]==""){
+  if($_SESSION["categ"]==""){
+    $result = $link->query("SELECT nume, categorie, despre, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras");
+  }
+  else{
+    $result = $link->query("SELECT nume, categorie, despre, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras AND categorie = \"".$_SESSION["categ"]."\"");
+  }
+}
+else{
+  if($_SESSION["oras"]==""){
+    if($_SESSION["categ"]==""){
+      $result = $link->query("SELECT nume, categorie, despre, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras AND a.judet = \"".$_SESSION["jud"]."\"");
+    }
+    else{
+      $result = $link->query("SELECT nume, categorie, despre, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras AND a.judet = \"".$_SESSION["jud"]."\" AND categorie = \"".$_SESSION["categ"]."\"");
+    }
+  }
+  else{
+    if($_SESSION["categ"]==""){
+      $result = $link->query("SELECT nume, categorie, despre, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras AND a.oras = \"".$_SESSION["oras"]."\"");
+    }
+    else{
+      $result = $link->query("SELECT nume, categorie, despre, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras AND a.oras = \"".$_SESSION["oras"]."\" AND categorie = \"".$_SESSION["categ"]."\"");
+    }
+  }
+}
+
 ?>
 
 var markers = [
@@ -37,12 +67,13 @@ let i = 0;
 while(i < markers.length){
 
   var pozLatLng = {lat: markers[i][0], lng: markers[i][1]};
-
+  var string = markers[i][2] + "<br>" + markers[i][4]+ "<br>"+markers[i][5]+" - "+markers[i][6]
+  +"<br><br><button class=\"btn btn-outline-dark\">Mă înscriu</button><br>";
   if(markers[i][3] == "Donații"){
            marker =  new google.maps.Marker({
            position: pozLatLng,
            map,
-           content: markers[i][2] + "<br>" + markers[i][4]+ "<br>"+markers[i][5]+" - "+markers[i][6],
+           content: string,
            icon: 'Imagini/Clusters/donatii.png',
            animation: google.maps.Animation.DROP,
             });
@@ -52,7 +83,7 @@ while(i < markers.length){
 	           marker =  new google.maps.Marker({
 	           position: pozLatLng,
 	           map,
-	           content: markers[i][2] + "<br>" + markers[i][4]+ "<br>"+markers[i][5]+" - "+markers[i][6],
+	           content: string,
 	           icon: 'Imagini/Clusters/cultural.png',
 	           animation: google.maps.Animation.DROP,
 	            });
@@ -62,7 +93,7 @@ while(i < markers.length){
 	           marker =  new google.maps.Marker({
 	           position: pozLatLng,
 	           map,
-	           content: markers[i][2] + "<br>" + markers[i][4]+ "<br>"+markers[i][5]+" - "+markers[i][6],
+	           content: string,
 	           icon: 'Imagini/Clusters/educational.png',
 	           animation: google.maps.Animation.DROP,
 	            });
@@ -71,7 +102,7 @@ while(i < markers.length){
 	           marker =  new google.maps.Marker({
 	           position: pozLatLng,
 	           map,
-	           content: markers[i][2] + "<br>" + markers[i][4]+ "<br>"+markers[i][5]+" - "+markers[i][6],
+	           content: string,
 	           icon: 'Imagini/Clusters/nutritie.png',
 	           animation: google.maps.Animation.DROP,
 	            });
@@ -80,7 +111,7 @@ while(i < markers.length){
 	           marker =  new google.maps.Marker({
 	           position: pozLatLng,
 	           map,
-	           content: markers[i][2] + "<br>" + markers[i][4]+ "<br>"+markers[i][5]+" - "+markers[i][6],
+	           content: string,
 	           icon: 'Imagini/Clusters/protectia_mediului.png',
 	           animation: google.maps.Animation.DROP,
 	            });
@@ -89,7 +120,7 @@ while(i < markers.length){
 	           marker =  new google.maps.Marker({
 	           position: pozLatLng,
 	           map,
-	           content: markers[i][2] + "<br>" + markers[i][4]+ "<br>"+markers[i][5]+" - "+markers[i][6],
+	           content: string,
 	           icon: 'Imagini/Clusters/religios.png',
 	           animation: google.maps.Animation.DROP,
 	            });
@@ -98,7 +129,7 @@ while(i < markers.length){
 	           marker =  new google.maps.Marker({
 	           position: pozLatLng,
 	           map,
-	           content: markers[i][2] + "<br>" + markers[i][4]+ "<br>"+markers[i][5]+" - "+markers[i][6],
+	           content: string,
 	           icon: 'Imagini/Clusters/social.png',
 	           animation: google.maps.Animation.DROP,
 	            });
@@ -107,7 +138,7 @@ while(i < markers.length){
 	           marker =  new google.maps.Marker({
 	           position: pozLatLng,
 	           map,
-	           content: markers[i][2] + "<br>" + markers[i][4]+ "<br>"+markers[i][5]+" - "+markers[i][6],
+	           content: string,
 	           icon: 'Imagini/Clusters/sport.png',
 	           animation: google.maps.Animation.DROP,
 	            });

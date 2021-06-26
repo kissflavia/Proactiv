@@ -57,6 +57,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username;
                             $_SESSION["tip"] = $tip;
                             $_SESSION["resp"] = "";
+                            $_SESSION["jud"] = "";
+                            $_SESSION["oras"] = "";
+                            $_SESSION["categ"] = "";
 
                             // Redirectam utilizatorul catre contul lui
                             header("location: contulmeu.php");

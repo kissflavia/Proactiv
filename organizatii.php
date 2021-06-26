@@ -7,6 +7,33 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: paginaPrincipala.php");
     exit;
 }
+
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+  $idOrg = $_POST["idOrg"];
+  $idVol = $_SESSION["id"];
+  $titlu = $_POST["titlu"];
+  $cont = $_POST["continut"];
+  // Configuram baza de date
+  require_once "config.php";
+  // Insert statement
+  $sql = "INSERT INTO mesajvolorg(trmVol,titlu,continut,prmOrg) VALUES (?,?,?,?)";
+
+  if($stmt = mysqli_prepare($link, $sql)){
+
+      mysqli_stmt_bind_param($stmt, "dssd", $idVol, $titlu, $cont, $idOrg);
+
+      // Executam statementul
+      if(mysqli_stmt_execute($stmt)){
+          echo '<script>alert("Mesaj trimis cu succes!");</script>';
+      } else{
+          echo '<script>alert("Oops! Ceva nu a mers bine! Va rog sa reveniti mai tarziu");</script>';
+      }
+
+      // Inchidem statementul
+      mysqli_stmt_close($stmt);
+    }
+
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -113,20 +140,46 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <br><br>
 
-<?php
-require_once "config.php";
-?>
 <div class="row">
 <div class="col-4 col-md-4" align="center">
     <?php
-    $sql = "SELECT denumire, cif, dataI, judet, oras, despre, email FROM organizatie ORDER BY denumire";
+    $sql = "SELECT idOrganizatie, denumire, cif, dataI, judet, oras, despre, email FROM organizatie ORDER BY denumire";
     $result = mysqli_query($link, $sql);
     $resultCheck = mysqli_num_rows($result);
     if ($resultCheck > 0){
     while ($row = mysqli_fetch_assoc($result)) {
       $string=ucfirst($row["denumire"]);
-      if($string[0]>="A" && $string[0]<="I")
-        echo $string."<br><br>";
+      if($string[0]>="A" && $string[0]<="I"){
+      ?>
+      <button type="submit" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#ModalForm<?php echo $row["idOrganizatie"];?>"><?php echo $row["denumire"];?></button>
+      <div class="modal fade" id="ModalForm<?php echo $row["idOrganizatie"];?>" tabindex="-1" aria-labelledby="ModalFormLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title"><?php echo $row["denumire"];?></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <div class="modal-body">
+                  <h4 class="mb-3">CIF/CUI: <?php echo $row["cif"];?></h4>
+                  <h4 class="mb-3">Înființată în: <?php echo $row["dataI"];?></h4>
+                  <p><?php echo $row["despre"];?></p>
+                  <h4 class="mb-3">Trimite un mesaj:</h4>
+                  <input name="titlu" type="text" class="form-control"  placeholder="" value="Titlu" required>
+                  <br>
+                  <textarea class="form-control" name="continut" rows="3" required></textarea>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="idOrg" value="<?php echo $row['idOrganizatie']; ?>"/>
+                    <button class="btn btn-secondary" type="submit" name="btnForm">Trimite mesaj</button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <br>
+          <?php
+        }
       }
     }
     ?>
@@ -134,14 +187,43 @@ require_once "config.php";
 
 <div class="col-4 col-md-4" align="center">
     <?php
-    $sql = "SELECT denumire, cif, dataI, judet, oras, despre, email FROM organizatie ORDER BY denumire";
+    $sql = "SELECT idOrganizatie, denumire, cif, dataI, judet, oras, despre, email FROM organizatie ORDER BY denumire";
     $result = mysqli_query($link, $sql);
     $resultCheck = mysqli_num_rows($result);
     if ($resultCheck > 0){
     while ($row = mysqli_fetch_assoc($result)) {
       $string=ucfirst($row["denumire"]);
-      if($string[0]>="J" && $string[0]<="P")
-        echo $string."<br>";
+      if($string[0]>="J" && $string[0]<="P"){
+      ?>
+      <button type="submit" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#ModalForm<?php echo $row["idOrganizatie"];?>"><?php echo $row["denumire"];?></button>
+      <div class="modal fade" id="ModalForm<?php echo $row["idOrganizatie"];?>" tabindex="-1" aria-labelledby="ModalFormLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title"><?php echo $row["denumire"];?></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <div class="modal-body">
+                  <h4 class="mb-3">CIF/CUI: <?php echo $row["cif"];?></h4>
+                  <h4 class="mb-3">Înființată în: <?php echo $row["dataI"];?></h4>
+                  <p><?php echo $row["despre"];?></p>
+                  <h4 class="mb-3">Trimite un mesaj:</h4>
+                  <input name="titlu" type="text" class="form-control"  placeholder="" value="Titlu" required>
+                  <br>
+                  <textarea class="form-control" name="continut" rows="3" required></textarea>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="idOrg" value="<?php echo $row['idOrganizatie']; ?>"/>
+                    <button class="btn btn-secondary" type="submit" name="btnForm">Trimite mesaj</button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <br>
+          <?php
+        }
       }
     }
     ?>
@@ -149,16 +231,48 @@ require_once "config.php";
 
 <div class="col-4 col-md-4" align="center">
     <?php
-    $sql = "SELECT denumire, cif, dataI, judet, oras, despre, email FROM organizatie ORDER BY denumire";
+    $sql = "SELECT idOrganizatie, denumire, cif, dataI, judet, oras, despre, email FROM organizatie ORDER BY denumire";
     $result = mysqli_query($link, $sql);
     $resultCheck = mysqli_num_rows($result);
     if ($resultCheck > 0){
     while ($row = mysqli_fetch_assoc($result)) {
       $string=ucfirst($row["denumire"]);
-      if($string[0]>="Q" && $string[0]<="Z")
-        echo $string."<br>";
+      if($string[0]>="Q" && $string[0]<="Z"){
+      ?>
+      <button type="submit" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#ModalForm<?php echo $row["idOrganizatie"];?>"><?php echo $row["denumire"];?></button>
+      <div class="modal fade" id="ModalForm<?php echo $row["idOrganizatie"];?>" tabindex="-1" aria-labelledby="ModalFormLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title"><?php echo $row["denumire"];?></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <div class="modal-body">
+                  <h4 class="mb-3">CIF/CUI: <?php echo $row["cif"];?></h4>
+                  <h4 class="mb-3">Înființată în: <?php echo $row["dataI"];?></h4>
+                  <p><?php echo $row["despre"];?></p>
+                  <h4 class="mb-3">Trimite un mesaj:</h4>
+                  <input name="titlu" type="text" class="form-control"  placeholder="" value="Titlu" required>
+                  <br>
+                  <textarea class="form-control" name="continut" rows="3" required></textarea>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="idOrg" value="<?php echo $row['idOrganizatie']; ?>"/>
+                    <button class="btn btn-secondary" type="submit" name="btnForm">Trimite mesaj</button>
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <br>
+          <?php
+        }
       }
     }
+
+    // Close connection
+    mysqli_close($link);
     ?>
 </div>
 </row>

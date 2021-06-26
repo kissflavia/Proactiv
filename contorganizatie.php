@@ -49,9 +49,7 @@
                     // Redirectionam catre pagina principala
                     header("location: paginaPrincipala.php");
                 } else{
-                  echo '<script type="text/javascript">
-                      window.onload = function () { alert("Oops! Ceva nu a mers bine! Va rog sa reveniti mai tarziu"); }
-                      </script>';
+                    echo '<script>alert("Oops! Ceva nu a mers bine! Va rog sa reveniti mai tarziu");</script>';
                 }
 
                 // Inchidem statementul

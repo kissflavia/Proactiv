@@ -7,6 +7,15 @@
        header("location: paginaPrincipala.php");
        exit;
    }
+
+   // Salvam datele pt filtre in variabilele de sesiune specifice
+   if($_SERVER['REQUEST_METHOD'] == "POST"){
+
+     $_SESSION["jud"] = $_POST["judet"];
+     $_SESSION["oras"] = $_POST["oras"];
+     $_SESSION["categ"] = $_POST["categ"];
+   }
+
    ?>
 <!doctype html>
 <html lang="en">
@@ -132,6 +141,7 @@
       <main>
          <br><br><br><br><br><br>
          <div class="splitleft left">
+           <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <div class="centered">
                <h3 style="color:#702DC8;">
                Aici poți vedea acțiunile care își caută voluntari!</h2>
@@ -140,21 +150,21 @@
                <br>
                <div class="col-md">
                   <label for="judet" class="form-label">Alege un anumit județ</label>
-                  <select class="form-select" id="judet" required>
+                  <select class="form-select" name="judet" id="judet">
                      <option value=""></option>
                   </select>
                </div>
                <br>
                <div class="col-md">
                   <label for="oras" class="form-label">Alege un anumit oraș</label>
-                  <select class="form-select" id="oras" required>
+                  <select class="form-select" name="oras" id="oras">
                      <option value=""></option>
                   </select>
                </div>
                <br>
                <div class="col-md">
                   <label for="categorie" class="form-label">Alege o anumită categorie</label>
-                  <select class="form-select" name="categA" id="categorie" required value="">
+                  <select class="form-select" name="categ" id="categorie" value="">
                      <option value=""></option>
                      <option>Cultural</option>
                      <option>Donații</option>
@@ -167,8 +177,10 @@
                   </select>
                </div>
                <br><br>
-               <p><a class="btn btn-outline-dark" href="#">Aplică filtrele</a></p>
+               <p><button class="btn btn-outline-dark" type="submit">Aplică filtrele</button></p>
             </div>
+          </form>
+
          </div>
          <div class="splitright right">
             <div id="map" class="centered">
@@ -247,6 +259,11 @@
            }
          }
       </script>
+
+      <script>
+
+      </script>
+
       <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
    </body>
 </html>

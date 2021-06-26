@@ -105,7 +105,6 @@ else{
         height: 1.2em;
     }
 </style>
-
 </head>
 <body>
 
@@ -160,7 +159,7 @@ else{
       <div class="btn-group-vertical" role="group" aria-label="Meniu Butoane">
         <button type="button" data-section="sectiuneaGeneral" class="btn btn-secondary btn-lg">General</button>
         <button type="button" data-section="sectiuneaParola" class="btn btn-secondary btn-lg">Schimbă parola</button>
-        <button type="button" data-section="sectiuneaMesaje" class="btn btn-secondary btn-lg">Mesaje noi</button>
+        <button type="button" data-section="sectiuneaMesaje" class="btn btn-secondary btn-lg">Mesaje primite</button>
         <button type="button" data-section="sectiuneaActiuni" class="btn btn-secondary btn-lg">Acțiunile mele</button>
         <a type="button" class="btn btn-secondary btn-lg" href="logout.php">LOGOUT</a>
       </div>
@@ -230,6 +229,37 @@ else{
       <br><br><br>
     </form>
     </div>
+    <div class="content-section" id="sectiuneaMesaje">
+        <br><br><br><br>
+        <br><br><br>
+        <?php
+        if($_SESSION["tip"]=="voluntar"){
+          $sql = "SELECT trmOrg, denumire,titlu,continut,prmVol as prm FROM mesajorgvol,organizatie WHERE trmOrg = idOrganizatie AND prmVol = ".$_SESSION["id"];
+        }
+        else {
+          $sql = "SELECT trmVol, concat(nume,\" \",prenume) as denumire,titlu,continut,prmOrg as prm FROM mesajvolorg,voluntar WHERE trmVol = idVoluntar AND prmOrg = ".$_SESSION["id"];
+        }
+        $result = mysqli_query($link, $sql);
+        $resultCheck = mysqli_num_rows($result);
+        if ($resultCheck > 0){
+          echo "<div class=\"row\">";
+          while ($row = mysqli_fetch_assoc($result)) {
+            ?>
+            <div class="card" style="width: 18rem;margin-bottom:10px;margin-left:20px;">
+              <div class="card-body">
+                <h4 class="card-title"><?php echo $row["denumire"].":";?></h5>
+                <br>
+                <h6 class="card-subtitle mb-2 text-muted"><?php echo $row["titlu"];?></h6>
+                <p class="card-text"><?php echo $row["continut"];?></p>
+              </div>
+            </div>
+            <?php
+          }
+          echo "</div>";
+        }
+          ?>
+        <br><br><br>
+      </div>
 </div>
 </div>
   </div>
