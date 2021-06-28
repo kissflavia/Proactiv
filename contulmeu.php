@@ -168,10 +168,11 @@ else{
 
 <div class="col" align="left" style="background-color: #F5F1F9;">
   <div class="col-lg-7 well">
+    <!-- Sectiunea General -->
     <div class="content-section" id="sectiuneaGeneral" style="overflow-x: hidden;">
       <form method="POST" action="./contulmeu/general.php">
         <br><br><br>
-        <label for="$nume" class="form-label"><?php if($_SESSION["tip"]=="voluntar") echo "Nume"; else echo "Denumire"?></label>
+        <label for="$nume" class="form-label"><?php if($_SESSION["tip"]=="voluntar") echo "<br><br>Nume"; else echo "Denumire"?></label>
         <input type="text" class="form-control" name="nume" id="$nume" value="<?php echo $nume; ?>" required>
         <br>
         <label for="$precif" class="form-label"><?php if($_SESSION["tip"]=="voluntar") echo "Prenume"; else echo "CIF"?></label>
@@ -208,6 +209,7 @@ else{
         <br><br><br>
     </form>
   </div>
+  <!-- Sectiunea Schimba Parola -->
   <div class="content-section" id="sectiuneaParola">
     <form method="POST" action="./contulmeu/schimbaParola.php">
       <br><br><br><br>
@@ -229,6 +231,7 @@ else{
       <br><br><br>
     </form>
     </div>
+    <!-- Sectiunea Mesaje Primite -->
     <div class="content-section" id="sectiuneaMesaje">
         <br><br><br><br>
         <br><br><br>
@@ -260,6 +263,42 @@ else{
           ?>
         <br><br><br>
       </div>
+      <!-- Sectiunea Actiuni -->
+      <div class="content-section" id="sectiuneaActiuni">
+          <br><br><br>
+          <?php
+          if($_SESSION["tip"]=="voluntar"){
+            $sql = "SELECT actiune.nume as nume,despre,actiune.categorie as cat,actiune.judet as jud,actiune.oras as oras,dataStart,dataStop, idV, idA FROM actiune,actiuni,voluntar WHERE idA = idActiune AND idV=idVoluntar AND idV = ".$_SESSION["id"];
+          }
+          else {
+            $sql = "SELECT trmVol, concat(nume,\" \",prenume) as denumire,titlu,continut,prmOrg as prm FROM mesajvolorg,voluntar WHERE trmVol = idVoluntar AND prmOrg = ".$_SESSION["id"];
+          }
+          $result = mysqli_query($link, $sql);
+          $resultCheck = mysqli_num_rows($result);
+          if ($resultCheck > 0){
+            echo "<div class=\"row\">";
+            while ($row = mysqli_fetch_assoc($result)) {
+              ?>
+                <div class="col-lg-15 mb-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h3 class="card-title"><?php echo $row["nume"];?></h3>
+                    <h5 class="card-title"><?php echo $row["dataStart"]." - ".$row["dataStop"];?></h5>
+                    <h6 class="card-title"><?php echo $row["oras"].", județul ".$row["jud"];?></h6>
+                    <hr/>
+                    <p class="card-text" style="font-size:12px;"><?php echo $row["despre"];?></p>
+                  </div>
+                 </div>
+                </div>
+              <?php
+            }
+            echo "</div>";
+          }
+          // Close connection
+          mysqli_close($link);
+            ?>
+          <br><br><br>
+        </div>
 </div>
 </div>
   </div>

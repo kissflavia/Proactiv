@@ -139,7 +139,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 </div>
 
 <br><br>
-
+<?php   require_once "config.php"; ?>
 <div class="row">
 <div class="col-4 col-md-4" align="center">
     <?php

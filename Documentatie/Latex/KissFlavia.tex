@@ -86,7 +86,7 @@ Există un motiv pentru care voluntariatul a devenit atât de popular. În mod i
 Voluntariatul are o mulțime de beneficii, precum consolidarea încrederii, competenței, conexiunilor și comunității. Acestea sunt ilustrate în Figura 1.1, imagine oferită de către Volunteer Benevoles Canada\cite{VBC}.
 \begin{figure}[H]
 \centering
-  \includegraphics[width=0.7\linewidth]{VC_ValueOfVolunteering.jpg}
+  \includegraphics[width=0.7\linewidth]{./imagini/VC_ValueOfVolunteering.jpg}
   \caption{Roata Valorilor Voluntariatului}
 \end{figure}
 
@@ -95,7 +95,7 @@ Green Report\cite{greenr} ne relatează că doar trei români din zece fac volun
 \\ \par
 Trebuie luat în considerare că există atât oameni care, deși și-ar dori să facă voluntariat și să ajute, nu știu unde să găsească oportunități, cât și organizații care sunt în căutare de voluntari. Scopul acestei platforme este acela de a rezolva această problemă și de a aduce mai aproape veștile și noutățile din acest domeniu de interes.
 \\ \par
-Aplicația “Proactiv” are o interfață prietenoasă, cu un design plăcut, ușor de navigat și, folosind Google Maps API, afișează pe harta României, sub forma unor pini, toate acțiunile de voluntariat active și semnalează utilizatorului posibilitățile acestuia în funcție de localizarea geografică. Pentru partea de frontend se folosesc HTML și CSS, pentru cea de backend JavaScript și PHP, iar pentru gestionarea bazelor de date PHPMyAdmin.
+Aplicația “Proactiv” are o interfață prietenoasă, cu un design plăcut, ușor de navigat și, folosind Google Maps API, afișează pe harta României, sub forma unor pini, toate acțiunile de voluntariat active și semnalează utilizatorului posibilitățile acestuia în funcție de localizarea geografică. Pentru partea de frontend se folosesc HTML și CSS, pentru cea de backend JavaScript și PHP, iar pentru gestionarea bazelor de date MariaDB prin interfața PHPMyAdmin.
 
 \chapter{Abordări existente}
 \par
@@ -280,10 +280,24 @@ La secțiunea “Schimbă parola”, ilustrată în Figura 3.13, utilizatorul î
   \includegraphics[width=1\linewidth]{./imagini/cont2.jpg}
   \caption{Secțiunea “Schimbă parola” a platformei Proactiv}
 \end{figure}
+\newpage
+La secțiunea “Mesaje primite” sunt afișate mesajele primite de către utilizator, sub forma unor carduri Bootstrap. Acestea conțin denumirea organizației care a trimis mesajul, titlul și conținutul acestuia.
 \par
-La secțiunea “Mesaje noi” sunt afișate mesajele trimise și primite de către utilizator.
-\\\par
+La fel sunt prezentate și mesajele primite de către utilizatorii cu cont de tip organizație, dar în locul denumirii sunt afișate numele și prenumele voluntarului care a trimis mesajul.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/cont3.jpg}
+  \caption{Secțiunea “Mesaje primite” a platformei Proactiv}
+\end{figure}
+\par
 Iar la secțiunea “Acțiunile mele” sunt listate acțiunile semnalate de către utilizator, în cazul contului de tip organizație și acțiunile la care utilizatorul este înscris, în cazul voluntarilor.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/cont4.jpg}
+  \caption{Secțiunea “Acțiunile mele” a platformei Proactiv}
+\end{figure}
 
 \section{Hartă}
 \par
@@ -307,12 +321,50 @@ Pagina “Hartă” este vizibilă și accesibilă doar de către utilizatorii c
 \end{figure}
 
 \section{Acțiune nouă}
-
-\section{Organizații}
+\par
+Această pagină este accesibilă doar de către utilizatorii cu tip de cont organizație.
+\\ \par
+Aceștia pot semnala o acțiune nouă de voluntariat, care ulterior va fi afișată pe hartă pentru ca utilizatorii cu tip de cont voluntar să se poată alătura ei. Datele cerute pentru această funcționalitate cuprind numele acțiunii, categoria din care aceasta face parte, o scurtă descriere a acesteia, intervalul și locația în care se desfășoară acțiunea respectivă.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/actiunenoua.jpg}
+  \caption{Pagina “Acțiune nouă” a platformei Proactiv}
+\end{figure}
+\par
+În momentul în care utilizatorul submite formularul, apăsând butonul “Semnalează acțiune”, pagina va fi reîmprospătată, iar serverul îi va afișa acestuia un răspuns pozitiv, pentru a-l anunța că operația a avut loc cu succes. 
 
 \section{Voluntari}
+\par
+Pagina “Voluntari” a fost concepută pentru ca utilizatorii cu tip de cont organizație să poată lua legătura cu voluntarii înscriși pe platformă.
+\\ \par
+Pagina afișează în ordine alfabetică toți utilizatorii cu tip de cont voluntar, grupându-i pe trei coloane în funcție de numele acestora de familie, precum este ilustrat în Figura 3.19.
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.95\linewidth]{./imagini/vol1.jpg}
+  \caption{Pagina “Voluntari” a platformei Proactiv}
+\end{figure}
+\par
+Atunci când este apăsat un anumit voluntar, se deschide o fereastră modal unde sunt afișate atât detalii despre voluntarul respectiv, cât și o secțiune pentru a trimite un mesaj. Pentru a face acest lucru, este obligatorie completarea căsuțelor text care reprezintă titlul și conținutul mesajului care se dorește a fi trimis.
+\par
+În cazul în care utilizatorul nu dorește să trimită un mesaj voluntarului, ci doar să vadă mai multe detalii despre acesta, poate părăsi fereastra apăsând butonul “X” din colțul dreapta-sus.
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.95\linewidth]{./imagini/vol2.jpg}
+  \caption{Pagina “Voluntari” a platformei Proactiv}
+\end{figure}
 
-
+\section{Organizații}
+\par
+Pagina “Organizații” are același scop ca și pagina descrisă anterior, dar este accesibilă utlizatorilor cu tip de cont voluntar.
+\\\par
+În locul listei de voluntari, este afișată lista tuturor organizațiilor înscrise pe site la momentul accesării paginii, iar apăsarea unui element din listă va duce la afișarea detaliilor importante despre organizația respectivă și la posibilitatea voluntarului de a trimite un mesaj acesteia.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/org.jpg}
+  \caption{Pagina “Organizații” a platformei Proactiv}
+\end{figure}
 
 \chapter{Funcționalitatea aplicației - trebuie actualizat}
 \section{Modelare funcționalitate}
@@ -322,11 +374,11 @@ Pagina “Hartă” este vizibilă și accesibilă doar de către utilizatorii c
 \begin{figure}[h!]
   \centering
   \begin{subfigure}[b]{0.4\linewidth}
-    \includegraphics[width=\linewidth]{UC_Voluntar.JPG}
+    \includegraphics[width=\linewidth]{./imagini/UC_Voluntar.JPG}
     \caption{Cont tip voluntar}
   \end{subfigure}
   \begin{subfigure}[b]{0.42\linewidth}
-    \includegraphics[width=\linewidth]{UC_Organizatie.JPG}
+    \includegraphics[width=\linewidth]{./imagini/UC_Organizatie.JPG}
     \caption{Cont tip organizatie}
   \end{subfigure}
   \caption{Diagramele de cazuri ale aplicației Proactiv}
@@ -334,7 +386,7 @@ Pagina “Hartă” este vizibilă și accesibilă doar de către utilizatorii c
 
 \begin{figure}[h]
 \centering
-  \includegraphics[width=0.5\linewidth]{Sequence.jpg}
+  \includegraphics[width=0.5\linewidth]{./imagini/Sequence.jpg}
   \caption{Diagrama de secvente la nivel de sistem a aplicației Proactiv}
 \end{figure}
 
@@ -344,21 +396,99 @@ Pagina “Hartă” este vizibilă și accesibilă doar de către utilizatorii c
 \section{Modelarea comportamentului aplicației în context}
 \begin{figure}[h!]
 \centering
-  \includegraphics[width=0.7\linewidth]{swimlane.JPG}
+  \includegraphics[width=0.7\linewidth]{./imagini/swimlane.JPG}
   \caption{Diagrama de activitate a aplicației Proactiv}
 \end{figure}
 
 \begin{figure}[h!]
 \centering
-  \includegraphics[width=0.9\linewidth]{stateMachine.JPG}
+  \includegraphics[width=0.9\linewidth]{./imagini/stateMachine.JPG}
   \caption{Diagrama de stări și tranziții la nivel de sistem a aplicației}
 \end{figure}
 
 
 \chapter{Baza de date}
+\par
+Pentru gestionarea datelor am folosit baza de date MariaDB, prin intermediul interfeței PhpMyAdmin, pusă la dispoziție de către XAMPP. Cel din urmă menționat este o distribuție software care ne pune la dispoziție serverul web Apache, baza de date MySQL (MariaDB) și PHP, elemente care îi descriu și o parte din numel: “AMP”. 
+\par
+Acesta a fost lansat pentru prima dată în 4 Septembrie 2002, acum 18 ani și este valabil atât pentru sistemul de operare Windows, cât și pentru MAC sau Linux.
+\\\par
+Structura bazei de date “proactiv” aferentă platformei este ilustrată în figura de mai jos, precum și conexiunile și dependențele dintre tabele, reprezentate prin linii de diferite culori.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/bazadate.jpg}
+  \caption{Structura bazei de date a platformei Proactiv}
+\end{figure}
+\par
+Singurul tabel complet independent din baza de date “proactiv” este tabelul \textbf{locații}. Acesta cuprinde informații despre orașele importante din România, județul din care face parte fiecare în parte și coordonatele (latitudinea și longitudinea) la care sunt poziționate pe harta celor de la Google. Aceste informații sunt preluate din baza de date în momentul afișării acțiunilor de voluntariat pe hartă, pentru a poziționa fiecare pin la locația potrivită.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.6\linewidth]{./imagini/locatii.jpg}
+  \caption{O mică parte din datele introduse în tabelul locații}
+\end{figure}
+
+\newpage
+Tabelul \textbf{voluntar} stochează datele utilizatorului cu cont de tip voluntar, date introduse în momentul înregistrării pe platformă. Pe lângă aceste date preluate de la utilizator în momentul înregistrării, este alocată o cheie primară, unică și foarte importantă atât pentru funcționalitatea corectă a aplicației, cât și pentru logica structurii bazei de date.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/voluntar.jpg}
+  \caption{Date introduse în tabelul voluntar}
+\end{figure}
+\par
+Structura tabelului \textbf{organizație} este asemănătoare cu cea a tabelului descris anterior. Diferența este că acesta stochează datele utilizatorului cu cont de tip organizație, pentru care o parte din datele cerute diferă.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/organizatie.jpg}
+  \caption{Date introduse în tabelul organizație}
+\end{figure}
+\par
+Pentru ambele tipuri de cont, parola este criptată în momentul adăugării contului nou în baza de date și decriptată în momentul în care se verifică corectitudinea acesteia pentru realizarea autentificării sau pentru actualizarea acesteia din pagina “Contul meu”.
+
+\newpage
+Tabelul \textbf{acțiune} stochează informațiile despre acțiunile semnalate de către utilizatorii cu cont de tip organizație. Pe lângă cheia primară și datele introduse de utilizator, pentru fiecare acțiune se stochează id-ul organizației care a semnalat-o, prin intermediul cheii străine cu numele “organizatie”.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/actiune.jpg}
+  \caption{Date introduse în tabelul acțiune}
+\end{figure}
+
+\par
+Tabelul \textbf{acțiuni} este podul de legătură dintre un anumit voluntar și o acțiune la care acesta a decis să se înscrie. Această legătură are loc prin utilizarea a două chei străine: idV, care face referință către cheia primară a voluntarului și una care face referință la id-ul unic al acțiunii, anume idA.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.4\linewidth]{./imagini/actiuni.jpg}
+  \caption{Acțiunile la care este înscris voluntarul cu id-ul 15}
+\end{figure}
+
+\par
+Tabelele \textbf{mesajorgvol} și \textbf{mesajvolorg} stochează mesajele trimise sau primite de către utilizatori. Acestea au drept coloane cheia primară a celui care a trimis mesajul, titlul mesajului, conținutul și cheia primară a celui care trebuie să primească mesajul trimis.
 
 
-
+\chapter{Concluzii și direcții viitoare de dezvoltare}
+\section{Concluzii}
+\par
+Lucrând pentru lucrarea mea de licență, și anume acest site web, am descoperit cât de mult îmi place acest domeniu: Programarea web. Faptul că necesită imaginație, design al paginilor, alegerea paletelor potrivite de culori, schițarea unui logo, potrivirea elementelor pentru o experiență plăcută a utilizatorilor, dar și backend-ul și funcțiile scrise pentru a-i oferi platformei un scop și o funcționalitate, mă conving să mă apropi tot mai mult de acest domeniu și să îmi doresc să lucrez într-o companie care dezvoltă astfel de platforme web. 
+\\ \par
+Îmi place foarte mult gândul că orice modificare făcută în cod este la un refresh distanță, este vizuală, ușor de observat și de modificat în cazul în care nu este satisfăcătoare.
+\section{Direcții viitoare}
+\par
+Planul meu este să îmbunătățesc această platformă web, puțin câte puțin, muncind să acumulez cunoștiințe și să mă perfecționez în acest domeniu.
+\\ \par
+Chiar îmi doresc să public site-ul Proactiv într-o zi, dar nu pentru profit sau pentru câștiguri financiare, ci deoarece cred cu adevărat că voluntariatul este un lucru foarte bun, altruist și satisfăcător sufletește, care merită promovat și încurajat în România.
+\\ \par
+Mi-ar aduce o satisfacție foarte mare gândul că, datorită mie și a platformei mele, mai mulți cetățeni au fost proactivi, mai multe organizații și-au găsit voluntarii de care aveau atât de multă nevoie și că mai multe persoane cu probleme sau dizabilități, animale neajutorate, familii sărace etc au fost ajutate și au un trai puțin mai decent.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/theend.jpg}
+  \caption{Oamenii seamănă cu stâlpii de pe marginea drumului. Nu luminează decât dacă sunt legați între ei.}
+\end{figure}
 
 
 \begin{thebibliography}{1}
