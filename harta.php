@@ -16,6 +16,12 @@
      $_SESSION["categ"] = $_POST["categ"];
    }
 
+   // Popup pentru abonare/dezabonare
+   if($_SESSION["resp"]!=""){
+   echo '<script>alert("'.$_SESSION["resp"].'");</script>';
+       $_SESSION["resp"]="";
+   }
+
    ?>
 <!doctype html>
 <html lang="en">

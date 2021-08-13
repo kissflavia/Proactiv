@@ -2,37 +2,38 @@
 // Initializam sesiunea
 session_start();
 
-// Include the database configuration file
+// Includem fisierul config al bazei de date
 require_once "config.php";
 
 // Pregatim query-ul astfel incat sa corespunda filtrelor aplicate
-
 if($_SESSION["jud"]==""){
   if($_SESSION["categ"]==""){
-    $result = $link->query("SELECT nume, categorie, despre, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras");
+    $result = $link->query("SELECT nume, categorie, idActiune, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras");
   }
   else{
-    $result = $link->query("SELECT nume, categorie, despre, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras AND categorie = \"".$_SESSION["categ"]."\"");
+    $result = $link->query("SELECT nume, categorie, idActiune, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras AND categorie = \"".$_SESSION["categ"]."\"");
   }
 }
 else{
   if($_SESSION["oras"]==""){
     if($_SESSION["categ"]==""){
-      $result = $link->query("SELECT nume, categorie, despre, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras AND a.judet = \"".$_SESSION["jud"]."\"");
+      $result = $link->query("SELECT nume, categorie, idActiune, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras AND a.judet = \"".$_SESSION["jud"]."\"");
     }
     else{
-      $result = $link->query("SELECT nume, categorie, despre, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras AND a.judet = \"".$_SESSION["jud"]."\" AND categorie = \"".$_SESSION["categ"]."\"");
+      $result = $link->query("SELECT nume, categorie, idActiune, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras AND a.judet = \"".$_SESSION["jud"]."\" AND categorie = \"".$_SESSION["categ"]."\"");
     }
   }
   else{
     if($_SESSION["categ"]==""){
-      $result = $link->query("SELECT nume, categorie, despre, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras AND a.oras = \"".$_SESSION["oras"]."\"");
+      $result = $link->query("SELECT nume, categorie, idActiune, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras AND a.oras = \"".$_SESSION["oras"]."\"");
     }
     else{
-      $result = $link->query("SELECT nume, categorie, despre, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras AND a.oras = \"".$_SESSION["oras"]."\" AND categorie = \"".$_SESSION["categ"]."\"");
+      $result = $link->query("SELECT nume, categorie, idActiune, a.judet , a.oras, dataStart, dataStop, lat, lng FROM actiune AS a,locatii AS l WHERE a.judet=l.jud AND a.oras = l.oras AND a.oras = \"".$_SESSION["oras"]."\" AND categorie = \"".$_SESSION["categ"]."\"");
     }
   }
 }
+
+  $actiuni = $link->query("SELECT idA FROM actiuni WHERE idV  = ".$_SESSION["id"]);
 
 ?>
 
@@ -40,7 +41,20 @@ var markers = [
     <?php if($result){
     if($result->num_rows > 0){
     while($row = $result->fetch_assoc()){
-        echo '['.$row['lat'].', '.$row['lng'].', "'.$row['nume'].'", "'.$row['categorie'].'", "'.$row['categorie'].'", "'.$row['dataStart'].'", "'.$row['dataStop'].'"],';
+        echo '['.$row['lat'].', '.$row['lng'].', "'.$row['nume'].'", "'.$row['categorie'].'", "'.$row['idActiune'].'", "'.$row['dataStart'].'", "'.$row['dataStop'].'"],';
+      }
+    }
+  }
+    ?>
+];
+
+const actiuni = [
+    <?php if($actiuni){
+    if($actiuni->num_rows > 0){
+    $row = $actiuni->fetch_assoc();
+    echo '\''.$row['idA'].'\'';
+    while($row = $actiuni->fetch_assoc()){
+        echo ',\''.$row['idA'].'\'';
       }
     }
   }
@@ -63,12 +77,19 @@ function initMap() {
 
 let i = 0;
 
-
 while(i < markers.length){
 
   var pozLatLng = {lat: markers[i][0], lng: markers[i][1]};
-  var string = markers[i][2] + "<br>" + markers[i][4]+ "<br>"+markers[i][5]+" - "+markers[i][6]
-  +"<br><br><button class=\"btn btn-outline-dark\">Mă înscriu</button><br>";
+  const include = actiuni.includes(markers[i][4]);
+  console.log(include);
+  if(include == false ){
+  var string = markers[i][2] + "<br>" + markers[i][3] + "<br>" + markers[i][5] + " - " + markers[i][6]
+  +"<br><br><form method=\"POST\" action=\"./harta/abonez.php\"><input type=\"hidden\" name=\"idAct\" value=\" " + markers[i][4] + " \"><button type=\"submit\" class=\"btn btn-outline-dark\">Mă înscriu</button><br><form>";
+  }
+  else{
+    var string = markers[i][2] + "<br>" + markers[i][3] + "<br>" + markers[i][5] + " - " + markers[i][6]
+    +"<br><br><form method=\"POST\" action=\"./harta/dezabonez.php\"><input type=\"hidden\" name=\"idAct\" value=\" " + markers[i][4] + " \"><button type=\"submit\" class=\"btn btn-outline-dark\">Mă retrag</button><br><form>";
+  }
   if(markers[i][3] == "Donații"){
            marker =  new google.maps.Marker({
            position: pozLatLng,

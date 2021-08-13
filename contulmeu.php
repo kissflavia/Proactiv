@@ -271,7 +271,7 @@ else{
             $sql = "SELECT actiune.nume as nume,despre,actiune.categorie as cat,actiune.judet as jud,actiune.oras as oras,dataStart,dataStop, idV, idA FROM actiune,actiuni,voluntar WHERE idA = idActiune AND idV=idVoluntar AND idV = ".$_SESSION["id"];
           }
           else {
-            $sql = "SELECT trmVol, concat(nume,\" \",prenume) as denumire,titlu,continut,prmOrg as prm FROM mesajvolorg,voluntar WHERE trmVol = idVoluntar AND prmOrg = ".$_SESSION["id"];
+            $sql = "SELECT idActiune, nume, categorie, a.judet as jud, a.oras as oras , dataStart, dataStop, organizatie, a.despre as despre FROM actiune AS a,organizatie WHERE organizatie = idOrganizatie AND idOrganizatie = ".$_SESSION["id"];
           }
           $result = mysqli_query($link, $sql);
           $resultCheck = mysqli_num_rows($result);

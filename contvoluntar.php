@@ -1,8 +1,8 @@
 <?php
-    // Include config file
+    // Includem fisierul config al bazei de date
     require_once "config.php";
 
-    // Define variables and initialize with empty values
+    // Definim si initializam variabilele
     $nume = $prenume = $datan = $judet= $oras = $email = $password = $confirm_password = "";
     $email_err = $confirm_password_err = "";
 
@@ -35,7 +35,7 @@
           // Check input errors before inserting in database
           if(empty($email_err) && empty($confirm_password_err)){
 
-            // Prepare an insert statement
+            //Statement-ul de insert
             $sql = "INSERT INTO voluntar (idVoluntar,nume,prenume,dataN,judet,oras,email,parola) VALUES (?,?,?,?,?,?,?,?)";
 
             if($stmt = mysqli_prepare($link, $sql)){
