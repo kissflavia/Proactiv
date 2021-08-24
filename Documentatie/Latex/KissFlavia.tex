@@ -133,7 +133,7 @@ De asemenea, există foarte multe platforme străine, destinate voluntariatului,
 
 \section{Introducere}
 \par
-Arhitectura site-ului web este structura ierarhică a paginilor acestuia. Această structură se reflectă prin legături interne și trebuie să îi ajute pe utilizatori să găsească cu ușurință informații. Această arhitectură este foarte importantă în a face o primă impresie bună utilizatorului. Sunt studii făcute pe această temă, care ne relatează că aproape unul din doi utilizatori părăsesc un site încă de la prima pagină, cea principală.
+Arhitectura site-ului web este structura ierarhică a paginilor acestuia. Această structură se reflectă prin legături interne și trebuie să îi ajute pe utilizatori să găsească cu ușurință informații. Arhitectura este foarte importantă în a face o primă impresie bună utilizatorului. Sunt studii făcute pe această temă, care ne relatează că aproape unul din doi utilizatori părăsesc un site încă de la prima pagină, cea principală.
 \\\par 
 Este critic ca un site web să aibă o structură intuitivă și ușor de navigat, pentru a păstra interesul utilizatorilor de a naviga în continuare.
 \\\par 
@@ -366,52 +366,65 @@ Pagina “Organizații” are același scop ca și pagina descrisă anterior, da
   \caption{Pagina “Organizații” a platformei Proactiv}
 \end{figure}
 
-\chapter{Funcționalitatea aplicației - trebuie actualizat}
+\chapter{Funcționalitatea aplicației}
 \section{Modelare funcționalitate}
 \par
-În momentul în care utilizatorul intră pe site, acesta se va autentifica sau se va înregistra în cazul în care nu deține un cont pe platformă. După autentificare, acesta are acces la datele reprezentative platformei, în funcție de tipul de cont. Dacă utilizatorul deține un cont de tip organizație, acesta poate adăuga o nouă acțiune de voluntariat. Dacă contul este unul de tip voluntar, poate căuta și citi detalii despre acțiunile de voluntariat deja semnalate.
+Diagrama cazurilor de utilizare oferă o descriere generală a modului în care va fi utilizat sistemul și surprinde modul în care sistemul interacționează cu unul sau mai mulți actori.
+\\
+\par
+Figura 4.1 ilustrează diagrama de cazuri a aplicației Proactiv. Actorii includ voluntarul și organizația, iar sistemul este subiectul cazurilor de utilizare, clasa a cărui comportament îl descriu aceste cazuri. 
+În momentul în care utilizatorul intră pe site, acesta are posibilitatea de a parcurge pagina principală, de a se autentifica sau de a se înregistra. Excluzând aceste trei cazuri menționate anterior, restul cazurilor sunt condiționate de autentificarea utilizatorului pe platformă.
 \\
 \begin{figure}[h!]
   \centering
-  \begin{subfigure}[b]{0.4\linewidth}
-    \includegraphics[width=\linewidth]{./imagini/UC_Voluntar.JPG}
-    \caption{Cont tip voluntar}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.42\linewidth}
-    \includegraphics[width=\linewidth]{./imagini/UC_Organizatie.JPG}
-    \caption{Cont tip organizatie}
-  \end{subfigure}
-  \caption{Diagramele de cazuri ale aplicației Proactiv}
+    \includegraphics[width=0.7\linewidth]{./imagini/UseCase.png}
+    \caption{Diagrama de cazuri a aplicației Proactiv}
 \end{figure}
 
+\par
+Diagrama de secvențe la nivel de sistem are rolul de a modela interacțiunile dintre actorii externi și sistem.
+\\
+\par
+În cazul aplicației Proactiv, interacțiunea dintre sistem și actorul Utilizator este una simplă. După ce actorul introduce credențialele necesare autentificării, sistemul verifică corectitudinea acestora și oferă utilizatorului acces pe platformă. Sistemul actualizează datele și le afișează utilizatorului.
+\\
 \begin{figure}[h]
 \centering
-  \includegraphics[width=0.5\linewidth]{./imagini/Sequence.jpg}
-  \caption{Diagrama de secvente la nivel de sistem a aplicației Proactiv}
+  \includegraphics[width=0.6\linewidth]{./imagini/Sequence.jpg}
+  \caption{Diagrama de secvente a aplicației Proactiv}
 \end{figure}
 
 
 \newpage
 
 \section{Modelarea comportamentului aplicației în context}
+\par
+Diagrama de activitate ilustrează modul în care sunt procesate datele pe măsură ce parcurg sistemul. Urmărirea şi documentarea asocierii datelor cu un proces este utilă în dezvoltarea înţelegerii sistemului în ansamblu.
+\\
+\par
+În Figura 4.3 este descrisă activitatea platformei pornind de la verificarea existenței unui cont al utilizatorului. Daca acesta este inexistent, intervine etapa de înregistrare, urmată de autentificare și de oferirea accesului pe site. Sistemul verifică tipul de cont și afișează informațiile aferente acestuia.
+\\
 \begin{figure}[h!]
 \centering
-  \includegraphics[width=0.7\linewidth]{./imagini/swimlane.JPG}
+  \includegraphics[width=1\linewidth]{./imagini/swimlane.JPG}
   \caption{Diagrama de activitate a aplicației Proactiv}
 \end{figure}
+
+\newpage
+\par
+Diagrama de stări şi tranziţii la nivel de sistem descrie un comportament sau o trăsătură comportamentală. 
 
 \begin{figure}[h!]
 \centering
   \includegraphics[width=0.9\linewidth]{./imagini/stateMachine.JPG}
-  \caption{Diagrama de stări și tranziții la nivel de sistem a aplicației}
+  \caption{Diagrama de stări și tranziții a aplicației Proactiv}
 \end{figure}
 
 
 \chapter{Baza de date}
 \par
-Pentru gestionarea datelor am folosit baza de date MariaDB, prin intermediul interfeței PhpMyAdmin, pusă la dispoziție de către XAMPP. Cel din urmă menționat este o distribuție software care ne pune la dispoziție serverul web Apache, baza de date MySQL (MariaDB) și PHP, elemente care îi descriu și o parte din numel: “AMP”. 
+Pentru gestionarea datelor am folosit baza de date MariaDB, prin intermediul interfeței PhpMyAdmin, pusă la dispoziție de către XAMPP. Cel din urmă menționat este o distribuție software care ne pune la dispoziție serverul web Apache, baza de date MySQL (MariaDB), Perl și PHP, elemente care îi descriu și o parte din nume: “AMPP”. 
 \par
-Acesta a fost lansat pentru prima dată în 4 Septembrie 2002, acum 18 ani și este valabil atât pentru sistemul de operare Windows, cât și pentru MAC sau Linux.
+Acesta a fost lansat pentru prima dată în 4 Septembrie 2002, acum 19 ani și este valabil atât pentru sistemul de operare Windows, cât și pentru MAC sau Linux.
 \\\par
 Structura bazei de date “proactiv” aferentă platformei este ilustrată în figura de mai jos, precum și conexiunile și dependențele dintre tabele, reprezentate prin linii de diferite culori.
 \\
