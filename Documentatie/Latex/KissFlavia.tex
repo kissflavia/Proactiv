@@ -6,6 +6,7 @@
 \usepackage{subcaption}
 \usepackage{titlesec}
 \usepackage{float}
+\usepackage{listings}
 \newcommand{\sectionbreak}{\clearpage}
 
 \begin{document}
@@ -369,7 +370,7 @@ Pagina “Organizații” are același scop ca și pagina descrisă anterior, da
 \chapter{Funcționalitatea aplicației}
 \section{Modelare funcționalitate}
 \par
-Diagrama cazurilor de utilizare oferă o descriere generală a modului în care va fi utilizat sistemul și surprinde modul în care sistemul interacționează cu unul sau mai mulți actori.
+Diagrama cazurilor de utilizare oferă o descriere generală a modului în care va fi utilizat sistemul și surprinde modul în care sistemul interacționează cu unul sau mai mulți actori.\cite{usecases}
 \\
 \par
 Figura 4.1 ilustrează diagrama de cazuri a aplicației Proactiv. Actorii includ voluntarul și organizația, iar sistemul este subiectul cazurilor de utilizare, clasa a cărui comportament îl descriu aceste cazuri. 
@@ -398,7 +399,7 @@ Diagrama de secvențe la nivel de sistem are rolul de a modela interacțiunile d
 
 \section{Modelarea comportamentului aplicației în context}
 \par
-Diagrama de activitate ilustrează modul în care sunt procesate datele pe măsură ce parcurg sistemul. Urmărirea şi documentarea asocierii datelor cu un proces este utilă în dezvoltarea înţelegerii sistemului în ansamblu.
+Diagrama de activitate ilustrează modul în care sunt procesate datele pe măsură ce parcurg sistemul. Urmărirea şi documentarea asocierii datelor cu un proces este utilă în dezvoltarea înţelegerii sistemului în ansamblu. \cite{uml}
 \\
 \par
 În Figura 4.3 este descrisă activitatea platformei pornind de la verificarea existenței unui cont al utilizatorului. Daca acesta este inexistent, intervine etapa de înregistrare, urmată de autentificare și de oferirea accesului pe site. Sistemul verifică tipul de cont și afișează informațiile aferente acestuia.
@@ -411,7 +412,9 @@ Diagrama de activitate ilustrează modul în care sunt procesate datele pe măsu
 
 \newpage
 \par
-Diagrama de stări şi tranziţii la nivel de sistem descrie un comportament sau o trăsătură comportamentală. 
+Diagrama de stări şi tranziţii la nivel de sistem descrie toate stările pe care un obiect le poate avea, evenimentele datorită cărora un obiect tranzitează dintr-o stare în alta, condițiile care trebuie îndeplinite înainte ca tranziția să aibă loc și acțiunile întreprinse în timpul vieții obiectului.
+\par
+Aceste diagrame sunt foarte utile pentru descrierea comportamentului obiectelor individuale în cadrul întregului set de cazuri de utilizare care afectează acele obiecte.
 
 \begin{figure}[h!]
 \centering
@@ -419,12 +422,231 @@ Diagrama de stări şi tranziţii la nivel de sistem descrie un comportament sau
   \caption{Diagrama de stări și tranziții a aplicației Proactiv}
 \end{figure}
 
+\newpage
+
+\section{Înregistrarea}
+\par
+Înregistrarea pe platforma Proactiv se poate accesa din pagina principală, apăsând unul dintre butoanele  “VOLUNTAR” sau  “ORGANIZAȚIE”, în funcție de tipul de cont pe care utilizatorul dorește să îl dețină. După apăsarea unuia dintre butoane, utilizatorul este redirecționat fie către pagina de  “Cont nou Voluntar”, fie către cea de  “Cont nou Organizație”.
+\\
+\par
+Aceste două pagini menționate anterior constau dintr-un formular care cuprinde diferite tipuri de căsuțe de input, în funcție de datele necesare creării unui cont de un anumit tip. Pentru a submite formularul apăsând butonul  “Creează cont”, utilizatorul este condiționat de completarea tuturor câmpurilor de input. 
+\\
+\par
+După submiterea formularului, sistemul verifică dacă anumite criterii sunt îndeplinite, precum faptul că nu există deja un cont cu email-ul introdus și că parolele introduse corespund. Dacă răspunsul este unul pozitiv, datele sunt adăugate în baza de date și utilizatorul este redirecționat către pagina principala, unde se poate autentifica cu contul nou creat. Daca răspunsul este negativ, problema va fi semnalată acestuia, oferindu-i-se șansa să modifice datele și să reîncerce.
+\\
+\begin{lstlisting}[basicstyle=\small, language=PHP]{Name=contvoluntar.php}
+// Verificam emailul
+$sql = "SELECT idVoluntar FROM voluntar WHERE email = \"".$email."\"";
+$sql2 = "SELECT idOrganizatie FROM organizatie WHERE email = \"".$email."\"";
+$result = mysqli_query($link, $sql);
+$result2 = mysqli_query($link, $sql2);
+$resultCheck = mysqli_num_rows($result);
+$resultCheck2 = mysqli_num_rows($result2);
+if ($resultCheck > 0 || $resultCheck2 > 0){
+   $email_err = "Acest e-mail este deja utilizat";
+}
+// Verificam parola
+if($password != $confirm_password){
+   $confirm_password_err = "Parolele nu se potrivesc";
+}
+// Verificam lipsa erorilor inainte de a insera datele in baza de date
+if(empty($email_err) && empty($confirm_password_err)){
+   // Statement-ul de insert
+   $sql = "INSERT INTO voluntar (idVoluntar,nume,prenume,dataN,".
+          "judet,oras,email,parola) VALUES (?,?,?,?,?,?,?,?)";
+   if($stmt = mysqli_prepare($link, $sql)){
+      // Transformam parola in hash code
+      $hashed_password = password_hash($password, PASSWORD_DEFAULT); 
+      mysqli_stmt_bind_param($stmt, "dsssssss", $id, $nume, $prenume,
+                          $datan, $judet, $oras, $email, $hashed_password);
+
+      // Executam statement-ul
+      if(mysqli_stmt_execute($stmt)){
+         // Redirectionam catre pagina principala
+         header("location: paginaPrincipala.php");
+      } else{
+         echo '<script>'.
+         'alert("Oops! Ceva nu a mers bine! Va rog sa reveniti mai tarziu");'.
+         '</script>';
+      }
+      // Inchidem statement-ul
+      mysqli_stmt_close($stmt);
+   }
+}
+\end{lstlisting}
+
+\section{Autentificarea}
+\par
+Autentificarea pe platforma Proactiv se poate face din pagina principală, apăsând butonul  “Loghează-te” din prima secțiune a caruselului de imagini. După apăsarea butonului se va deschide un modal unde pot fi introduse credențialele, anume email și parolă.
+\\
+\par
+După completarea acestor două câmpuri de imput, utilizatorul poate apăsa butonul din partea inferioară a modalului. În momentul submiterii credențialelor, sistemul preia datele introduse de utilizator, le caută în baza de date și în cazul unui răspuns pozitiv, pornește sesiunea, inițializează variabilele acesteia și redirecționează utilizatorul către contul lui, oferindu-i-se acces la funcționalitățile platformei aferente tipului de cont.
+\\
+\begin{lstlisting}[basicstyle=\small, language=PHP]{Name=paginaPrincipala.php}
+//Preluam credentialele introduse de catre utilizator
+$username = $_POST["username"];
+$password = $_POST["password"];
+
+// Validam credentialele
+if(empty($username_err) && empty($password_err)){
+   $sql1 = "SELECT idVoluntar FROM voluntar WHERE email = \"".$username."\"";
+   $sql2 = "SELECT idOrganizatie FROM organizatie WHERE email = \"".
+           $username."\"";
+   $result = mysqli_query($link, $sql1);
+   $result2 = mysqli_query($link, $sql2);
+   $resultCheck = mysqli_num_rows($result);
+   $resultCheck2 = mysqli_num_rows($result2);
+   $sql="SELECT idVoluntar, email, parola FROM voluntar WHERE email = ?";
+   if ($resultCheck > 0){
+      $tip="voluntar";
+   }else {
+      if ($resultCheck2 > 0){
+         $tip="organizatie";
+         $sql = "SELECT idOrganizatie, email, parola ".
+                "FROM organizatie WHERE email = ?";
+      }
+   }
+   if($stmt = mysqli_prepare($link, $sql)){
+      mysqli_stmt_bind_param($stmt, "s", $param_username);
+      $param_username = $username;
+
+      if(mysqli_stmt_execute($stmt)){
+         mysqli_stmt_store_result($stmt);
+         if(mysqli_stmt_num_rows($stmt) == 1){
+            mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+            if(mysqli_stmt_fetch($stmt)){
+               if(password_verify($password, $hashed_password)){
+                  // Daca parola este corecta, pornim sesiunea
+                  session_start();
+
+                  // Salvam informatiile utile in variabilele sesiunii
+                  $_SESSION["loggedin"] = true;
+                  $_SESSION["id"] = $id;
+                  $_SESSION["username"] = $username;
+                  $_SESSION["tip"] = $tip;
+                  $_SESSION["resp"] = "";
+                  $_SESSION["jud"] = "";
+                  $_SESSION["oras"] = "";
+                  $_SESSION["categ"] = "";
+
+                  // Redirectam utilizatorul catre contul lui
+                  header("location: contulmeu.php");
+               } else{
+                  // Daca parola este gresita, se afiseaza un mesaj generic
+                  $login_err = "Parola gresita";
+               }
+            }
+         } else{
+            // Daca emailul este gresit, se afiseaza un mesaj generic
+            $login_err = "Email gresit";
+         }
+      } else{
+         echo '<script>'.
+         'alert("Oops! Ceva nu a mers bine! Va rog sa reveniti mai tarziu");'.
+         '</script>';
+      }
+      mysqli_stmt_close($stmt);
+   }
+}
+\end{lstlisting}
+
+\section{Actualizarea datelor personale}
+\par
+Utilizatorul își poate actualiza datele personale introduse inițial în momentul înregistrării pe platformă de la secțiunea  “General” a paginii  “Contul meu”. Acolo sunt preluate din baza de date și listate datele actuale, iar acesta are posibilitatea de a le modifica.
+\\
+\par
+În momentul apăsării butonului “Actualizează”, sistemul preia datele introduse de utilizator și modifică datele deja existente din baza de date cu cele submise de utilizator. După această operațiune, utilizatorul este informat că actualizarea a avut loc cu succes prin intermediul unei cutii de tip pop-up.
+\\
+\begin{lstlisting}[basicstyle=\small, language=PHP]{Name=paginaPrincipala.php}
+// Preluam datele
+$id = $_SESSION["id"];
+$nume = $_POST["nume"];
+$precif = $_POST["precif"];
+$judet = $_POST["judet"];
+$oras = $_POST["oras"];
+$data = $_POST["data"];
+
+if ($_SESSION["tip"] == "voluntar")
+{
+   // Actualizam datele voluntarului
+   $sql = "UPDATE voluntar SET nume = ?, prenume = ?, judet = ?,oras = ?,".
+          "dataN = ? WHERE idVoluntar = ?";
+
+   if ($stmt = mysqli_prepare($link, $sql))
+   {
+      mysqli_stmt_bind_param($stmt, "sssssd", $nume, $precif, 
+			     $judet, $oras, $data, $id);
+
+      // Executam statementul
+      if (mysqli_stmt_execute($stmt))
+      {
+         $_SESSION["resp"] = "Succes!";
+      }
+      else
+      {
+         $_SESSION["resp"] = "Oops! Ceva nu a mers bine!".
+			     "Va rog sa reveniti mai tarziu";
+      }
+
+      // Inchidem statementul
+      mysqli_stmt_close($stmt);
+      mysqli_close($link);
+
+      // Redirectionam catre contul meu
+      header("location: ../contulmeu.php");
+   }
+}
+else
+{
+   if ($_SESSION["tip"] == "organizatie")
+   {
+      // Actualizam datele organizatiei
+      $despre = $_POST["despre"];
+      $sql = "UPDATE organizatie SET denumire = ?, cif = ?, judet = ?,".
+             "oras = ?,dataI = ?, despre = ? WHERE idOrganizatie = ?";
+
+      if ($stmt = mysqli_prepare($link, $sql))
+      {
+         mysqli_stmt_bind_param($stmt, "ssssssd", $nume, $precif, 
+			        $judet, $oras, $data, $despre, $id);
+
+         // Executam statementul
+         if (mysqli_stmt_execute($stmt))
+         {
+            $_SESSION["resp"] = "Succes!";
+         }
+         else
+         {
+            $_SESSION["resp"] = "Oops! Ceva nu a mers bine!".
+			        "Va rog sa reveniti mai tarziu";
+         }
+
+         // Inchidem statementul
+         mysqli_stmt_close($stmt);
+         mysqli_close($link);
+         
+         // Redirectionam catre contul meu
+         header("location: ../contulmeu.php");
+      }
+   }
+   else
+   {
+      // Distrugem sesiunea 
+      $_SESSION = array();
+      session_destroy();
+      // Redirectionam utilizatorul catre pagina de pornire
+      header("location: ../paginaPrincipala.php");
+      exit;
+   }
+}
+\end{lstlisting}
+
 
 \chapter{Baza de date}
 \par
 Pentru gestionarea datelor am folosit baza de date MariaDB, prin intermediul interfeței PhpMyAdmin, pusă la dispoziție de către XAMPP. Cel din urmă menționat este o distribuție software care ne pune la dispoziție serverul web Apache, baza de date MySQL (MariaDB), Perl și PHP, elemente care îi descriu și o parte din nume: “AMPP”. 
 \par
-Acesta a fost lansat pentru prima dată în 4 Septembrie 2002, acum 19 ani și este valabil atât pentru sistemul de operare Windows, cât și pentru MAC sau Linux.
+Acesta a fost lansat pentru prima dată în 4 Septembrie 2002, acum 19 ani și este valabil atât pentru sistemul de operare Windows, cât și pentru MAC sau Linux.\cite{xampp}
 \\\par
 Structura bazei de date “proactiv” aferentă platformei este ilustrată în figura de mai jos, precum și conexiunile și dependențele dintre tabele, reprezentate prin linii de diferite culori.
 \\
@@ -523,6 +745,13 @@ De Bunavoie
 \bibitem{afg} 
 All For Good
 \\\texttt{https://www.allforgood.org/}
+\bibitem{usecases} 
+\textsc{Alistair Cockburn}, \emph{Writing Effective Use Cases}, Addison-Wesley Professional, 2000.
+\bibitem{uml} 
+\textsc{James Rumbaugh, Ivar Jacobson și Grady Booch}, \emph{The Unified Modeling Language Reference Manual 2nd Edition}, Addison-Wesley Professional, 2004.
+\bibitem{xampp} 
+\textsc{Tom Butler}, \emph{Php \& Mysql: Novice To Ninja}, Site Point, 2017.
+
 \end{thebibliography}
 
 
