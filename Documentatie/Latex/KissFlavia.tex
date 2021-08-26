@@ -71,10 +71,31 @@ PROGRAMUL DE STUDII DE LICEN\c T\u A: INFORMATIC\u A APLICAT\u A }}
 \newpage
 \normalsize{}
 
+\setcounter{page}{2}
+
+\section*{Abstract}
+\par
+"Proactiv" is a web platform focused on volunteering. Through it, potential volunteers can get in touch with different organizations or companies, and organizations can post their own volunteer activities and find the volunteers they need to successfully accomplish its organization and development.
+\\ \par
+The site has a friendly interface, with a pleasant design, it's easy to navigate and has as main element the Google Map, a map on which volunteer activities are listed as pins, depending on the location where they take place. 
+\\ \par
+I chose this name because the term “proactivity” is quite often used in IT companies and is an encouraged and appreciated skill in the workplace. I consider a proactive person to be dynamic, involved, willing to try new things and, most importantly, focused on innovation and evolution.
+
+
+\section*{Rezumat}
+\par
+Platforma “Proactiv” este o platformă web axată pe tema voluntariatului. Prin intermediul acesteia, posibilii voluntari pot lua legătura cu diferite organizații sau
+firme, iar organizațiile pot semnala acțiunile de voluntariat proprii și pot găsi voluntarii de care au nevoie în îndeplinirea cu succes a acesteia.
+\\ \par
+Site-ul are o interfață prietenoasă, cu un design plăcut, ușor de navigat și are ca element principal harta celor de la Google, hartă pe care sunt semnalate acțiunile de voluntariat sub forma unor pini, în funcție de locația la care acestea se desfășoară.
+\\ \par
+Am ales acest nume deoarece termenul de “proactivitate” este destul de des folosit în companiile din domeniul IT și este o competență încurajată și apreciată la locul de muncă. Consider o persoana proactivă ca fiind dinamică, implicată, dispusă să încerce lucruri noi și, cel mai important, axată pe inovare și evoluție.
+
 \tableofcontents
 \newpage
 
-\chapter{Descrierea problemei}
+\chapter{Introducere}
+\section{Descrierea problemei}
 \par
 Precum este menționat pe site-ul hipo.ro\cite{proactiv}, deși este un termen des folosit în literatura de management și în jargonul de resurse umane, nu se găsește termenul de “proactivitate” în dicționar. Înțelesul lui ar putea fi rezumat într-o accepțiune limitată la a lua inițiativa. Într-un context mai larg, a fi proactiv înseamnă a-ți asuma responsabilitatea lucrurilor care ți se întamplă și a înceta să dai vina pe ceea ce este în jurul tău pentru faptul că anumite lucruri nu se întamplă sau se mișcă foarte greu. 
 \\ \par
@@ -98,11 +119,11 @@ Trebuie luat în considerare că există atât oameni care, deși și-ar dori s�
 \\ \par
 Aplicația “Proactiv” are o interfață prietenoasă, cu un design plăcut, ușor de navigat și, folosind Google Maps API, afișează pe harta României, sub forma unor pini, toate acțiunile de voluntariat active și semnalează utilizatorului posibilitățile acestuia în funcție de localizarea geografică. Pentru partea de frontend se folosesc HTML și CSS, pentru cea de backend JavaScript și PHP, iar pentru gestionarea bazelor de date MariaDB prin interfața PHPMyAdmin.
 
-\chapter{Abordări existente}
+\section{Abordări existente și contribuții proprii}
 \par
 O abordare similară a problemei poate fi regasită pe “Harta Voluntariatului”\cite{hv}. Deși se poate observa că ideea de bază este una comună, designul și metoda de afișare a datelor diferă foarte mult. 
 \\ \par
-Precum se poate observa în Figura 2.1, pe platforma “Harta Voluntariatului” oportunitățile de voluntariat sunt trecute sub forma unui blog cu diferite articole, aparținând de diferite organizații. Pe acel site sunt afișate rezultatele în funcție de data la care începe proiectul, pe când “Proactiv” le afișează predominant în funcție de locația utilizatorului.
+Precum se poate observa în Figura 1.2, pe platforma “Harta Voluntariatului” oportunitățile de voluntariat sunt trecute sub forma unui blog cu diferite articole, aparținând de diferite organizații. Pe acel site sunt afișate rezultatele în funcție de data la care începe proiectul, pe când “Proactiv” le afișează predominant în funcție de locația utilizatorului.
 \begin{figure}[H]
 \centering
   \includegraphics[width=1\linewidth]{./imagini/hv1.jpg}
@@ -110,7 +131,7 @@ Precum se poate observa în Figura 2.1, pe platforma “Harta Voluntariatului”
 \end{figure}
 
 \newpage
-Un alt site care se ocupă cu semnalarea acțiunilor de voluntariat este “De Bunavoie”\cite{dbv}. Acesta are un design asemănător cu cel al platfomei “Harta Voluntariatului”, anume sub forma unui blog cu articole, pentru fiecare acțiune de voluntariat semnalată. Asemănarea dintre aceste două platforme poate fi observată comparând figura anterioară cu Figura 2.2 afișată mai jos.
+Un alt site dedicat acțiunilor de voluntariat este “De Bunavoie”\cite{dbv}. Acesta are un design asemănător cu cel al platfomei “Harta Voluntariatului”, anume sub forma unui blog cu articole, pentru fiecare acțiune de voluntariat semnalată. Asemănarea dintre aceste două platforme poate fi observată comparând figura anterioară cu Figura 1.3 afișată mai jos.
 \begin{figure}[H]
 \centering
   \includegraphics[width=1\linewidth]{./imagini/dbv1.jpg}
@@ -122,12 +143,14 @@ Un avantaj al acestor site-uri este posibilitatea de a filtra domeniile de activ
 \\\par 
 Un dezavantaj este metoda de prezentare a proiectelor, una obositoare ochiului. Fiind vorba despre platforme de tip blog, își fac apariția foarte multe descrieri și foarte mult text, acest lucru îngreunănd navigarea pe site și găsirea acțiunilor potrivite de către utilizatori. Comparativ cu acestea, platforma “Proactiv” prezintă acțiunile semnalate sub o formă cât mai simplă, vizuală și interactivă.
 \newpage
-De asemenea, există foarte multe platforme străine, destinate voluntariatului, precum “All For Good”\cite{afg}, prezentată în Figura 2.3, dar un mare dezavantaj al acestora este utilizarea limbii engleze și opțiunile limitate când este selectată România drept locație.
+De asemenea, există foarte multe platforme străine, destinate voluntariatului, precum “All For Good”\cite{afg}, prezentată în Figura 1.4, dar un mare dezavantaj al acestora este utilizarea limbii engleze și opțiunile limitate când este selectată România drept locație.
 \begin{figure}[H]
 \centering
   \includegraphics[width=1\linewidth]{./imagini/afg.jpg}
   \caption{Lipsa acțiunilor semnalate în zona României}
 \end{figure}
+
+\section{Organizarea lucrării}
 
 
 \chapter{Arhitectura aplicației}
@@ -370,7 +393,7 @@ Pagina “Organizații” are același scop ca și pagina descrisă anterior, da
 \chapter{Funcționalitatea aplicației}
 \section{Modelare funcționalitate}
 \par
-Diagrama cazurilor de utilizare oferă o descriere generală a modului în care va fi utilizat sistemul și surprinde modul în care sistemul interacționează cu unul sau mai mulți actori.\cite{usecases}
+Diagrama cazurilor de utilizare oferă o descriere generală a modului în care va fi utilizat sistemul și surprinde modul în care sistemul interacționează cu unul sau mai mulți actori \cite{usecases}.
 \\
 \par
 Figura 4.1 ilustrează diagrama de cazuri a aplicației Proactiv. Actorii includ voluntarul și organizația, iar sistemul este subiectul cazurilor de utilizare, clasa a cărui comportament îl descriu aceste cazuri. 
@@ -399,7 +422,7 @@ Diagrama de secvențe la nivel de sistem are rolul de a modela interacțiunile d
 
 \section{Modelarea comportamentului aplicației în context}
 \par
-Diagrama de activitate ilustrează modul în care sunt procesate datele pe măsură ce parcurg sistemul. Urmărirea şi documentarea asocierii datelor cu un proces este utilă în dezvoltarea înţelegerii sistemului în ansamblu. \cite{uml}
+Diagrama de activitate ilustrează modul în care sunt procesate datele pe măsură ce parcurg sistemul. Urmărirea şi documentarea asocierii datelor cu un proces este utilă în dezvoltarea înţelegerii sistemului în ansamblu \cite{uml}.
 \\
 \par
 În Figura 4.3 este descrisă activitatea platformei pornind de la verificarea existenței unui cont al utilizatorului. Daca acesta este inexistent, intervine etapa de înregistrare, urmată de autentificare și de oferirea accesului pe site. Sistemul verifică tipul de cont și afișează informațiile aferente acestuia.
@@ -550,12 +573,12 @@ if(empty($username_err) && empty($password_err)){
 }
 \end{lstlisting}
 
-\section{Actualizarea datelor personale}
+\section{Contul meu}
 \par
-Utilizatorul își poate actualiza datele personale introduse inițial în momentul înregistrării pe platformă de la secțiunea  “General” a paginii  “Contul meu”. Acolo sunt preluate din baza de date și listate datele actuale, iar acesta are posibilitatea de a le modifica.
+Utilizatorul își poate actualiza datele personale introduse inițial în momentul înregistrării pe platformă de la secțiunea  “General”. Acolo sunt preluate din baza de date și listate datele actuale, iar acesta are posibilitatea de a le modifica.
 \\
 \par
-În momentul apăsării butonului “Actualizează”, sistemul preia datele introduse de utilizator și modifică datele deja existente din baza de date cu cele submise de utilizator. După această operațiune, utilizatorul este informat că actualizarea a avut loc cu succes prin intermediul unei cutii de tip pop-up.
+În momentul apăsării butonului “Actualizează”, sistemul preia datele introduse de utilizator și modifică datele deja existente din baza de date cu cele submise de utilizator. După această operațiune, utilizatorul este informat că actualizarea a avut loc cu succes prin intermediul unei căsuțe de tip pop-up.
 \\
 \begin{lstlisting}[basicstyle=\small, language=PHP]{Name=paginaPrincipala.php}
 // Preluam datele
@@ -641,20 +664,104 @@ else
 }
 \end{lstlisting}
 
+\newpage
+\par
+Schimbarea parolei se poate realiza de la secțiunea  “Schimbă parola” a paginii  “Contul meu”. Această procedură este asemănătoare cu cea a actualizării datelor personale. Utilizatorul introduce email-ul, parola actuală, parola nouă și confirmarea acesteia, iar sistemul verifică dacă anumite criterii sunt respectate.
+\\
+\par
+Aceste criterii cuprind:
+\begin{itemize}
+  \item Parola nouă și confirmarea acesteia trebuie să corespundă
+  \item Parola nouă nu poate fi identică cu cea veche
+  \item Email-ul trebuie să fie introdus corect
+  \item Parola veche trebuie să fie introdusă corect
+\end{itemize}
+
+\par
+Atât în cazul unei erori cauzate de neîndeplinirea criteriilor, cât și în cazul unui răspuns pozitiv, i se returnează utilizatorului un răspuns sugestiv, prin intermediul unei căsuțe de pop-up alert.
+\\
+\par
+La secțiunea  “Mesaje primite” sunt listate toate mesajele primite de către utilizator, iar la  “Acțiunile mele” sunt afișate acțiunile la care utilizatorul s-a inscris, în cazul unui cont de tip voluntar și acțiunile semnalate de către organizație, în cazul celuilalt tip de cont. Informațiile respective sunt preluate din baza de date, în funcție de id-ul utilizatorului, salvat în variabila de sesiune în momentul autentificării.
+\\
+\par
+În momentul apăsării butonului de  “LOGOUT”  sistemul resetează variabilele, distruge sesiunea, iar utilizatorul este redirecționat către pagina principală.
+
+\section{Acțiune nouă}
+\par
+Utilizatorul care este autentificat cu un cont de tip organizație are posibilitatea de a semnala noi acțiuni de voluntariat din pagina  “Acțiune nouă”. După introducerea datelor cerute și submiterea acestora, sistemul preia datele introduse, le adaugă în baza de date și revine cu un răspuns, fie pozitiv, fie negativ, prin intermediul unei căsuțe pop-up alert.
+\\
+\begin{lstlisting}[basicstyle=\small, language=PHP]{Name=actiunenoua.php}
+// Preluam datele introduse de utilizator
+$id = NULL;
+$nume = $_POST["numeA"];
+$categ = $_POST["categA"];
+$despre = $_POST["despreA"];
+$dataStart= $_POST["dataStart"];
+$dataStop = $_POST["dataStop"];
+$judet = $_POST["judetA"];
+$oras = $_POST["orasA"];
+$ORG = $_SESSION["id"];
+
+// Statement-ul de insert
+$sql = "INSERT INTO actiune(idActiune,nume,categorie,judet,oras,dataStart,".
+       "dataStop,organizatie,despre) VALUES (?,?,?,?,?,?,?,?,?)";
+
+if($stmt = mysqli_prepare($link, $sql))
+{
+   mysqli_stmt_bind_param($stmt, "dssssssds", $id, $nume, $categ, $judet, 
+                          $oras, $dataStart, $dataStop, $ORG, $despre);
+
+   // Executam statementul
+   if(mysqli_stmt_execute($stmt))
+   {
+      echo '<script>alert("Actiunea a fost semnalata!");</script>';
+   } else{
+      echo '<script>'.
+           'alert("Oops! Ceva nu a mers bine! Reveniti mai tarziu");'.
+           '</script>';
+   }
+
+   // Inchidem statementul
+   mysqli_stmt_close($stmt);
+}
+\end{lstlisting}
+
+\section{Harta}
+\par
+Pentru afișarea acțiunilor de voluntariat am folosit Google Maps API, prin intermediul căreia acțiunile de voluntariat sunt grupate în funcție de locația la care au loc și au diferite iconițe în funcție de categoria la care se încadrează. Afișarea acțiunilor pe hartă oferă un design aerisit, dar eficient și o experiență a utilizatorului mai plăcută și mai distractivă.
+\\
+\par
+API-urile puse la dispoziție de Google sunt interfețe de programare a aplicațiilor dezvoltate de companie însăși, care permit comunicarea cu servicii Google și integrarea lor cu alte servicii. Exemple de aceste servicii oferite de Google includ Google Search, Gmail, Google Translate și, desigur, Google Maps.
+\par
+Google Maps API permite personalizarea hărților cu propriul conținut și afișarea acestora pe pagini web și dispozitive mobile. Acesta oferă patru tipuri de hărți, și anume roadmap, satelit, hibrid și teren, hărți care pot fi modificate folosindu-se layer-uri, stiluri sau diverse servicii și biblioteci \cite{gmaps}.
+
+\subsection{Markere}
+\par
+Acțiunile sunt preluate din baza de date și salvate într-un vector bidimensional.
+
+\subsection{Filtre}
+\par
+Da
+
 
 \chapter{Baza de date}
+
+\section{Structura bazei de date}
 \par
 Pentru gestionarea datelor am folosit baza de date MariaDB, prin intermediul interfeței PhpMyAdmin, pusă la dispoziție de către XAMPP. Cel din urmă menționat este o distribuție software care ne pune la dispoziție serverul web Apache, baza de date MySQL (MariaDB), Perl și PHP, elemente care îi descriu și o parte din nume: “AMPP”. 
 \par
-Acesta a fost lansat pentru prima dată în 4 Septembrie 2002, acum 19 ani și este valabil atât pentru sistemul de operare Windows, cât și pentru MAC sau Linux.\cite{xampp}
-\\\par
+Acesta a fost lansat pentru prima dată în 4 Septembrie 2002, acum 19 ani și este valabil atât pentru sistemul de operare Windows, cât și pentru MAC sau Linux \cite{xampp}.
+\\
+\par
 Structura bazei de date “proactiv” aferentă platformei este ilustrată în figura de mai jos, precum și conexiunile și dependențele dintre tabele, reprezentate prin linii de diferite culori.
 \\
 \begin{figure}[H]
 \centering
-  \includegraphics[width=1\linewidth]{./imagini/bazadate.jpg}
+  \includegraphics[width=0.8\linewidth]{./imagini/bazadate.jpg}
   \caption{Structura bazei de date a platformei Proactiv}
 \end{figure}
+
+\section{Tabele}
 \par
 Singurul tabel complet independent din baza de date “proactiv” este tabelul \textbf{locații}. Acesta cuprinde informații despre orașele importante din România, județul din care face parte fiecare în parte și coordonatele (latitudinea și longitudinea) la care sunt poziționate pe harta celor de la Google. Aceste informații sunt preluate din baza de date în momentul afișării acțiunilor de voluntariat pe hartă, pentru a poziționa fiecare pin la locația potrivită.
 \\
@@ -730,29 +837,41 @@ Mi-ar aduce o satisfacție foarte mare gândul că, datorită mie și a platform
 \bibitem{proactiv} 
 Proactivitatea
 \\\texttt{https://www.hipo.ro/locuri-de-munca/vizualizareArticol/578/Proactivitatea}
+
 \bibitem{VBC} 
 Roata Valorilor Voluntariatului
 \\\texttt{https://volunteer.ca/index.php?MenuItemID=383}
+
 \bibitem{greenr} 
 Green Report
 \\\texttt{https://green-report.ro/3-din-10-romani-fac-voluntariat/}
+
 \bibitem{hv} 
 Harta Voluntariatului
 \\\texttt{https://hartavoluntariatului.ro}
+
 \bibitem{dbv} 
 De Bunavoie
 \\\texttt{https://debunavoie.ro}
+
 \bibitem{afg} 
 All For Good
 \\\texttt{https://www.allforgood.org/}
+
 \bibitem{usecases} 
 \textsc{Alistair Cockburn}, \emph{Writing Effective Use Cases}, Addison-Wesley Professional, 2000.
+
 \bibitem{uml} 
 \textsc{James Rumbaugh, Ivar Jacobson și Grady Booch}, \emph{The Unified Modeling Language Reference Manual 2nd Edition}, Addison-Wesley Professional, 2004.
+
+\bibitem{gmaps} 
+Google Maps API
+\\\texttt{https://developers.google.com/maps/documentation/javascript/overview}
+
 \bibitem{xampp} 
 \textsc{Tom Butler}, \emph{Php \& Mysql: Novice To Ninja}, Site Point, 2017.
 
 \end{thebibliography}
-
+\addcontentsline{toc}{chapter}{Bibliografie}
 
 \end{document} 
