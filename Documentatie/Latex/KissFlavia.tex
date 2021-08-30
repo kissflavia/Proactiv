@@ -151,6 +151,14 @@ De asemenea, există foarte multe platforme străine, destinate voluntariatului,
 \end{figure}
 
 \section{Organizarea lucrării}
+\par
+Tema generală a lucrării este voluntariatul, deoarece platforma “Proactiv” este dedicată acestui domeniu.
+\\\par 
+Lucrarea este organizată pe 5 capitole. În cadrul primului capitol am prezentat motivul alegerii numelui și a temei, beneficiile voluntariatului, platformele similare existente și diferențele dintre acestea și platforma mea, dar și contribuțiile proprii aduse acestei teme. În cadrul celui de al doilea capitol, am prezentat arhitectura aplicației, explicând și prezentând atât wireframe-ul platformei, cât și fiecare pagină web în parte.
+\\\par 
+Cel de-al treilea capitol se referă la funcționalitatea aplicației și cuprinde diagramele de cazuri, de secvențe, de activitate și de stări și tranziții. De asemenea, acest capitol conține informații despre fiecare funcționalitate a platformei și secvențe de cod referitoare la acestea.
+\\\par 
+Capitolul cu numărul patru prezintă structura bazei de date, fiind prezentate și ilustrate atât relația dintre tabele, cât și structura și conținutul fiecărui tabel în parte, iar ultimul capitol cuprinde concluziile și direcțiile viitoare de dezvoltare.
 
 
 \chapter{Arhitectura aplicației}
@@ -165,7 +173,7 @@ Implementarea unei structuri ne ajută să proiectăm o platformă web cu o expe
 \\\par 
 O structură tipică arată ca un arbore, în care pagina principală este rădăcina. Paginile care sunt conectate din pagina de pornire sunt ramuri, iar de acolo, fiecare pagină are ramuri suplimentare care răsar din ea. Aceste ramuri se leagă apoi între ele, de obicei prin intermediul unui meniu.
 \\\par 
-Arhitectura platformei Proactiv poate fi regăsită în Figura 3.1. Pagina principală permite înregistrarea fie ca voluntar, fie ca organizație, sau autentificarea cu un cont deja existent în baza de date a platformei. După autentificare, tipul contului este recunoscut de către aplicație, aceasta redirecționând utilizatorul către conținutul potrivit nevoilor și dorințelor lui. Voluntarii au acces la harta Google Maps unde sunt semnalate acțiunile și la pagina care conține lista de organizații înscrise pe platformă, conturile de tip organizație au acces la pagina web care permite semnalarea unei acțiuni noi de voluntariat și la lista voluntarilor, iar ambele tipuri de cont au acces la pagina de acasă și la cea de gestionare a propriului cont.
+Arhitectura platformei Proactiv poate fi regăsită în Figura 2.1. Pagina principală permite înregistrarea fie ca voluntar, fie ca organizație, sau autentificarea cu un cont deja existent în baza de date a platformei. După autentificare, tipul contului este recunoscut de către aplicație, aceasta redirecționând utilizatorul către conținutul potrivit nevoilor și dorințelor lui. Voluntarii au acces la harta Google Maps unde sunt semnalate acțiunile și la pagina care conține lista de organizații înscrise pe platformă, conturile de tip organizație au acces la pagina web care permite semnalarea unei acțiuni noi de voluntariat și la lista voluntarilor, iar ambele tipuri de cont au acces la pagina de acasă și la cea de gestionare a propriului cont.
 
 \begin{figure}[H]
 \centering
@@ -181,7 +189,7 @@ Un wireframe este un punct bun de pornire în realizarea interfeței în sine. A
 \\\par
 În afara site-urilor web, machetele funcționale sunt utilizate pentru prototiparea site-urilor mobile, a aplicațiilor pentru computer sau a altor produse screen-based, care implică o interacțiune între om și computer.
 \\\par
-Wireframe-ul platformei Proactiv este ilustrat în Figura 3.2. Acesta a fost schițat înainte de a începe implementarea platformei, cu scopul de a vizualiza clar interfața acesteia și modul în care se dorește organizarea paginilor și poziționarea elementelor de front-end. 
+Wireframe-ul platformei Proactiv este ilustrat în Figura 2.2. Acesta a fost schițat înainte de a începe implementarea platformei, cu scopul de a vizualiza clar interfața acesteia și modul în care se dorește organizarea paginilor și poziționarea elementelor de front-end. 
 Desigur, odată cu începerea implementării, și-au făcut apariția anumite modificări necesare în realizarea unei lucrări cu o arhitectură logică și intuitivă, dar proiectarea în sine a rămas aceeași.
 
 \begin{figure}[H]
@@ -201,7 +209,7 @@ Pagina principală cuprinde trei secțiuni, și anume:
 \par
 
 \begin{itemize}
-  \item Partea de autentificare și de întâmpinare a utilizatorilor recurenți, ilustrată în Figura 3.3, care cuprinde o poză clară, atractivă și plăcută de către iubitorii de animale și un buton care deschide modalul de login - Figura 3.4, portal între pagina principală și paginile reprezentative site-ului meu de voluntariat.
+  \item Partea de autentificare și de întâmpinare a utilizatorilor recurenți, ilustrată în Figura 2.3, care cuprinde o poză clară, atractivă și plăcută de către iubitorii de animale și un buton care deschide modalul de login - Figura 2.4, portal între pagina principală și paginile reprezentative site-ului meu de voluntariat.
 \\
 \begin{figure}[H]
 \centering
@@ -214,14 +222,14 @@ Pagina principală cuprinde trei secțiuni, și anume:
   \caption{Modalul de login al platformei Proactiv}
 \end{figure}
 \newpage
-  \item Partea de înregistrare - Figura 3.5, care încurajează utilizatorii noi să își creeze un cont și să se alăture platformei, șă fie proactivi. Pentru această secțiune am ales o poză cu un impact puternic, o poză “cât o mie de cuvinte”, pentru a atrage atenția utilizatorilor noi. Aici se regăsesc două butoane, unul pentru înregistrarea ca voluntar și altul pentru înregistrarea ca organizație. În funcție de butonul apăsat se va deschide pagina de “Cont nou Voluntar” sau cea de “Cont nou Organizație”.
+  \item Partea de înregistrare - Figura 2.5, care încurajează utilizatorii noi să își creeze un cont și să se alăture platformei, șă fie proactivi. Pentru această secțiune am ales o poză cu un impact puternic, o poză “cât o mie de cuvinte”, pentru a atrage atenția utilizatorilor noi. Aici se regăsesc două butoane, unul pentru înregistrarea ca voluntar și altul pentru înregistrarea ca organizație. În funcție de butonul apăsat se va deschide pagina de “Cont nou Voluntar” sau cea de “Cont nou Organizație”.
 \\
 \begin{figure}[H]
 \centering
   \includegraphics[width=1\linewidth]{./imagini/pp2.jpg}
   \caption{Secțiunea de înregistrare a platformei Proactiv}
 \end{figure}
-  \item Și secțiunea “De ce?” - Figura 3.6, pentru utilizatorii mai încăpățânați, pe care nu am reușit să îi conving să se alăture plaformei, dar cărora le mai este cerută o șansă, oferindu-le motive pentru care a face voluntariat este un lucru minunat.
+  \item Și secțiunea “De ce?” - Figura 2.6, pentru utilizatorii mai încăpățânați, pe care nu am reușit să îi conving să se alăture plaformei, dar cărora le mai este cerută o șansă, oferindu-le motive pentru care a face voluntariat este un lucru minunat.
 \\
 \begin{figure}[H]
 \centering
@@ -240,7 +248,7 @@ Pagina principală cuprinde trei secțiuni, și anume:
 
 \section{Cont nou VOLUNTAR}
 \par
-Utilizatorul este redirecționat către pagina ilustrată în Figura 3.8 în momentul în care apasă butonul “Voluntar”, de la secțiunea de înregistrare a paginii principale.
+Utilizatorul este redirecționat către pagina ilustrată în Figura 2.8 în momentul în care apasă butonul “Voluntar”, de la secțiunea de înregistrare a paginii principale.
 \\\par
 Pagina este un formular care cuprinde diferite tipuri de căsuțe de input, precum date-picker-ul de la “Data nașterii”, dropdown-ul de la “Județ”, cât și cel de la “Oraș”, care este dependent de primul, afișând doar orașele din județul ales anterior sau o listă goală în cazul în care nu a fost selectat nici un județ.
 \\\par
@@ -256,7 +264,7 @@ Pentru a reveni la pagina principală, în cazul în care utilizatorul decide s�
 
 \section{Cont nou ORGANIZAȚIE}
 \par
-Precum se poate observa din Figura 3.9, această pagină este asemănătoare cu pagina aferentă înregistrării voluntarului.
+Precum se poate observa din Figura 2.9, această pagină este asemănătoare cu pagina aferentă înregistrării voluntarului.
 \\\par
 Sunt cerute anumite date personale reprezentative unei organizații, în locul datelor personale precum nume, prenume sau data nașterii. Pentru organizații, este necesară completarea tuturor câmpurilor: denumirea organizației, codul unic de identificare, data înfințării, județul și orașul unde își are reședința și o scurtă descriere despre organizație și activitatea pe care aceasta o desfășoară.
 \\\par
@@ -274,7 +282,7 @@ Desigur, este necesară și completarea câmpurilor email și parolă, cu condi�
 \par
 În momentul în care utilizatorul se autentifică, acesta este redirecționat către gestionarea propriului cont, indiferent dacă este voluntar sau reprezintă o organizație. Pagina “Contul meu” cuprinde un meniu de butoane care oferă diferite funcționalități. 
 \\\par
-La secțiunea “General”, utilizatorul își poate vedea datele personale în momentul înregistrării pe platformă și le poate modifica și actualiza, apăsând butonul “Actualizează”. Pagina va fi reîmprospătată, iar serverul îi va afișa un mesaj utilizatorului după actualizarea datelor lui, precum în Figura 3.10.
+La secțiunea “General”, utilizatorul își poate vedea datele personale în momentul înregistrării pe platformă și le poate modifica și actualiza, apăsând butonul “Actualizează”. Pagina va fi reîmprospătată, iar serverul îi va afișa un mesaj utilizatorului după actualizarea datelor lui, precum în Figura 2.10.
 \\
 \begin{figure}[H]
 \centering
@@ -284,7 +292,7 @@ La secțiunea “General”, utilizatorul își poate vedea datele personale în
 \par
 Desigur, datele și căsuțele de input diferă în funcție de tipul contului. Voluntarul își va putea modifica numele, prenumele și data nașterii, reprezentantul organizației va putea actualiza denumirea organizației, CIF-ul, data înființării și detaliile despre aceasta, iar ambele tipuri de cont vor putea modifica județul și orașul de reședință.
 \\\par
-Diferența dintre modurile de afișare a acestei secțiuni se poate observa făcând o comparație între Figurile 3.11 si 3.12.
+Diferența dintre modurile de afișare a acestei secțiuni se poate observa făcând o comparație între Figurile 2.11 si 2.12.
 \\
 \begin{figure}[H]
 \centering
@@ -297,7 +305,7 @@ Diferența dintre modurile de afișare a acestei secțiuni se poate observa făc
   \caption{Pagina gestionare cont organizație a platformei Proactiv}
 \end{figure}
 \par
-La secțiunea “Schimbă parola”, ilustrată în Figura 3.13, utilizatorul își poate modifica parola, apăsând butonul cu același nume. Pentru ca actualizarea să se realizeze cu succes, acesta trebuie să introducă emailul și parola actuală corecte, iar parola nouă și confirmarea acesteia trebuie să corespundă și să fie diferite de parola veche.
+La secțiunea “Schimbă parola”, ilustrată în Figura 2.13, utilizatorul își poate modifica parola, apăsând butonul cu același nume. Pentru ca actualizarea să se realizeze cu succes, acesta trebuie să introducă emailul și parola actuală corecte, iar parola nouă și confirmarea acesteia trebuie să corespundă și să fie diferite de parola veche.
 \\
 \begin{figure}[H]
 \centering
@@ -362,7 +370,7 @@ Aceștia pot semnala o acțiune nouă de voluntariat, care ulterior va fi afișa
 \par
 Pagina “Voluntari” a fost concepută pentru ca utilizatorii cu tip de cont organizație să poată lua legătura cu voluntarii înscriși pe platformă.
 \\ \par
-Pagina afișează în ordine alfabetică toți utilizatorii cu tip de cont voluntar, grupându-i pe trei coloane în funcție de numele acestora de familie, precum este ilustrat în Figura 3.19.
+Pagina afișează în ordine alfabetică toți utilizatorii cu tip de cont voluntar, grupându-i pe trei coloane în funcție de numele acestora de familie, precum este ilustrat în Figura 2.19.
 \begin{figure}[H]
 \centering
   \includegraphics[width=0.95\linewidth]{./imagini/vol1.jpg}
@@ -391,12 +399,12 @@ Pagina “Organizații” are același scop ca și pagina descrisă anterior, da
 \end{figure}
 
 \chapter{Funcționalitatea aplicației}
-\section{Modelare funcționalitate}
+\section{Modelarea funcționalității}
 \par
 Diagrama cazurilor de utilizare oferă o descriere generală a modului în care va fi utilizat sistemul și surprinde modul în care sistemul interacționează cu unul sau mai mulți actori \cite{usecases}.
 \\
 \par
-Figura 4.1 ilustrează diagrama de cazuri a aplicației Proactiv. Actorii includ voluntarul și organizația, iar sistemul este subiectul cazurilor de utilizare, clasa a cărui comportament îl descriu aceste cazuri. 
+Figura 3.1 ilustrează diagrama de cazuri a aplicației Proactiv. Actorii includ voluntarul și organizația, iar sistemul este subiectul cazurilor de utilizare, clasa a cărui comportament îl descriu aceste cazuri. 
 În momentul în care utilizatorul intră pe site, acesta are posibilitatea de a parcurge pagina principală, de a se autentifica sau de a se înregistra. Excluzând aceste trei cazuri menționate anterior, restul cazurilor sunt condiționate de autentificarea utilizatorului pe platformă.
 \\
 \begin{figure}[h!]
@@ -425,7 +433,7 @@ Diagrama de secvențe la nivel de sistem are rolul de a modela interacțiunile d
 Diagrama de activitate ilustrează modul în care sunt procesate datele pe măsură ce parcurg sistemul. Urmărirea şi documentarea asocierii datelor cu un proces este utilă în dezvoltarea înţelegerii sistemului în ansamblu \cite{uml}.
 \\
 \par
-În Figura 4.3 este descrisă activitatea platformei pornind de la verificarea existenței unui cont al utilizatorului. Daca acesta este inexistent, intervine etapa de înregistrare, urmată de autentificare și de oferirea accesului pe site. Sistemul verifică tipul de cont și afișează informațiile aferente acestuia.
+În Figura 3.3 este descrisă activitatea platformei pornind de la verificarea existenței unui cont al utilizatorului. Daca acesta este inexistent, intervine etapa de înregistrare, urmată de autentificare și de oferirea accesului pe site. Sistemul verifică tipul de cont și afișează informațiile aferente acestuia.
 \\
 \begin{figure}[h!]
 \centering
@@ -457,6 +465,7 @@ Aceste două pagini menționate anterior constau dintr-un formular care cuprinde
 \par
 După submiterea formularului, sistemul verifică dacă anumite criterii sunt îndeplinite, precum faptul că nu există deja un cont cu email-ul introdus și că parolele introduse corespund. Dacă răspunsul este unul pozitiv, datele sunt adăugate în baza de date și utilizatorul este redirecționat către pagina principala, unde se poate autentifica cu contul nou creat. Daca răspunsul este negativ, problema va fi semnalată acestuia, oferindu-i-se șansa să modifice datele și să reîncerce.
 \\
+\lstset{showstringspaces=false}
 \begin{lstlisting}[basicstyle=\small, language=PHP]{Name=contvoluntar.php}
 // Verificam emailul
 $sql = "SELECT idVoluntar FROM voluntar WHERE email = \"".$email."\"";
@@ -489,8 +498,8 @@ if(empty($email_err) && empty($confirm_password_err)){
          header("location: paginaPrincipala.php");
       } else{
          echo '<script>'.
-         'alert("Oops! Ceva nu a mers bine! Va rog sa reveniti mai tarziu");'.
-         '</script>';
+         'alert("Oops! Ceva nu a mers bine! '.
+         'Va rog sa reveniti mai tarziu");</script>';
       }
       // Inchidem statement-ul
       mysqli_stmt_close($stmt);
@@ -565,8 +574,8 @@ if(empty($username_err) && empty($password_err)){
          }
       } else{
          echo '<script>'.
-         'alert("Oops! Ceva nu a mers bine! Va rog sa reveniti mai tarziu");'.
-         '</script>';
+         'alert("Oops! Ceva nu a mers bine! '.
+         'Va rog sa reveniti mai tarziu");</script>';
       }
       mysqli_stmt_close($stmt);
    }
@@ -735,13 +744,148 @@ API-urile puse la dispoziție de Google sunt interfețe de programare a aplicaț
 \par
 Google Maps API permite personalizarea hărților cu propriul conținut și afișarea acestora pe pagini web și dispozitive mobile. Acesta oferă patru tipuri de hărți, și anume roadmap, satelit, hibrid și teren, hărți care pot fi modificate folosindu-se layer-uri, stiluri sau diverse servicii și biblioteci \cite{gmaps}.
 
-\subsection{Markere}
-\par
-Acțiunile sunt preluate din baza de date și salvate într-un vector bidimensional.
-
 \subsection{Filtre}
 \par
-Da
+Filtrele aplicate de către utilizator sunt salvate în variabilele de sesiune numite “jud”, “oras” și “categ”. În cazul în care utilizatorul nu a selectat nici un filtru, sau în cazul autentificării unde sesiunea a fost recent creată, aceste variabile au o valoare nulă.
+\\
+\par
+În momentul aplicării unuia sau a mai multor filtre, se modifică query-ul responsabil cu selectarea acțiunilor semnalate, acțiuni care ulterior sunt modificate sub formă de markere pentru a fi afișate pe hartă. Sunt extrase doar acțiunile care respectă condițiile impuse de către utilizator, iar ulterior pagina este reîncărcată pentru ca doar acestea să apară pe mapă.
+\\
+\begin{lstlisting}[basicstyle=\small, language=PHP]{Name=showharta.php}
+if($_SESSION["jud"]==""){
+  if($_SESSION["categ"]==""){
+    $result = $link->query("SELECT nume, categorie, idActiune, a.judet,".
+                           "a.oras, dataStart, dataStop, lat, lng ".
+                           "FROM actiune AS a,locatii AS l ".
+                           "WHERE a.judet=l.jud AND a.oras = l.oras");
+  }
+  else{
+    $result = $link->query("SELECT nume, categorie, idActiune, a.judet,".
+                           " a.oras, dataStart, dataStop, lat, lng ".
+                           "FROM actiune AS a,locatii AS l ".
+                           "WHERE a.judet=l.jud AND a.oras = l.oras ".
+                           "AND categorie = \"".$_SESSION["categ"]."\"");
+  }
+}
+else{
+  if($_SESSION["oras"]==""){
+    if($_SESSION["categ"]==""){
+      $result = $link->query("SELECT nume, categorie, idActiune, a.judet,".
+                           "a.oras, dataStart, dataStop, lat, lng ".
+                           "FROM actiune AS a,locatii AS l ".
+                           "WHERE a.judet=l.jud AND a.oras = l.oras ".
+                           "AND a.judet = \"".$_SESSION["jud"]."\"");
+    }
+    else{
+      $result = $link->query("SELECT nume, categorie, idActiune, a.judet,".
+                           "a.oras, dataStart, dataStop, lat, lng ".
+                           "FROM actiune AS a,locatii AS l ".
+                           "WHERE a.judet=l.jud AND a.oras = l.oras ".
+                           "AND a.judet = \"".$_SESSION["jud"]."\" ".
+                           "AND categorie = \"".$_SESSION["categ"]."\"");
+    }
+  }
+  else{
+    if($_SESSION["categ"]==""){
+      $result = $link->query("SELECT nume, categorie, idActiune, a.judet,".
+                           "a.oras, dataStart, dataStop, lat, lng ".
+                           "FROM actiune AS a,locatii AS l ".
+                           "WHERE a.judet=l.jud AND a.oras = l.oras".
+                           "AND a.oras = \"".$_SESSION["oras"]."\"");
+    }
+    else{
+      $result = $link->query("SELECT nume, categorie, idActiune, a.judet,".
+                           "a.oras, dataStart, dataStop, lat, lng ".
+                           "FROM actiune AS a,locatii AS l ".
+                           "WHERE a.judet=l.jud AND a.oras = l.oras ".
+                           "AND a.oras = \"".$_SESSION["oras"]."\" ".
+                           "AND categorie = \"".$_SESSION["categ"]."\"");
+    }
+  }
+}
+\end{lstlisting}
+
+\newpage
+\subsection{Pini}
+\par
+Acțiunile și informațiile despre acestea sunt preluate din baza de date și salvate într-un vector bidimensional numit “markers”. Fiecare element din vector reține locația acțiunii, prin intermediul latitudinii și a longitudinii, numele, categoria, id-ul și data la care aceasta începe și se încheie.
+
+\begin{lstlisting}
+var markers = [
+    <?php if($result){
+    if($result->num_rows > 0){
+    while($row = $result->fetch_assoc()){
+        echo '['.$row['lat'].', '.$row['lng'].', "'.$row['nume'].'
+              ", "'.$row['categorie'].'", "'.$row['idActiune'].'
+              ", "'.$row['dataStart'].'", "'.$row['dataStop'].'"],';
+      }
+    }
+  }
+    ?>
+];
+\end{lstlisting}
+
+\par
+După setarea proprietățiilor hărții precum centrul, zoom-ul și intervalele de minim și maxim a zoom-ului, fiecare linie a vectorului “markers” este parcursă, convertind fiecare acțiune într-un pin cu iconiță personalizată în funcție de categoria din care acțiunea face parte. În momentul în care un anumit pin este apăsat de către utilizator, se deschide o căsuță de content care cuprinde informații despre pinul apăsat și un buton care oferă voluntarului posibilitatea de a se abona sau dezabona de la acțiunea de voluntariat respectivă.
+
+
+\subsection{Abonare sau dezabonare}
+\par
+Pentru a-i oferi utilizatorului acces la butonul potrivit, sistemul preia din baza de date lista de acțiuni la care utilizatorul este înscris și o salvează într-un vector unidimensional. În momentul parcurgerii vectorului “markers”, id-ul acțiunii respective este căutat în listă. În cazul în care acesta este găsit, căsuța de content va cuprinde butonul responsabil dezabonării, iar în caz contrar, butonul  “Mă înscriu”.
+\\
+\par
+Abonarea are loc prin intermediul unui statement de insert, adaugându-se în baza de date perechea idAcțiune - idVoluntar, informație utilizată în momentul preluării listei de acțiuni menționată anterior.
+\\
+\par
+Dezabonarea constă dintr-un statement de delete, care șterge această pereche deja existentă din baza de date.
+
+\section{Trimiterea unui mesaj}
+\par
+Voluntarii au posibilitatea de a trimite mesaje unei organizații, deschizând modalul pop-up aferent acesteia, din pagina “Organizații”. Același lucru se aplică și organizațiilor care doresc să trimită un mesaj către voluntar, dar acest lucru are loc din pagina “Voluntari”, pagină la care doar utilizatorii cu cont de tip organizație au acces.
+\\
+\par
+Indiferent de tipul de cont, utilizatorul trebuie să completeze atât câmpul de “Titlu” cât și pe cel aferent conținutului mesajului. După îndeplinirea acestui criteriu, utilizatorul poate submite cererea, apăsând butonul “Trimite mesaj” din colțul dreapta-jos a modalului.
+\\
+\par
+Sistemul preia datele introduse și le salvează în baza de date, pentru ca destinatarul să poată citi mesajul primit din secțiunea  “Mesaje primite” a paginii  “Contul meu”.
+\\
+
+\begin{lstlisting}[basicstyle=\small, language=PHP]{Name=showharta.php}
+/* In comentariu sunt trecute modificarile in cod 
+aferente tipului de cont organizatie */
+
+$idOrg = $_POST["idOrg"]; // $idOrg = $_SESSION["id"];
+$idVol = $_SESSION["id"]; // $idVol = $_POST["idVol"];
+$titlu = $_POST["titlu"];
+$cont = $_POST["continut"];
+
+// Configuram baza de date
+require_once "config.php";
+
+// Statement-ul de insert
+$sql = "INSERT INTO mesajvolorg(trmVol,titlu,continut,prmOrg)".
+       "VALUES (?,?,?,?)";
+/* $sql = "INSERT INTO mesajorgvol(trmOrg,titlu,continut,prmVol) 
+           VALUES (?,?,?,?)"*/;
+
+if($stmt = mysqli_prepare($link, $sql)){
+
+   mysqli_stmt_bind_param($stmt, "dssd", $idVol, $titlu, $cont, $idOrg);
+   // mysqli_stmt_bind_param($stmt, "dssd", $idOrg, $titlu, $cont, $idVol);
+
+   // Executam statementul
+   if(mysqli_stmt_execute($stmt)){
+      echo '<script>alert("Mesaj trimis cu succes!");</script>';
+   } else{
+      echo '<script>alert("Oops! Ceva nu a mers bine!'.
+           'Va rog sa reveniti mai tarziu");</script>';
+   }
+
+   // Inchidem statementul
+   mysqli_stmt_close($stmt);
+}
+\end{lstlisting}
+
 
 
 \chapter{Baza de date}
@@ -815,9 +959,14 @@ Tabelele \textbf{mesajorgvol} și \textbf{mesajvolorg} stochează mesajele trimi
 \chapter{Concluzii și direcții viitoare de dezvoltare}
 \section{Concluzii}
 \par
-Lucrând pentru lucrarea mea de licență, și anume acest site web, am descoperit cât de mult îmi place acest domeniu: Programarea web. Faptul că necesită imaginație, design al paginilor, alegerea paletelor potrivite de culori, schițarea unui logo, potrivirea elementelor pentru o experiență plăcută a utilizatorilor, dar și backend-ul și funcțiile scrise pentru a-i oferi platformei un scop și o funcționalitate, mă conving să mă apropi tot mai mult de acest domeniu și să îmi doresc să lucrez într-o companie care dezvoltă astfel de platforme web. 
+Lucrând pentru acest site web, am descoperit cât de mult îmi place domeniul programării web. Faptul că necesită imaginație, design-ul paginilor, alegerea paletelor potrivite de culori, schițarea unui logo, potrivirea elementelor pentru o experiență plăcută a utilizatorilor, dar și backend-ul și funcțiile scrise pentru a-i oferi platformei un scop și o funcționalitate, mă conving să mă apropi tot mai mult de acest domeniu și mă fac să îmi doresc să lucrez într-o companie care dezvoltă astfel de platforme web. 
 \\ \par
-Îmi place foarte mult gândul că orice modificare făcută în cod este la un refresh distanță, este vizuală, ușor de observat și de modificat în cazul în care nu este satisfăcătoare.
+O problemă întâmpinată în realizarea acestei lucrări a fost și, din păcate este în continuare, situația pandemică cu care ne confruntăm. Trecerea în online a îngreunat colaborarea cu profesorii, cu colegii și accesul la materiale utile în realizarea documentației. O altă problemă des întâlnită în cazul lucrărilor de licență tehnice, problemă întâmpinată și de mine, a fost cea a erorilor de cod. Cea din urmă problemă a prelungit finalizarea lucrării, dar a ajutat în acumularea de informații și cunoștiințe, din nevoia de a o rezolva.
+\\ \par
+Revenind la concluzii mai vesele, îmi place foarte mult gândul că orice modificare făcută în cod este la un refresh distanță, este vizuală, ușor de observat și de modificat în cazul în care nu este satisfăcătoare.
+
+
+
 \section{Direcții viitoare}
 \par
 Planul meu este să îmbunătățesc această platformă web, puțin câte puțin, muncind să acumulez cunoștiințe și să mă perfecționez în acest domeniu.
