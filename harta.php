@@ -192,11 +192,6 @@
             <div id="map" class="centered">
             </div>
          </div>
-         <!-- FOOTER
-            <footer class="container">
-              <p class="float-end"><a href="#" style="color:#9059D9;">Back to top</a></p>
-              <p>&copy; Kiss Flavia &middot; </p>
-            </footer>-->
       </main>
       <script>
          var locatii = {
@@ -251,25 +246,19 @@
              judetSel.options[judetSel.options.length] = new Option(x, x);
            }
            judetSel.onchange = function() {
-             //empty Chapters- and Topics- dropdowns
+             // Golim dropdown-ul aferent Orașului
              orasSel.length = 1;
-             //display correct values
+             // Afișăm datele potrivite
              for (var y in locatii[this.value]) {
                orasSel.options[orasSel.options.length] = new Option(y, y);
              }
            }
            orasSel.onchange = function() {
-
-             //display correct values
+             // Afișăm datele potrivite
              var z = locatii[judetSel.value][this.value];
            }
          }
       </script>
-
-      <script>
-
-      </script>
-
       <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
    </body>
 </html>

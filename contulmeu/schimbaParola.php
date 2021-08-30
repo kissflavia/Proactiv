@@ -8,15 +8,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
     exit;
 }
 
-// Include config file
+// Includem fisierul config al bazei de date
 require_once "../config.php";
 
-// Define variables and initialize with empty values
+// Definim variabilele si le initializam cu valori null
 $id = $email = $parolaveche = $parolanoua = $parolanoua2 = "";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST")
 {
-
     do
     {
         // Preluam datele
@@ -25,8 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
         $parolaveche = $_POST["parolaveche"];
         $parolanoua = $_POST["parolanoua"];
         $parolanoua2 = $_POST["parolanoua2"];
-
-        echo $id . " " . $email . " " . $parolaveche . " " . $parolanoua . " " . $parolanoua2 . "<br><br>";
 
         if (strcmp($parolanoua, $parolanoua2) != 0)
         {

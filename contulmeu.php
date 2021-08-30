@@ -294,7 +294,7 @@ else{
             }
             echo "</div>";
           }
-          // Close connection
+          // Inchidem conexiunea
           mysqli_close($link);
             ?>
           <br><br><br>
@@ -383,16 +383,15 @@ else{
         judetSel.options[judetSel.options.length] = new Option(x, x);
       }
       judetSel.onchange = function() {
-        //empty Chapters- and Topics- dropdowns
+        // Golim dropdown-ul aferent Orașului
         orasSel.length = 1;
-        //display correct values
+        // Afișăm datele potrivite
         for (var y in locatii[this.value]) {
           orasSel.options[orasSel.options.length] = new Option(y, y);
         }
       }
       orasSel.onchange = function() {
-
-        //display correct values
+        // Afișăm datele potrivite
         var z = locatii[judetSel.value][this.value];
       }
     }

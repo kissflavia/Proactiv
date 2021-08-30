@@ -18,7 +18,7 @@
         $password = $_POST["pswV"];
         $confirm_password = $_POST["psw2V"];
 
-        //verificam emailul
+        // Verificam emailul
         $sql = "SELECT idVoluntar FROM voluntar WHERE email = \"".$email."\"";
         $sql2 = "SELECT idOrganizatie FROM organizatie WHERE email = \"".$email."\"";
         $result = mysqli_query($link, $sql);
@@ -28,40 +28,33 @@
         if ($resultCheck > 0 || $resultCheck2 > 0){
             $email_err = "Acest e-mail este deja utilizat";
         }
-          //verificam parola
-          if($password != $confirm_password){
-              $confirm_password_err = "Parolele nu se potrivesc";
-          }
-          // Check input errors before inserting in database
-          if(empty($email_err) && empty($confirm_password_err)){
+        // Verificam parola
+        if($password != $confirm_password){
+            $confirm_password_err = "Parolele nu se potrivesc";
+        }
+        // Verificam lipsa erorilor inainte de a insera datele in baza de date
+        if(empty($email_err) && empty($confirm_password_err)){
+          // Statement-ul de insert
+          $sql = "INSERT INTO voluntar (idVoluntar,nume,prenume,dataN,judet,oras,email,parola) VALUES (?,?,?,?,?,?,?,?)";
 
-            //Statement-ul de insert
-            $sql = "INSERT INTO voluntar (idVoluntar,nume,prenume,dataN,judet,oras,email,parola) VALUES (?,?,?,?,?,?,?,?)";
+          if($stmt = mysqli_prepare($link, $sql)){
+              $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Transformam parola in hash code
+              mysqli_stmt_bind_param($stmt, "dsssssss", $id, $nume, $prenume, $datan, $judet, $oras, $email, $hashed_password);
 
-            if($stmt = mysqli_prepare($link, $sql)){
-                $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
-
-                // Bind variables to the prepared statement as parameters
-                mysqli_stmt_bind_param($stmt, "dsssssss", $id, $nume, $prenume, $datan, $judet, $oras, $email, $hashed_password);
-
-                // Attempt to execute the prepared statement
-                if(mysqli_stmt_execute($stmt)){
-                    // Redirect to login page
-                    header("location: paginaPrincipala.php");
-                } else{
-                  echo '<script type="text/javascript">
-                      window.onload = function () { alert("Oops! Ceva nu a mers bine! Va rog sa reveniti mai tarziu"); }
-                      </script>';
-                }
-
-                // Close statement
-                mysqli_stmt_close($stmt);
+              // Executam statement-ul
+              if(mysqli_stmt_execute($stmt)){
+                  // Redirectionam catre pagina principala
+                  header("location: paginaPrincipala.php");
+              } else{
+                echo '<script>alert("Oops! Ceva nu a mers bine! Va rog sa reveniti mai tarziu");</script>';
               }
-
-          }
-          // Close connection
-          mysqli_close($link);
-    }
+              // Inchidem statement-ul
+              mysqli_stmt_close($stmt);
+            }
+        }
+        // Inchidem conexiunea
+        mysqli_close($link);
+      }
 
 ?>
 
@@ -239,16 +232,15 @@
       judetSel.options[judetSel.options.length] = new Option(x, x);
     }
     judetSel.onchange = function() {
-      //empty Chapters- and Topics- dropdowns
+      // Golim dropdown-ul aferent Orașului
       orasSel.length = 1;
-      //display correct values
+      // Afișăm datele potrivite
       for (var y in locatii[this.value]) {
         orasSel.options[orasSel.options.length] = new Option(y, y);
       }
     }
     orasSel.onchange = function() {
-
-      //display correct values
+      // Afișăm datele potrivite
       var z = locatii[judetSel.value][this.value];
     }
   }

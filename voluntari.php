@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
   $cont = $_POST["continut"];
   // Configuram baza de date
   require_once "config.php";
-  // Insert statement
+  // Statement-ul de insert
   $sql = "INSERT INTO mesajorgvol(trmOrg,titlu,continut,prmVol) VALUES (?,?,?,?)";
 
   if($stmt = mysqli_prepare($link, $sql)){
@@ -277,11 +277,6 @@ require_once "config.php";
 </div>
 </row>
 
-  <!-- FOOTER
-  <footer class="container">
-    <p class="float-end"><a href="#" style="color:#9059D9;">Back to top</a></p>
-    <p>&copy; Kiss Flavia &middot; </p>
-  </footer>-->
 </main>
 
 <script src="assets/dist/js/bootstrap.bundle.min.js"></script>

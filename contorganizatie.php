@@ -1,5 +1,5 @@
 <?php
-    // Configuram baza de date
+    // Includem fisierul config al bazei de date
     require_once "config.php";
 
     // Definim variabilele si le initializam cu valori null
@@ -33,18 +33,18 @@
           if($password != $confirm_password){
               $confirm_password_err = "Parolele nu se potrivesc";
           }
-          // Check input errors before inserting in database
+          // Verificam lipsa erorilor inainte de a insera datele in baza de date
           if(empty($email_err) && empty($confirm_password_err)){
 
-            // Insert statement
+            // Statement-ul de insert
             $sql = "INSERT INTO organizatie (idOrganizatie,denumire,cif,dataI,judet,oras,despre,email,parola) VALUES (?,?,?,?,?,?,?,?,?)";
 
             if($stmt = mysqli_prepare($link, $sql)){
-                $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Codam parola
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Transformam parola in hash code
 
                 mysqli_stmt_bind_param($stmt, "dssssssss", $id, $nume, $cif, $dataI, $judet, $oras, $despre, $email, $hashed_password);
 
-                // Executam statementul
+                // Executam statement-ul
                 if(mysqli_stmt_execute($stmt)){
                     // Redirectionam catre pagina principala
                     header("location: paginaPrincipala.php");
@@ -52,12 +52,11 @@
                     echo '<script>alert("Oops! Ceva nu a mers bine! Va rog sa reveniti mai tarziu");</script>';
                 }
 
-                // Inchidem statementul
+                // Inchidem statement-ul
                 mysqli_stmt_close($stmt);
               }
-
           }
-          // Close connection
+          // Inchidem conexiunea
           mysqli_close($link);
     }
 
@@ -127,7 +126,7 @@
       							</div>
       							<div class="col-sm-6 form-group">
       								<label>CIF</label>
-      								<input type="text" name="cifO" class="form-control" required value="<?php echo $cif; ?>">
+      								<input type="number" name="cifO" class="form-control" required value="<?php echo $cif; ?>">
       							</div>
       						</div>
                   <br>
@@ -244,16 +243,15 @@
       judetSel.options[judetSel.options.length] = new Option(x, x);
     }
     judetSel.onchange = function() {
-      //empty Chapters- and Topics- dropdowns
+      // Golim dropdown-ul aferent Orașului
       orasSel.length = 1;
-      //display correct values
+      // Afișăm datele potrivite
       for (var y in locatii[this.value]) {
         orasSel.options[orasSel.options.length] = new Option(y, y);
       }
     }
     orasSel.onchange = function() {
-
-      //display correct values
+      // Afișăm datele potrivite
       var z = locatii[judetSel.value][this.value];
     }
   }
@@ -275,4 +273,3 @@
   </script>
 </body>
 </html>
-<!-- end document-->

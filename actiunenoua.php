@@ -16,6 +16,7 @@ $nume = $categ = $despre =  $dataStart = $dataStop = $judet= $oras = "";
 
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
+  // Preluam datele introduse de utilizator
     $id = NULL;
     $nume = $_POST["numeA"];
     $categ = $_POST["categA"];
@@ -26,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     $oras = $_POST["orasA"];
     $ORG = $_SESSION["id"];
 
-        // Insert statement
+        // Statement-ul de insert
         $sql = "INSERT INTO actiune(idActiune,nume,categorie,judet,oras,dataStart,dataStop,organizatie,despre) VALUES (?,?,?,?,?,?,?,?,?)";
 
         if($stmt = mysqli_prepare($link, $sql)){
@@ -44,7 +45,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
             mysqli_stmt_close($stmt);
           }
 
-      // Close connection
+      // Inchidem conexiunea
       mysqli_close($link);
 }
 
@@ -227,11 +228,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 
 </div>
 
-  <!-- FOOTER
-  <footer class="container">
-    <p class="float-end"><a href="#" style="color:#9059D9;">Back to top</a></p>
-    <p>&copy; Kiss Flavia &middot; </p>
-  </footer>-->
 </main>
     <script>
     var locatii = {
@@ -286,16 +282,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         judetSel.options[judetSel.options.length] = new Option(x, x);
       }
       judetSel.onchange = function() {
-        //empty Chapters- and Topics- dropdowns
+        // Golim dropdown-ul aferent Orașului
         orasSel.length = 1;
-        //display correct values
+        // Afișăm datele potrivite
         for (var y in locatii[this.value]) {
           orasSel.options[orasSel.options.length] = new Option(y, y);
         }
       }
       orasSel.onchange = function() {
-
-        //display correct values
+        // Afișăm datele potrivite
         var z = locatii[judetSel.value][this.value];
       }
     }

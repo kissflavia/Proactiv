@@ -8,10 +8,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
     exit;
 }
 
-// Include config file
+// Includem fisierul config al bazei de date
 require_once "../config.php";
 
-// Define variables and initialize with empty values
+// Definim variabilele si le initializam cu valori null
 $nume = $precif = $judet = $oras = $data = $despre = "";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST")
@@ -32,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 
         if ($stmt = mysqli_prepare($link, $sql))
         {
-
             mysqli_stmt_bind_param($stmt, "sssssd", $nume, $precif, $judet, $oras, $data, $id);
 
             // Executam statementul
@@ -63,7 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 
             if ($stmt = mysqli_prepare($link, $sql))
             {
-
                 mysqli_stmt_bind_param($stmt, "ssssssd", $nume, $precif, $judet, $oras, $data, $despre, $id);
 
                 // Executam statementul
