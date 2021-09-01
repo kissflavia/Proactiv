@@ -7,7 +7,7 @@
 \usepackage{titlesec}
 \usepackage{float}
 \usepackage{listings}
-\newcommand{\sectionbreak}{\clearpage}
+
 
 \begin{document}
 \thispagestyle{empty}
@@ -81,7 +81,7 @@ The site has a friendly interface, with a pleasant design, it's easy to navigate
 \\ \par
 I chose this name because the term “proactivity” is quite often used in IT companies and is an encouraged and appreciated skill in the workplace. I consider a proactive person to be dynamic, involved, willing to try new things and, most importantly, focused on innovation and evolution.
 
-
+\newpage
 \section*{Rezumat}
 \par
 Platforma “Proactiv” este o platformă web axată pe tema voluntariatului. Prin intermediul acesteia, posibilii voluntari pot lua legătura cu diferite organizații sau
@@ -154,11 +154,11 @@ De asemenea, există foarte multe platforme străine, destinate voluntariatului,
 \par
 Tema generală a lucrării este voluntariatul, deoarece platforma “Proactiv” este dedicată acestui domeniu.
 \\\par 
-Lucrarea este organizată pe 5 capitole. În cadrul primului capitol am prezentat motivul alegerii numelui și a temei, beneficiile voluntariatului, platformele similare existente și diferențele dintre acestea și platforma mea, dar și contribuțiile proprii aduse acestei teme. În cadrul celui de al doilea capitol, am prezentat arhitectura aplicației, explicând și prezentând atât wireframe-ul platformei, cât și fiecare pagină web în parte.
+Lucrarea este organizată pe 7 capitole. În cadrul primului capitol am prezentat motivul alegerii numelui și a temei, beneficiile voluntariatului, platformele similare existente și diferențele dintre acestea și platforma mea, dar și contribuțiile proprii aduse acestei teme. În cadrul celui de al doilea capitol, am prezentat arhitectura aplicației, explicând și prezentând atât wireframe-ul platformei, cât și design-ul site-ului meu web și tehnologiile folosite în realizarea acestuia.
 \\\par 
-Cel de-al treilea capitol se referă la funcționalitatea aplicației și cuprinde diagramele de cazuri, de secvențe, de activitate și de stări și tranziții. De asemenea, acest capitol conține informații despre fiecare funcționalitate a platformei și secvențe de cod referitoare la acestea.
+Cel de-al treilea capitol se referă la funcționalitatea aplicației și cuprinde diagramele de cazuri, de secvențe, de activitate și de stări și tranziții. Capitolul patru cuprinde modul în care au fost implementate funcționalitățile.
 \\\par 
-Capitolul cu numărul patru prezintă structura bazei de date, fiind prezentate și ilustrate atât relația dintre tabele, cât și structura și conținutul fiecărui tabel în parte, iar ultimul capitol cuprinde concluziile și direcțiile viitoare de dezvoltare.
+Capitolul cu numărul cinci prezintă structura bazei de date, fiind prezentate și ilustrate atât relația dintre tabele, cât și structura și conținutul fiecărui tabel în parte. Penultimul capitol, cel de-al șaselea, prezintă un manual de instrucțiuni, modul în care aplicația poate fi utilizată, iar ultimul capitol cuprinde concluziile și direcțiile viitoare de dezvoltare.
 
 
 \chapter{Arhitectura aplicației}
@@ -181,6 +181,7 @@ Arhitectura platformei Proactiv poate fi regăsită în Figura 2.1. Pagina princ
   \caption{Arhitectura platformei Proactiv}
 \end{figure}
 
+\newpage
 \section{Wireframe}
 \par
 Wireframe-ul sau macheta funcțională este o diagramă utilizată în timpul proiectării unei interfețe utilizator pentru a defini zonele și componentele pe care aceasta trebuie să le conțină. Acesta descrie elementele de interfață, sistemele de navigație și modul în care acestea funcționează împreună.
@@ -198,205 +199,60 @@ Desigur, odată cu începerea implementării, și-au făcut apariția anumite mo
   \caption{Wireframe-ul platformei Proactiv}
 \end{figure}
 
-
-\section{Pagina principală}
+\section{Design}
 \par
-Pagina principală este una dintre cele mai importante componente ale interfeței, deoarece este cea care întâmpină utilizatorul. Aceasta trebuie să îi capteze atenția și să îl convingă să navigheze platforma în continuare.
-\\\par
-Elementul dominant de pe pagina principală și, totodată, elementul pe care îl întâlnește utilizatorul în momentul accesării platformei Proactiv este caruselul (slideshow-ul) de poze, oferit de framework-ul Bootstrap. 
-\\\par
-Pagina principală cuprinde trei secțiuni, și anume:
-\par
-
-\begin{itemize}
-  \item Partea de autentificare și de întâmpinare a utilizatorilor recurenți, ilustrată în Figura 2.3, care cuprinde o poză clară, atractivă și plăcută de către iubitorii de animale și un buton care deschide modalul de login - Figura 2.4, portal între pagina principală și paginile reprezentative site-ului meu de voluntariat.
+Logo-ul platformei este prezentat în Figura 2.3, acesta fiind un instrument important al identității vizuale, instrument care dă dovadă de profesionalism. Am ales drept logo cuvântul “Proactiv”, numele site-ului și implicit al lucrării de licență. 
+\\\par 
+Acesta are culoarea mov, culoare predominantă și în design-ul paginilor, iar litera “O” este înlocuită de un cerc care cuprinde două mâini și o rotiță, imagine care ar trebui să exprime ajutorul, implicarea și dorința de a oferi.
 \\
 \begin{figure}[H]
 \centering
-  \includegraphics[width=1\linewidth]{./imagini/pp1.jpg}
-  \caption{Secțiunea de autentificare a platformei Proactiv}
+  \includegraphics[width=0.5\linewidth]{./imagini/logo.jpg}
+  \caption{Logo-ul platformei Proactiv}
 \end{figure}
+
+\par
+Pentru a alege o paletă de culori care se îmbină cât mai bine din punct de vedere vizual am utilizat generatorul pus la dispoziție de Coolors\cite{coolors}. Culorile alese sunt în strânsă legătură atât între ele, cât și cu logo-ul prezentat anterior.
+\\\par 
+Pentru ca și stilul butoanelor sau a altor componente să corespundă, am modificat inclusiv culorile puse la dispoziție de către framework-ul Bootstrap, acestea mergând pe tematică albastră.
+\\
 \begin{figure}[H]
 \centering
-  \includegraphics[width=1\linewidth]{./imagini/login.jpg}
-  \caption{Modalul de login al platformei Proactiv}
+  \includegraphics[width=1\linewidth]{./imagini/coolors.PNG}
+  \caption{Paleta de culori a platformei Proactiv}
 \end{figure}
+
+\par
+Drept font am utilizat Ubuntu Regular, deoarece este plăcut ochiului și ușor de înțeles și de urmărit. Sunt studii făcute care demonstrează că tipografia este importantă pentru site-urile web. 
+\\\par 
+Tipografia se referă la ajustarea textului din interiorul designului, pentru a crea un conținut puternic. Oferă un aspect atractiv și păstrează valoarea estetică a conținutului și joacă un rol vital în stabilirea tonului general al site-ului web, asigurând o experiență cât mai plăcută pentru utilizator.
+
 \newpage
-  \item Partea de înregistrare - Figura 2.5, care încurajează utilizatorii noi să își creeze un cont și să se alăture platformei, șă fie proactivi. Pentru această secțiune am ales o poză cu un impact puternic, o poză “cât o mie de cuvinte”, pentru a atrage atenția utilizatorilor noi. Aici se regăsesc două butoane, unul pentru înregistrarea ca voluntar și altul pentru înregistrarea ca organizație. În funcție de butonul apăsat se va deschide pagina de “Cont nou Voluntar” sau cea de “Cont nou Organizație”.
-\\
-\begin{figure}[H]
-\centering
-  \includegraphics[width=1\linewidth]{./imagini/pp2.jpg}
-  \caption{Secțiunea de înregistrare a platformei Proactiv}
-\end{figure}
-  \item Și secțiunea “De ce?” - Figura 2.6, pentru utilizatorii mai încăpățânați, pe care nu am reușit să îi conving să se alăture plaformei, dar cărora le mai este cerută o șansă, oferindu-le motive pentru care a face voluntariat este un lucru minunat.
-\\
-\begin{figure}[H]
-\centering
-  \includegraphics[width=1\linewidth]{./imagini/pp3.jpg}
-  \caption{Secțiunea “De ce?” a platformei Proactiv}
-\end{figure}
-\newpage
-În momentul apăsării butonului “De ce?”, pagina se va derula inferior caruselului de imagine și vor fi afișate pentru utilizator diferite motive pentru care merită să se alăture platformei și să fie proactiv. În momentul în care utilizatorul derulează până la limita inferioară a paginii, acesta are opțiunea de a se întoarce înapoi la slideshow, apăsând un hyperlink.
-\\
-\begin{figure}[H]
-\centering
-  \includegraphics[width=1\linewidth]{./imagini/pp4.jpg}
-  \caption{Motive temeinice pentru a face voluntariat}
-\end{figure}
-\end{itemize}
-
-\section{Cont nou VOLUNTAR}
+\section{Tehnologii utilizate}
+\subsection{HTML}
 \par
-Utilizatorul este redirecționat către pagina ilustrată în Figura 2.8 în momentul în care apasă butonul “Voluntar”, de la secțiunea de înregistrare a paginii principale.
-\\\par
-Pagina este un formular care cuprinde diferite tipuri de căsuțe de input, precum date-picker-ul de la “Data nașterii”, dropdown-ul de la “Județ”, cât și cel de la “Oraș”, care este dependent de primul, afișând doar orașele din județul ales anterior sau o listă goală în cazul în care nu a fost selectat nici un județ.
-\\\par
-În momentul apăsării butonului “Creează cont”, dacă toate datele corespund cerințelor, utilizatorul va fi redirecționat înapoi către pagina principală și se va putea autentifica cu credențialele proaspăt introduse.
-\\\par
-Pentru a reveni la pagina principală, în cazul în care utilizatorul decide să nu ducă la final înregistrarea, acesta poate apăsa sigla platformei din partea stângă a bării de navigare.
-\\
-\begin{figure}[H]
-\centering
-  \includegraphics[width=1\linewidth]{./imagini/contvol.jpg}
-  \caption{Pagina de înregistrare voluntar a platformei Proactiv}
-\end{figure}
-
-\section{Cont nou ORGANIZAȚIE}
+Acronimul “HTML” provine de la termenul englezesc “Hypertext Markup Language”. Acesta este un limbaj de marcare folosit în dezvoltarea paginilor web și a aplicațiilor online. Un “hypertext” este un text folosit pentru a face referință către alte secvențe de text, iar limbajul de marcare informează serverul web în legătură cu stilul și structura unui document.
+\\\par 
+HTML nu este considerat un limbaj de programare deoarece nu poate crea o funcționalitate dinamică. În schimb, acesta este folosit în dezvoltarea web, pentru navigarea web și pentru a organiza și formata documente, similar cu Microsoft Word.
+\subsection{CSS}
 \par
-Precum se poate observa din Figura 2.9, această pagină este asemănătoare cu pagina aferentă înregistrării voluntarului.
-\\\par
-Sunt cerute anumite date personale reprezentative unei organizații, în locul datelor personale precum nume, prenume sau data nașterii. Pentru organizații, este necesară completarea tuturor câmpurilor: denumirea organizației, codul unic de identificare, data înfințării, județul și orașul unde își are reședința și o scurtă descriere despre organizație și activitatea pe care aceasta o desfășoară.
-\\\par
-Desigur, este necesară și completarea câmpurilor email și parolă, cu condiția ca emailul să aibă un format valid, să nu fie deja înregistrat pe platformă, iar ca parola și confirmarea acesteia să corespundă.
-\\\par
-În momentul apăsării butonului “Creează cont”, dacă toate datele sunt completate și corespund cerințelor, utilizatorul va fi redirecționat înapoi către pagina principală și se va putea autentifica cu credențialele contului tocmai înregistrat.
-\\
-\begin{figure}[H]
-\centering
-  \includegraphics[width=1\linewidth]{./imagini/contorg.jpg}
-  \caption{Pagina de înregistrare organizație a platformei Proactiv}
-\end{figure}
-
-\section{Contul meu}
+Cascading Style Sheet este un limbaj folosit pentru proiectarea site-urilor web, utilizat pentru a adăuga backgrounduri, culori, sau chiar tranziții și alte elemente interactive. De asemenea, ajuta la crearea unui site web ușor și receptiv.
+\\\par 
+CSS dictează cum ar trebui să arate elementele site-ului web și controlează designul, aspectul, fontul și culoarea conținutului site-ului, atunci când un fișier de tip CSS este încorporat în documentul HTML.
+\\\par 
+Am utilizat tehnologiile CSS prin intermediul framework-ului Bootstrap. Acesta din urmă menționat este un framework CSS gratuit și open-source orientat spre front-end receptiv și mobil. Conține șabloane de proiectare bazate pe CSS și (opțional) JavaScript pentru tipografie, formulare, butoane, navigare și alte componente ale interfeței.
+\subsection{PHP}
 \par
-În momentul în care utilizatorul se autentifică, acesta este redirecționat către gestionarea propriului cont, indiferent dacă este voluntar sau reprezintă o organizație. Pagina “Contul meu” cuprinde un meniu de butoane care oferă diferite funcționalități. 
-\\\par
-La secțiunea “General”, utilizatorul își poate vedea datele personale în momentul înregistrării pe platformă și le poate modifica și actualiza, apăsând butonul “Actualizează”. Pagina va fi reîmprospătată, iar serverul îi va afișa un mesaj utilizatorului după actualizarea datelor lui, precum în Figura 2.10.
-\\
-\begin{figure}[H]
-\centering
-  \includegraphics[width=0.5\linewidth]{./imagini/succes.jpg}
-  \caption{Mesaj afișat după actualizarea datelor}
-\end{figure}
+PHP este un limbaj de calculator sau de scriptare, utilizat în principal pentru proiectarea de site-uri web dinamice. Este un limbaj de programare licențiat gratuit care poate fi, prin urmare, utilizat de către oricine în mod complet gratuit.
+\\\par 
+Creat la începutul anilor 1990 de către canadianul Rasmus Lerdorf, limbajul PHP este adesea asociat cu serverul de baze de date MySQL și serverul Apache. Împreună cu sistemul de operare Linux, este o parte integrantă a suitei de software gratuit LAMP.
+\\\par 
+La nivel tehnic, PHP este utilizat mai ales pe partea de server. A fost printre primele limbaje server-sided care puteau fi încorporate în HTML, facilitând adăugarea funcționalității paginilor web fără a fi nevoie de apelarea unor fișiere externe. Astăzi, acesta se bucură de o bună reputație în ceea ce privește fiabilitatea și performanța.
+\subsection{Javascript}
 \par
-Desigur, datele și căsuțele de input diferă în funcție de tipul contului. Voluntarul își va putea modifica numele, prenumele și data nașterii, reprezentantul organizației va putea actualiza denumirea organizației, CIF-ul, data înființării și detaliile despre aceasta, iar ambele tipuri de cont vor putea modifica județul și orașul de reședință.
-\\\par
-Diferența dintre modurile de afișare a acestei secțiuni se poate observa făcând o comparație între Figurile 2.11 si 2.12.
-\\
-\begin{figure}[H]
-\centering
-  \includegraphics[width=1\linewidth]{./imagini/cont1.jpg}
-  \caption{Pagina gestionare cont voluntar a platformei Proactiv}
-\end{figure}
-\begin{figure}[H]
-\centering
-  \includegraphics[width=1\linewidth]{./imagini/cont1org.jpg}
-  \caption{Pagina gestionare cont organizație a platformei Proactiv}
-\end{figure}
-\par
-La secțiunea “Schimbă parola”, ilustrată în Figura 2.13, utilizatorul își poate modifica parola, apăsând butonul cu același nume. Pentru ca actualizarea să se realizeze cu succes, acesta trebuie să introducă emailul și parola actuală corecte, iar parola nouă și confirmarea acesteia trebuie să corespundă și să fie diferite de parola veche.
-\\
-\begin{figure}[H]
-\centering
-  \includegraphics[width=1\linewidth]{./imagini/cont2.jpg}
-  \caption{Secțiunea “Schimbă parola” a platformei Proactiv}
-\end{figure}
-\newpage
-La secțiunea “Mesaje primite” sunt afișate mesajele primite de către utilizator, sub forma unor carduri Bootstrap. Acestea conțin denumirea organizației care a trimis mesajul, titlul și conținutul acestuia.
-\par
-La fel sunt prezentate și mesajele primite de către utilizatorii cu cont de tip organizație, dar în locul denumirii sunt afișate numele și prenumele voluntarului care a trimis mesajul.
-\\
-\begin{figure}[H]
-\centering
-  \includegraphics[width=1\linewidth]{./imagini/cont3.jpg}
-  \caption{Secțiunea “Mesaje primite” a platformei Proactiv}
-\end{figure}
-\par
-Iar la secțiunea “Acțiunile mele” sunt listate acțiunile semnalate de către utilizator, în cazul contului de tip organizație și acțiunile la care utilizatorul este înscris, în cazul voluntarilor.
-\\
-\begin{figure}[H]
-\centering
-  \includegraphics[width=1\linewidth]{./imagini/cont4.jpg}
-  \caption{Secțiunea “Acțiunile mele” a platformei Proactiv}
-\end{figure}
-
-\section{Hartă}
-\par
-Pagina “Hartă” este vizibilă și accesibilă doar de către utilizatorii cu cont de tip voluntar. Aceasta cuprinde harta oferită de Google Maps API, centrată pe teritoriul României, cu diferiți pini afișați în funcție de acțiunile de voluntariat semnalate la momentul accesării paginii, de categoria în care sunt încadrate și de locația în care au loc acestea.
-\\\par
-În partea stângă a paginii se află o gamă de filtre, în cazul în care voluntarul dorește să vadă doar acțiunile semnalate într-un anumit județ, oraș sau doar dintr-o anumită categorie.
-\\
-\begin{figure}[H]
-\centering
-  \includegraphics[width=1\linewidth]{./imagini/harta.jpg}
-  \caption{Pagina “Hartă” a platformei Proactiv}
-\end{figure}
-
-\par
-În momentul în care este apăsat un pin, se va deschide un pop-up cu detalii despre acesta, precum titlul, categoria în care se încadrează și perioada de desfășurare a acțiunii.
-\\
-\begin{figure}[H]
-\centering
-  \includegraphics[width=0.4\linewidth]{./imagini/pin.jpg}
-  \caption{Detalii despre un anumit pin apăsat}
-\end{figure}
-
-\section{Acțiune nouă}
-\par
-Această pagină este accesibilă doar de către utilizatorii cu tip de cont organizație.
-\\ \par
-Aceștia pot semnala o acțiune nouă de voluntariat, care ulterior va fi afișată pe hartă pentru ca utilizatorii cu tip de cont voluntar să se poată alătura ei. Datele cerute pentru această funcționalitate cuprind numele acțiunii, categoria din care aceasta face parte, o scurtă descriere a acesteia, intervalul și locația în care se desfășoară acțiunea respectivă.
-\\
-\begin{figure}[H]
-\centering
-  \includegraphics[width=1\linewidth]{./imagini/actiunenoua.jpg}
-  \caption{Pagina “Acțiune nouă” a platformei Proactiv}
-\end{figure}
-\par
-În momentul în care utilizatorul submite formularul, apăsând butonul “Semnalează acțiune”, pagina va fi reîmprospătată, iar serverul îi va afișa acestuia un răspuns pozitiv, pentru a-l anunța că operația a avut loc cu succes. 
-
-\section{Voluntari}
-\par
-Pagina “Voluntari” a fost concepută pentru ca utilizatorii cu tip de cont organizație să poată lua legătura cu voluntarii înscriși pe platformă.
-\\ \par
-Pagina afișează în ordine alfabetică toți utilizatorii cu tip de cont voluntar, grupându-i pe trei coloane în funcție de numele acestora de familie, precum este ilustrat în Figura 2.19.
-\begin{figure}[H]
-\centering
-  \includegraphics[width=0.95\linewidth]{./imagini/vol1.jpg}
-  \caption{Pagina “Voluntari” a platformei Proactiv}
-\end{figure}
-\par
-Atunci când este apăsat un anumit voluntar, se deschide o fereastră modal unde sunt afișate atât detalii despre voluntarul respectiv, cât și o secțiune pentru a trimite un mesaj. Pentru a face acest lucru, este obligatorie completarea căsuțelor text care reprezintă titlul și conținutul mesajului care se dorește a fi trimis.
-\par
-În cazul în care utilizatorul nu dorește să trimită un mesaj voluntarului, ci doar să vadă mai multe detalii despre acesta, poate părăsi fereastra apăsând butonul “X” din colțul dreapta-sus.
-\begin{figure}[H]
-\centering
-  \includegraphics[width=0.95\linewidth]{./imagini/vol2.jpg}
-  \caption{Pagina “Voluntari” a platformei Proactiv}
-\end{figure}
-
-\section{Organizații}
-\par
-Pagina “Organizații” are același scop ca și pagina descrisă anterior, dar este accesibilă utlizatorilor cu tip de cont voluntar.
-\\\par
-În locul listei de voluntari, este afișată lista tuturor organizațiilor înscrise pe site la momentul accesării paginii, iar apăsarea unui element din listă va duce la afișarea detaliilor importante despre organizația respectivă și la posibilitatea voluntarului de a trimite un mesaj acesteia.
-\\
-\begin{figure}[H]
-\centering
-  \includegraphics[width=1\linewidth]{./imagini/org.jpg}
-  \caption{Pagina “Organizații” a platformei Proactiv}
-\end{figure}
+Javascript este un limbaj utilizat pentru a crea un conținut web dinamic, precum meniuri dropdown, animații grafice sau culori de fundal dinamice. Datorită acestuia, interacțiunea utilizatorilor cu pagina web este una îmbunătățită. 
+\\\par 
+Motivul pentru care JavaScript este unul dintre cele mai populare limbaje de programare este faptul că este extrem de versatil. Mulți dezvoltatori susțin că Javascript este alegerea lor principală, cu excepția cazului în care au nevoie de o funcție specifică pe care acest limbaj de programare nu o oferă.
 
 \chapter{Funcționalitatea aplicației}
 \section{Modelarea funcționalității}
@@ -454,7 +310,51 @@ Aceste diagrame sunt foarte utile pentru descrierea comportamentului obiectelor 
 \end{figure}
 
 \newpage
+\section{Modulul client}
+\par
+Utilizatorul neînregistrat are posibilitatea de a:
+\\
+\begin{itemize}
+    \item[$-$] se înregistra cu un cont nou de tip voluntar, apăsând butonul  “VOLUNTAR”, buton care îl va redirecționa pe acesta către pagina de “Cont nou Voluntar”
+    \item[$-$] se înregistra cu un cont nou de tip organizație, apăsând butonul  “ORGANIZAȚIE”, buton care îl va redirecționa pe acesta către pagina de “Cont nou Organizație”
+    \item[$-$] se autentifica, folosind credențialele oferite în momentul înregistrării, apăsând butonul “Loghează-te” poziționat în prima secțiune a slideshow-ului, operație care deschide o fereastră modal
+    \item[$-$] naviga pagina principală
+    \item[$-$] vizualiza motive pentru care este bine să faci voluntariat
+\end{itemize}
 
+\bigskip
+Următoarele funcționalități obligă utilizatorul să se înregistreze pe site, fie prin crearea unui cont nou, fie prin intrarea într-un cont existent folosind o adresă de e-mail și o parolă valide.
+\\ \par
+Utilizatorul autentificat cu un cont de tip voluntar poate să:
+\\
+\begin{itemize}
+    \item[$-$] vizualizeze pe harta României acțiunile de voluntariat semnalate 
+    \item[$-$] se înscrie la una sau mai multe acțiuni de voluntariat
+    \item[$-$] se dezaboneze de la o acțiune la care este înscris
+    \item[$-$] își actualizeze datele personale
+    \item[$-$] își schimbe parola
+    \item[$-$] vizualizeze lista de acțiuni de voluntariat la care este înscris
+    \item[$-$] vizualizeze mesajele primite de la organizații
+    \item[$-$] vizualizeze lista de organizații înscrise pe platformă la momentul respectiv
+    \item[$-$] trimită un mesaj organizațiilor înscrise
+    \item[$-$] vizualizeze motive pentru care este bine să faci voluntariat
+\end{itemize}
+
+\newpage
+Utilizatorul autentificat cu un cont de tip organizație poate să:
+\\
+\begin{itemize}
+    \item[$-$] semnaleze o acțiune de voluntariat nouă
+    \item[$-$] își actualizeze datele personale
+    \item[$-$] își schimbe parola
+    \item[$-$] vizualizeze lista de acțiuni de voluntariat pe care le-a semnalat
+    \item[$-$] vizualizeze mesajele primite de la voluntari
+    \item[$-$] vizualizeze lista de voluntari înscriși pe platformă la momentul respectiv
+    \item[$-$] trimită un mesaj voluntarilor înscriși
+    \item[$-$] vizualizeze motive pentru care este bine să faci voluntariat
+\end{itemize}
+
+\chapter{Implementarea funcționalităților}
 \section{Înregistrarea}
 \par
 Înregistrarea pe platforma Proactiv se poate accesa din pagina principală, apăsând unul dintre butoanele  “VOLUNTAR” sau  “ORGANIZAȚIE”, în funcție de tipul de cont pe care utilizatorul dorește să îl dețină. După apăsarea unuia dintre butoane, utilizatorul este redirecționat fie către pagina de  “Cont nou Voluntar”, fie către cea de  “Cont nou Organizație”.
@@ -463,13 +363,15 @@ Aceste diagrame sunt foarte utile pentru descrierea comportamentului obiectelor 
 Aceste două pagini menționate anterior constau dintr-un formular care cuprinde diferite tipuri de căsuțe de input, în funcție de datele necesare creării unui cont de un anumit tip. Pentru a submite formularul apăsând butonul  “Creează cont”, utilizatorul este condiționat de completarea tuturor câmpurilor de input. 
 \\
 \par
-După submiterea formularului, sistemul verifică dacă anumite criterii sunt îndeplinite, precum faptul că nu există deja un cont cu email-ul introdus și că parolele introduse corespund. Dacă răspunsul este unul pozitiv, datele sunt adăugate în baza de date și utilizatorul este redirecționat către pagina principala, unde se poate autentifica cu contul nou creat. Daca răspunsul este negativ, problema va fi semnalată acestuia, oferindu-i-se șansa să modifice datele și să reîncerce.
+După ce utilizatorul decide sa submită formularul, sistemul verifică dacă anumite criterii sunt îndeplinite, precum faptul că nu există deja un cont cu email-ul introdus și că parolele introduse corespund. Dacă răspunsul este unul pozitiv, datele sunt adăugate în baza de date și utilizatorul este redirecționat către pagina principala, unde se poate autentifica cu contul nou creat. Daca răspunsul este negativ, problema va fi semnalată acestuia, oferindu-i-se șansa să modifice datele și să reîncerce.
 \\
 \lstset{showstringspaces=false}
 \begin{lstlisting}[basicstyle=\small, language=PHP]{Name=contvoluntar.php}
 // Verificam emailul
-$sql = "SELECT idVoluntar FROM voluntar WHERE email = \"".$email."\"";
-$sql2 = "SELECT idOrganizatie FROM organizatie WHERE email = \"".$email."\"";
+$sql = "SELECT idVoluntar FROM voluntar".
+       "WHERE email = \"".$email."\"";
+$sql2 = "SELECT idOrganizatie FROM organizatie".
+        "WHERE email = \"".$email."\"";
 $result = mysqli_query($link, $sql);
 $result2 = mysqli_query($link, $sql2);
 $resultCheck = mysqli_num_rows($result);
@@ -521,7 +423,9 @@ $password = $_POST["password"];
 
 // Validam credentialele
 if(empty($username_err) && empty($password_err)){
-   $sql1 = "SELECT idVoluntar FROM voluntar WHERE email = \"".$username."\"";
+   $sql1 = "SELECT idVoluntar FROM voluntar". 
+           "WHERE email = \"".$username."\"";
+
    $sql2 = "SELECT idOrganizatie FROM organizatie WHERE email = \"".
            $username."\"";
    $result = mysqli_query($link, $sql1);
@@ -564,12 +468,12 @@ if(empty($username_err) && empty($password_err)){
                   // Redirectam utilizatorul catre contul lui
                   header("location: contulmeu.php");
                } else{
-                  // Daca parola este gresita, se afiseaza un mesaj generic
+                  // Daca parola este gresita, se afiseaza un mesaj
                   $login_err = "Parola gresita";
                }
             }
          } else{
-            // Daca emailul este gresit, se afiseaza un mesaj generic
+            // Daca emailul este gresit, se afiseaza un mesaj
             $login_err = "Email gresit";
          }
       } else{
@@ -744,6 +648,7 @@ API-urile puse la dispoziție de Google sunt interfețe de programare a aplicaț
 \par
 Google Maps API permite personalizarea hărților cu propriul conținut și afișarea acestora pe pagini web și dispozitive mobile. Acesta oferă patru tipuri de hărți, și anume roadmap, satelit, hibrid și teren, hărți care pot fi modificate folosindu-se layer-uri, stiluri sau diverse servicii și biblioteci \cite{gmaps}.
 
+\newpage
 \subsection{Filtre}
 \par
 Filtrele aplicate de către utilizator sunt salvate în variabilele de sesiune numite “jud”, “oras” și “categ”. În cazul în care utilizatorul nu a selectat nici un filtru, sau în cazul autentificării unde sesiunea a fost recent creată, aceste variabile au o valoare nulă.
@@ -805,7 +710,6 @@ else{
 }
 \end{lstlisting}
 
-\newpage
 \subsection{Pini}
 \par
 Acțiunile și informațiile despre acestea sunt preluate din baza de date și salvate într-un vector bidimensional numit “markers”. Fiecare element din vector reține locația acțiunii, prin intermediul latitudinii și a longitudinii, numele, categoria, id-ul și data la care aceasta începe și se încheie.
@@ -828,7 +732,7 @@ var markers = [
 \par
 După setarea proprietățiilor hărții precum centrul, zoom-ul și intervalele de minim și maxim a zoom-ului, fiecare linie a vectorului “markers” este parcursă, convertind fiecare acțiune într-un pin cu iconiță personalizată în funcție de categoria din care acțiunea face parte. În momentul în care un anumit pin este apăsat de către utilizator, se deschide o căsuță de content care cuprinde informații despre pinul apăsat și un buton care oferă voluntarului posibilitatea de a se abona sau dezabona de la acțiunea de voluntariat respectivă.
 
-
+\newpage
 \subsection{Abonare sau dezabonare}
 \par
 Pentru a-i oferi utilizatorului acces la butonul potrivit, sistemul preia din baza de date lista de acțiuni la care utilizatorul este înscris și o salvează într-un vector unidimensional. În momentul parcurgerii vectorului “markers”, id-ul acțiunii respective este căutat în listă. În cazul în care acesta este găsit, căsuța de content va cuprinde butonul responsabil dezabonării, iar în caz contrar, butonul  “Mă înscriu”.
@@ -915,7 +819,6 @@ Singurul tabel complet independent din baza de date “proactiv” este tabelul 
   \caption{O mică parte din datele introduse în tabelul locații}
 \end{figure}
 
-\newpage
 Tabelul \textbf{voluntar} stochează datele utilizatorului cu cont de tip voluntar, date introduse în momentul înregistrării pe platformă. Pe lângă aceste date preluate de la utilizator în momentul înregistrării, este alocată o cheie primară, unică și foarte importantă atât pentru funcționalitatea corectă a aplicației, cât și pentru logica structurii bazei de date.
 \\
 \begin{figure}[H]
@@ -923,6 +826,10 @@ Tabelul \textbf{voluntar} stochează datele utilizatorului cu cont de tip volunt
   \includegraphics[width=1\linewidth]{./imagini/voluntar.jpg}
   \caption{Date introduse în tabelul voluntar}
 \end{figure}
+
+
+\newpage
+
 \par
 Structura tabelului \textbf{organizație} este asemănătoare cu cea a tabelului descris anterior. Diferența este că acesta stochează datele utilizatorului cu cont de tip organizație, pentru care o parte din datele cerute diferă.
 \\
@@ -933,8 +840,8 @@ Structura tabelului \textbf{organizație} este asemănătoare cu cea a tabelului
 \end{figure}
 \par
 Pentru ambele tipuri de cont, parola este criptată în momentul adăugării contului nou în baza de date și decriptată în momentul în care se verifică corectitudinea acesteia pentru realizarea autentificării sau pentru actualizarea acesteia din pagina “Contul meu”.
-
-\newpage
+\\
+\par
 Tabelul \textbf{acțiune} stochează informațiile despre acțiunile semnalate de către utilizatorii cu cont de tip organizație. Pe lângă cheia primară și datele introduse de utilizator, pentru fiecare acțiune se stochează id-ul organizației care a semnalat-o, prin intermediul cheii străine cu numele “organizatie”.
 \\
 \begin{figure}[H]
@@ -942,6 +849,8 @@ Tabelul \textbf{acțiune} stochează informațiile despre acțiunile semnalate d
   \includegraphics[width=1\linewidth]{./imagini/actiune.jpg}
   \caption{Date introduse în tabelul acțiune}
 \end{figure}
+
+\newpage
 
 \par
 Tabelul \textbf{acțiuni} este podul de legătură dintre un anumit voluntar și o acțiune la care acesta a decis să se înscrie. Această legătură are loc prin utilizarea a două chei străine: idV, care face referință către cheia primară a voluntarului și una care face referință la id-ul unic al acțiunii, anume idA.
@@ -956,12 +865,218 @@ Tabelul \textbf{acțiuni} este podul de legătură dintre un anumit voluntar și
 Tabelele \textbf{mesajorgvol} și \textbf{mesajvolorg} stochează mesajele trimise sau primite de către utilizatori. Acestea au drept coloane cheia primară a celui care a trimis mesajul, titlul mesajului, conținutul și cheia primară a celui care trebuie să primească mesajul trimis.
 
 
+\chapter{Utilizarea aplicației}
+\section{Pagina principală}
+\par
+În momentul accesării site-ului web, utilizatorul este întâmpinat de către pagina principală. Aceasta este portalul către funcționalitățile platformei Proactiv, iar accesul este condiționat de autentificare.
+\\\par
+Elementul dominant de pe pagina principală și, totodată, primul element pe care îl întâlnește utilizatorul în momentul accesării platformei este caruselul (slideshow-ul) de poze. 
+\\\par
+Pagina principală cuprinde trei secțiuni, și anume:
+\par
+
+\begin{itemize}
+  \item Partea de autentificare și de întâmpinare a utilizatorilor recurenți, ilustrată în Figura 6.1, care cuprinde o poză clară, atractivă și plăcută de către iubitorii de animale și un buton care deschide modalul de login - Figura 6.2, portal între pagina principală și paginile reprezentative site-ului meu de voluntariat.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/pp1.jpg}
+  \caption{Secțiunea de autentificare a platformei Proactiv}
+\end{figure}
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/login.jpg}
+  \caption{Modalul de login al platformei Proactiv}
+\end{figure}
+  \item Partea de înregistrare - Figura 6.3, care încurajează utilizatorii noi să își creeze un cont și să se alăture platformei, șă fie proactivi. Pentru această secțiune am ales o poză cu un impact puternic, o poză “cât o mie de cuvinte”, pentru a atrage atenția utilizatorilor noi. Aici se regăsesc două butoane, unul pentru înregistrarea ca voluntar și altul pentru înregistrarea ca organizație. În funcție de butonul apăsat se va deschide pagina de “Cont nou Voluntar” sau cea de “Cont nou Organizație”.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/pp2.jpg}
+  \caption{Secțiunea de înregistrare a platformei Proactiv}
+\end{figure}
+
+\newpage
+  \item Și secțiunea “De ce?” - Figura 6.4, pentru utilizatorii mai încăpățânați, pe care nu am reușit să îi conving să se alăture plaformei, dar cărora le mai este cerută o șansă, oferindu-le motive pentru care a face voluntariat este un lucru minunat.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/pp3.jpg}
+  \caption{Secțiunea “De ce?” a platformei Proactiv}
+\end{figure}
+
+În momentul apăsării butonului “De ce?”, pagina se va derula inferior caruselului de imagine și vor fi afișate pentru utilizator diferite motive pentru care merită să se alăture platformei și să fie proactiv. În momentul în care utilizatorul derulează până la limita inferioară a paginii, acesta are opțiunea de a se întoarce înapoi la slideshow, apăsând un hyperlink.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/pp4.jpg}
+  \caption{Motive temeinice pentru a face voluntariat}
+\end{figure}
+\end{itemize}
+
+\newpage
+\section{Cont nou VOLUNTAR}
+\par
+Utilizatorul este redirecționat către pagina ilustrată în Figura 6.6 în momentul în care apasă butonul “Voluntar”, de la secțiunea de înregistrare a paginii principale.
+\\\par
+Pagina este un formular care cuprinde diferite tipuri de căsuțe de input, precum date-picker-ul de la “Data nașterii”, dropdown-ul de la “Județ”, cât și cel de la “Oraș”, care este dependent de primul, afișând doar orașele din județul ales anterior sau o listă goală în cazul în care nu a fost selectat nici un județ.
+\\\par
+În momentul apăsării butonului “Creează cont”, dacă toate datele corespund cerințelor, utilizatorul va fi redirecționat înapoi către pagina principală și se va putea autentifica cu credențialele proaspăt introduse.
+\\\par
+Pentru a reveni la pagina principală, în cazul în care utilizatorul decide să nu ducă la final înregistrarea, acesta poate apăsa sigla platformei din partea stângă a bării de navigare.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/contvol.jpg}
+  \caption{Pagina de înregistrare voluntar a platformei Proactiv}
+\end{figure}
+
+\newpage
+\section{Cont nou ORGANIZAȚIE}
+\par
+Precum se poate observa din Figura 6.7, această pagină este asemănătoare cu pagina aferentă înregistrării voluntarului.
+\\\par
+Sunt cerute anumite date personale reprezentative unei organizații, în locul datelor personale precum nume, prenume sau data nașterii. Pentru organizații, este necesară completarea tuturor câmpurilor: denumirea organizației, codul unic de identificare, data înfințării, județul și orașul unde își are reședința și o scurtă descriere despre organizație și activitatea pe care aceasta o desfășoară.
+\\\par
+Desigur, este necesară și completarea câmpurilor email și parolă, cu condiția ca emailul să aibă un format valid, să nu fie deja înregistrat pe platformă, iar ca parola și confirmarea acesteia să corespundă.
+\\\par
+În momentul apăsării butonului “Creează cont”, dacă toate datele sunt completate și corespund cerințelor, utilizatorul va fi redirecționat înapoi către pagina principală și se va putea autentifica cu credențialele contului tocmai înregistrat.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/contorg.jpg}
+  \caption{Pagina de înregistrare organizație a platformei Proactiv}
+\end{figure}
+
+\newpage
+\section{Contul meu}
+\par
+În momentul în care utilizatorul se autentifică, acesta este redirecționat către gestionarea propriului cont, indiferent dacă este voluntar sau reprezintă o organizație. Pagina “Contul meu” cuprinde un meniu de butoane care oferă diferite funcționalități. 
+\\\par
+La secțiunea “General”, utilizatorul își poate vedea datele personale în momentul înregistrării pe platformă și le poate modifica și actualiza, apăsând butonul “Actualizează”. Pagina va fi reîmprospătată, iar serverul îi va afișa un mesaj utilizatorului după actualizarea datelor lui, precum în Figura 6.8.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.5\linewidth]{./imagini/succes.jpg}
+  \caption{Mesaj afișat după actualizarea datelor}
+\end{figure}
+\par
+Desigur, datele și căsuțele de input diferă în funcție de tipul contului. Voluntarul își va putea modifica numele, prenumele și data nașterii, reprezentantul organizației va putea actualiza denumirea organizației, CIF-ul, data înființării și detaliile despre aceasta, iar ambele tipuri de cont vor putea modifica județul și orașul de reședință.
+\\\par
+Diferența dintre modurile de afișare a acestei secțiuni se poate observa făcând o comparație între Figurile 6.9 si 6.10.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/cont1.jpg}
+  \caption{Pagina gestionare cont voluntar a platformei Proactiv}
+\end{figure}
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/cont1org.jpg}
+  \caption{Pagina gestionare cont organizație a platformei Proactiv}
+\end{figure}
+\par
+La secțiunea “Schimbă parola”, ilustrată în Figura 6.11, utilizatorul își poate modifica parola, apăsând butonul cu același nume. Pentru ca actualizarea să se realizeze cu succes, acesta trebuie să introducă emailul și parola actuală corecte, iar parola nouă și confirmarea acesteia trebuie să corespundă și să fie diferite de parola veche.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/cont2.jpg}
+  \caption{Secțiunea “Schimbă parola” a platformei Proactiv}
+\end{figure}
+\newpage
+La secțiunea “Mesaje primite” sunt afișate mesajele primite de către utilizator, sub forma unor carduri Bootstrap. Acestea conțin denumirea organizației care a trimis mesajul, titlul și conținutul acestuia.
+\par
+La fel sunt prezentate și mesajele primite de către utilizatorii cu cont de tip organizație, dar în locul denumirii sunt afișate numele și prenumele voluntarului care a trimis mesajul.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/cont3.jpg}
+  \caption{Secțiunea “Mesaje primite” a platformei Proactiv}
+\end{figure}
+\par
+Iar la secțiunea “Acțiunile mele” sunt listate acțiunile semnalate de către utilizator, în cazul contului de tip organizație și acțiunile la care utilizatorul este înscris, în cazul voluntarilor.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/cont4.jpg}
+  \caption{Secțiunea “Acțiunile mele” a platformei Proactiv}
+\end{figure}
+
+\section{Hartă}
+\par
+Pagina “Hartă” este vizibilă și accesibilă doar de către utilizatorii cu cont de tip voluntar. Aceasta cuprinde harta oferită de Google Maps API, centrată pe teritoriul României, cu diferiți pini afișați în funcție de acțiunile de voluntariat semnalate la momentul accesării paginii, de categoria în care sunt încadrate și de locația în care au loc acestea.
+\\\par
+În partea stângă a paginii se află o gamă de filtre, în cazul în care voluntarul dorește să vadă doar acțiunile semnalate într-un anumit județ, oraș sau doar dintr-o anumită categorie.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/harta.jpg}
+  \caption{Pagina “Hartă” a platformei Proactiv}
+\end{figure}
+
+\par
+În momentul în care este apăsat un pin, se va deschide un pop-up cu detalii despre acesta, precum titlul, categoria în care se încadrează și perioada de desfășurare a acțiunii.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.4\linewidth]{./imagini/pin.jpg}
+  \caption{Detalii despre un anumit pin apăsat}
+\end{figure}
+
+\section{Acțiune nouă}
+\par
+Această pagină este accesibilă doar de către utilizatorii cu tip de cont organizație.
+\\ \par
+Aceștia pot semnala o acțiune nouă de voluntariat, care ulterior va fi afișată pe hartă pentru ca utilizatorii cu tip de cont voluntar să se poată alătura ei. Datele cerute pentru această funcționalitate cuprind numele acțiunii, categoria din care aceasta face parte, o scurtă descriere a acesteia, intervalul și locația în care se desfășoară acțiunea respectivă.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/actiunenoua.jpg}
+  \caption{Pagina “Acțiune nouă” a platformei Proactiv}
+\end{figure}
+\par
+În momentul în care utilizatorul submite formularul, apăsând butonul “Semnalează acțiune”, pagina va fi reîmprospătată, iar serverul îi va afișa acestuia un răspuns pozitiv, pentru a-l anunța că operația a avut loc cu succes. 
+
+\newpage
+\section{Voluntari}
+\par
+Pagina “Voluntari” a fost concepută pentru ca utilizatorii cu tip de cont organizație să poată lua legătura cu voluntarii înscriși pe platformă.
+\\ \par
+Pagina afișează în ordine alfabetică toți utilizatorii cu tip de cont voluntar, grupându-i pe trei coloane în funcție de numele acestora de familie, precum este ilustrat în Figura 6.17.
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.95\linewidth]{./imagini/vol1.jpg}
+  \caption{Pagina “Voluntari” a platformei Proactiv}
+\end{figure}
+\par
+Atunci când este apăsat un anumit voluntar, se deschide o fereastră modal unde sunt afișate atât detalii despre voluntarul respectiv, cât și o secțiune pentru a trimite un mesaj. Pentru a face acest lucru, este obligatorie completarea căsuțelor text care reprezintă titlul și conținutul mesajului care se dorește a fi trimis.
+\par
+În cazul în care utilizatorul nu dorește să trimită un mesaj voluntarului, ci doar să vadă mai multe detalii despre acesta, poate părăsi fereastra apăsând butonul “X” din colțul dreapta-sus.
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.95\linewidth]{./imagini/vol2.jpg}
+  \caption{Pagina “Voluntari” a platformei Proactiv}
+\end{figure}
+
+\newpage
+\section{Organizații}
+\par
+Pagina “Organizații” are același scop ca și pagina descrisă anterior, dar este accesibilă utlizatorilor cu tip de cont voluntar.
+\\\par
+În locul listei de voluntari, este afișată lista tuturor organizațiilor înscrise pe site la momentul accesării paginii, iar apăsarea unui element din listă va duce la afișarea detaliilor importante despre organizația respectivă și la posibilitatea voluntarului de a trimite un mesaj acesteia.
+\\
+\begin{figure}[H]
+\centering
+  \includegraphics[width=1\linewidth]{./imagini/org.jpg}
+  \caption{Pagina “Organizații” a platformei Proactiv}
+\end{figure}
+
 \chapter{Concluzii și direcții viitoare de dezvoltare}
 \section{Concluzii}
 \par
 Lucrând pentru acest site web, am descoperit cât de mult îmi place domeniul programării web. Faptul că necesită imaginație, design-ul paginilor, alegerea paletelor potrivite de culori, schițarea unui logo, potrivirea elementelor pentru o experiență plăcută a utilizatorilor, dar și backend-ul și funcțiile scrise pentru a-i oferi platformei un scop și o funcționalitate, mă conving să mă apropi tot mai mult de acest domeniu și mă fac să îmi doresc să lucrez într-o companie care dezvoltă astfel de platforme web. 
 \\ \par
-O problemă întâmpinată în realizarea acestei lucrări a fost și, din păcate este în continuare, situația pandemică cu care ne confruntăm. Trecerea în online a îngreunat colaborarea cu profesorii, cu colegii și accesul la materiale utile în realizarea documentației. O altă problemă des întâlnită în cazul lucrărilor de licență tehnice, problemă întâmpinată și de mine, a fost cea a erorilor de cod. Cea din urmă problemă a prelungit finalizarea lucrării, dar a ajutat în acumularea de informații și cunoștiințe, din nevoia de a o rezolva.
+O problemă întâmpinată în realizarea acestei lucrări a fost și, din păcate este în continuare, situația pandemică cu care ne confruntăm. Trecerea în online a îngreunat colaborarea cu profesorii, cu colegii și accesul la materiale utile în realizarea documentației. O altă problemă des întâlnită în cazul lucrărilor de licență de tip tehnice, problemă întâmpinată și de mine, a fost cea a erorilor de cod. Cea din urmă problemă a prelungit finalizarea lucrării, dar a ajutat în acumularea de informații și cunoștiințe, din nevoia de a o rezolva.
 \\ \par
 Revenind la concluzii mai vesele, îmi place foarte mult gândul că orice modificare făcută în cod este la un refresh distanță, este vizuală, ușor de observat și de modificat în cazul în care nu este satisfăcătoare.
 
@@ -1006,6 +1121,10 @@ De Bunavoie
 \bibitem{afg} 
 All For Good
 \\\texttt{https://www.allforgood.org/}
+
+\bibitem{coolors} 
+Coolors.co
+\\\texttt{https://coolors.co/702dc8-9059d9-c3aae3-e6daf0-fcfcfc}
 
 \bibitem{usecases} 
 \textsc{Alistair Cockburn}, \emph{Writing Effective Use Cases}, Addison-Wesley Professional, 2000.
