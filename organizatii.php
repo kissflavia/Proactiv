@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="Imagini\logo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/imagini\logo.png">
 
     <title>Proactiv - Organizații</title>
 
@@ -84,7 +84,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-      <img src="Imagini\proactiv.png" width="150px" height="40px" class="d-inline-block align-top" alt="">
+      <img src="./assets/imagini\proactiv.png" width="150px" height="40px" class="d-inline-block align-top" alt="">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -114,7 +114,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="nav-item">
-              <a class="nav-link" href="contulmeu.php"><img src="Imagini\myacc.png" width="23px" height="23px"/>  Contul meu</a>
+              <a class="nav-link" href="contulmeu.php"><img src="./assets/imagini\myacc.png" width="23px" height="23px"/>  Contul meu</a>
             </li>
           </ul>
       </div>

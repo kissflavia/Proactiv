@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gazdă: 127.0.0.1
--- Timp de generare: iun. 23, 2021 la 10:41 PM
+-- Timp de generare: sept. 06, 2021 la 05:47 PM
 -- Versiune server: 10.4.14-MariaDB
 -- Versiune PHP: 7.4.11
 

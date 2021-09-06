@@ -87,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="Imagini\logo.png">
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/imagini\logo.png">
 
     <title>Proactiv</title>
 
@@ -129,7 +129,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-      <img src="Imagini\proactiv.png" width="150px" height="40px" class="d-inline-block align-top" alt="">
+      <img src="./assets/imagini\proactiv.png" width="150px" height="40px" class="d-inline-block align-top" alt="">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -149,7 +149,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><img src="Imagini\PaginaPrincipala\vol.jpg" style="object-fit: cover;" width="100%" height="500px"/></svg>
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><img src="./assets/imagini\PaginaPrincipala\vol.jpg" style="object-fit: cover;" width="100%" height="500px"/></svg>
 
         <div class="container">
           <div class="carousel-caption text-start">
@@ -163,7 +163,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
       </div>
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><img src="Imagini\PaginaPrincipala\vol2.jpg" style="object-fit: cover;" width="100%" height="500px"/></svg>
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><img src="./assets/imagini\PaginaPrincipala\vol2.jpg" style="object-fit: cover;" width="100%" height="500px"/></svg>
 
         <div class="container">
           <div class="carousel-caption">
@@ -177,7 +177,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
       </div>
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><img src="Imagini\PaginaPrincipala\vol3.jpg" style="object-fit: cover;" width="100%" height="500px"/></svg>
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><img src="./assets/imagini\PaginaPrincipala\vol3.jpg" style="object-fit: cover;" width="100%" height="500px"/></svg>
 
         <div class="container">
           <div class="carousel-caption text-end">
@@ -256,7 +256,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <p class="lead">Acest lucru se datorează faptului că a face ceva pentru altcineva întrerupe tiparele de producere a tensiunii și le înlocuiește cu un sentiment de scop, un nivel de încredere mai ridicat și cu emoții pozitive!</p>
       </div>
       <div class="col-md-3">
-        <img src="Imagini\PaginaPrincipala\sanatate.jpg" width="500px" height="500px"/>
+        <img src="./assets/imagini\PaginaPrincipala\sanatate.jpg" width="500px" height="500px"/>
       </div>
     </div></div>
 
@@ -272,7 +272,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <p class="lead">Și nu suntem singurii care sunt conștienți de aceste beneficii, și recrutorii sunt! Se spune că recrutorii pun mai mult preț pe voluntariat decât pe prezentarea personală atunci când se uită la potențialii candidați.</p>
       </div>
       <div class="col-md-5 order-md-1">
-        <img src="Imagini\PaginaPrincipala\angajare.jpg" width="500px" height="500px"/>
+        <img src="./assets/imagini\PaginaPrincipala\angajare.jpg" width="500px" height="500px"/>
       </div>
     </div></div>
 
@@ -289,7 +289,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <p class="lead">Îți oferă posibilitatea de a face parte din ceva mai măreț decât tine și de a-ți folosi propriile abilități și cunoștințe pentru a ajuta la creșterea proactivității de pe tot globul.</p>
       </div>
       <div class="col-md-3">
-        <img src="Imagini\PaginaPrincipala\impact.jpg" width="500px" height="500px"/>
+        <img src="./assets/imagini\PaginaPrincipala\impact.jpg" width="500px" height="500px"/>
       </div>
     </div></div>
 
@@ -307,7 +307,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <p class="lead">Permite acțiunilor tale să fie conduse din intenții bune. În acest fel, toată munca grea va merita și vei fi mai dedicat cauzei. Ca urmare, impactul tău va fi mult mai mare.</p></p>
       </div>
       <div class="col-md-5 order-md-1">
-        <img src="Imagini\PaginaPrincipala\cauza.jpg" width="500px" height="500px"/>
+        <img src="./assets/imagini\PaginaPrincipala\cauza.jpg" width="500px" height="500px"/>
       </div>
     </div></div>
 
@@ -324,7 +324,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <p class="lead">Orice ai decide să faci, îi vei ajuta pe oameni să fie mai motivați. De asemenea, îi veți ajuta să-și dezvolte abilitățile și încrederea de care au nevoie pentru a accesa oportunități de muncă mai bune.</p>
       </div>
       <div class="col-md-3">
-        <img src="Imagini\PaginaPrincipala\empower.jpg" width="500px" height="500px"/>
+        <img src="./assets/imagini\PaginaPrincipala\empower.jpg" width="500px" height="500px"/>
       </div>
     </div></div>
 
@@ -340,7 +340,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <p class="lead">Ai putea să-ți cunoști noul prieten cel mai bun, viitorul partener de afaceri sau să ai o conversație care să aducă o schimbare pozitivă în viața ta.</p>
       </div>
       <div class="col-md-5 order-md-1">
-        <img src="Imagini\PaginaPrincipala\conexiune.jpg" width="500px" height="500px"/>
+        <img src="./assets/imagini\PaginaPrincipala\conexiune.jpg" width="500px" height="500px"/>
       </div>
     </div></div>
 
@@ -359,7 +359,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <p class="lead">Această schimbare de perspectivă îți deschide mintea către ceea ce este cu adevărat important și te ajută să construiești punți de înțelegere.</p>
       </div>
       <div class="col-md-3">
-        <img src="Imagini\PaginaPrincipala\prespectiva.jpg" width="500px" height="500px"/>
+        <img src="./assets/imagini\PaginaPrincipala\prespectiva.jpg" width="500px" height="500px"/>
       </div>
     </div></div>
 
@@ -375,7 +375,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <p class="lead">Este un motiv pentru a cunoaște oameni noi, a îmbrățișa tradițiile culturale și a întâlni locuri noi.</p>
       </div>
       <div class="col-md-5 order-md-1">
-        <img src="Imagini\PaginaPrincipala\fun.jpg" width="500px" height="500px"/>
+        <img src="./assets/imagini\PaginaPrincipala\fun.jpg" width="500px" height="500px"/>
       </div>
     </div></div>
 
