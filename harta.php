@@ -31,7 +31,7 @@
       <link rel="shortcut icon" type="image/x-icon" href="./assets/imagini\logo.png">
       <title>Proactiv - Harta</title>
       <script
-         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBH5w2DdA47i8Ku__Zx01nLVvBidvyUvfo&callback=initMap"
+         src="https://maps.googleapis.com/maps/api/js?key=INSERT_KEY&callback=initMap"
          defer
       ></script>
       <script src="./harta/showharta.php"></script>
